@@ -1,0 +1,4 @@
+Verificar Skill dos Usuarios
+Para eu poder saber qual o skill de um usuário
+Como um administrador
+Eu quero ver o skill dos usuários consultando pelo seu login

@@ -1,0 +1,29 @@
+<acceptance-test-run title="05. Consultar produto no carrinho" name="05. Consultar produto no carrinho" steps="3" successful="0" failures="0" errors="1" skipped="2" ignored="0" pending="0" annotated-result="ERROR" result="ERROR" duration="975" timestamp="2016-10-05T11:18:12.685-03:00" session-id="ef70f7d4-cccc-49f4-a078-340884385907">
+  <user-story id="AdicionarAoCarrinhoProdutoAppleiPhone5" name="Adicionar ao carrinho produto applei phone5" path="stories/CompraDeProdutos/AdicionarAoCarrinhoProdutoAppleiPhone5.story"/>
+  <tags>
+    <tag name="Compra de produtos" type="feature"/>
+    <tag name="Adicionar ao carrinho produto applei phone5" type="story"/>
+    <tag name="Compra de produtos/Rot. 01   adicionar ao carrinho produto apple i phone 5" type="story"/>
+  </tags>
+  <test-group name="Given que adicionei o produto no carrinho" result="ERROR">
+    <screenshots>
+      <screenshot image="a4d5d9f6a55bc76260b72b8920ab1bda.png"/>
+    </screenshots>
+    <test-step result="ERROR" duration="675">
+      <screenshots>
+        <screenshot image="a4d5d9f6a55bc76260b72b8920ab1bda.png"/>
+        <screenshot image="a4d5d9f6a55bc76260b72b8920ab1bda.png" source="pagesource186286204106275202.html.txt"/>
+      </screenshots>
+      <description>Verifica se produto foi adicionado ao carrinho</description>
+      <error>java.lang.ClassCastException: net.serenitybdd.core.pages.WebElementFacadeImpl cannot be cast to java.lang.String</error>
+      <exception>java.lang.ClassCastException:net.serenitybdd.core.pages.WebElementFacadeImpl cannot be cast to java.lang.String&#xd;
+[br.com.rsinet.bdd.CompraDeProdutos.CompraDeProdutos.componentesdenegocio.passos.AdicionarAoCarrinhoProdutoAppleiPhone5Steps.verificaSeProdutoFoiAdicionadoAoCarrinho(AdicionarAoCarrinhoProdutoAppleiPhone5Steps.java:98), br.com.rsinet.bdd.CompraDeProdutos.CompraDeProdutos.componentesdenegocio.AdicionarAoCarrinhoProdutoAppleiPhone5.givenQueAdicioneiOProdutoNoCarrinho(AdicionarAoCarrinhoProdutoAppleiPhone5.java:76)]</exception>
+    </test-step>
+  </test-group>
+  <test-step result="SKIPPED" duration="1">
+    <description>When clico no icone do carrinho</description>
+  </test-step>
+  <test-step result="SKIPPED" duration="1">
+    <description>Then exibe os itens adicionados ao carrinho</description>
+  </test-step>
+</acceptance-test-run>

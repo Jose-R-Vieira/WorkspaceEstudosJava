@@ -1,0 +1,122 @@
+O banco de dados é um componente crucial ao desenvolvimento de qualquer aplicativo, desde simples jogos que precisam guardar pontos e qual as fases que os jogadores terminaram, até mesmo aplicativos mais complexos que envolvam cotação do dólar.
+
+Dependendo do aplicativo, salvar os dados do usuário localmente pode não ser suficiente e poderá haver a necessidade de transmiti-lo à um banco de dados externo, ou talvez buscar informações complementares que mudam freqüentemente, como a cotação do dólar por exemplo.
+
+Precisando manipular tantas informações diferentes leva à necessidade de se criar uma plataforma (em qualquer linguagem de programação web) em um servidor que irá dar o suporte a toda lógica de negócios e banco de dados da aplicação.
+
+Neste artigo, vou mostrar como é possível utilizar um banco de dados externo para guardar e recuperar dados usando uma API de forma rápida, fácil e segura.
+
+Então, continue lendo este artigo para entender como utilizar um banco de dados externo no Android:
+
+Por Que Usar uma API?
+Como Funciona uma API?
+Como utilizar Banco de Dados Externo
+Considerações Finais
+Já está interessado(a) no que vem por aí? Então compartilhe esse artigo com seus amigos para tirar todas as dúvidas sobre as bancos de dados externo no Android.
+
+Facebook (o mais popular)
+Twitter (o mais rápido)
+Google+ (o mais indicado para funcionários do Google)
+LinkedIn (o mais profissional)
+Por Que Usar uma API?
+
+
+
+Indiscutivelmente alguém poderia fazer uma conexão direta com um banco de dados qualquer, mas isso é extremamente errado hoje em dia. Ao utilizar uma API pra fazer o meio campo, o aplicativo se torna mais simples por não envolver consultas SQL diretamente e pode trabalhar com o que realmente importa, os dados.
+
+Assim, o banco de dados fica isolado de tal maneira que ele pode ser facilmente trocado por outro de forma transparente, ou seja, sem nenhum impacto para sua aplicação.
+
+Além do mais, todas lógica de negócio fica dentro da API, oferecendo muito além do que apenas a simples manutenção dos dados. Por exemplo, enviar um e-mail de boas vindas para o novo usuário cadastrado.
+
+A parte de segurança também é muito importante, pois não podemos expor o acesso direto a nosso banco de dados sem ter uma camada que proteja a arquitetura e os próprios dados.
+
+Por isso, NUNCA faça uma conexão direta do seu aplicativo Android com um banco de dados externo, sempre utilize uma API para fazer a união das duas pontas.
+
+Como Funciona uma API?
+
+
+
+Uma API basicamente abstrai toda a parte difícil e chata de ter que configurar um banco de dados e lidar com conexões e manutenção. Ela fica hospedada em um servidor externo e tudo que você necessita é saber quais endpoints (URLs) utilizar para acessar os recursos do seu servidor externo.
+
+Desta forma, cada vez que o aplicativo precise gravar ou buscar um dado, ele faz um POST ou um GET na API, que por sua vez vai até o banco de dados e guarda/busca o dado.
+
+A imagem abaixo ilustra o processo de forma simplificada:
+
+android-rest
+
+Normalmente para aplicativos mobile são utilizadas APIs construidas utilizando o conceito de RESTFul. Esse é um conceito de construção de WebServices mais leve do que o conceito de SOAP.
+
+Como utilizar Banco de Dados Externo
+
+
+
+Agora que você ja sabe a importancia de não conectar diretamente seu aplicativo Android em um banco de dados externo, vamos ver algumas opções que temos para fazer isso da melhor forma.
+
+Construir sua Própria API
+
+Essa é a forma mais trabalhosa de você conseguir fazer a conexão do seu aplicativo Android com um banco de dados externo. Você pode construir do zero a sua própria API
+
+Uma API pode ser construída utilizando várias linguagens de programação como Java, Python, Ruby, PHP e assim por diante. Também é possível utilizar o banco de dados de sua preferencia, como MySQL, Oracle e etc.
+
+Para construir APIs em Java, utilize o framework Spring para facilitar. Veja aqui!
+Porém, é necessário tomar alguns cuidados no momento de construir a sua própria API para poder conectar o seu banco de dados externo no aplicativo Android.
+
+Protocolo HTTP
+
+Uma das primeiras coisas é entender como funciona os padrões do protocolo HTTP, onde aplicá-los e onde eles fazem sentido, por exemplo, os status code de retorno de das requisições.
+
+Não ao XML
+
+Outro ponto importante, evite utilizar o XML como forma de troca de dados, eles são verbosos, pesados e difíceis de trabalhar. Siga a especificação do REST e utilize o JSON como estrutura de dados.
+
+Definir as URIs/URLs
+
+Um dos princípios fundamentais do REST é separar a API em recursos de acordo com seu significado, que serão manipulados através de solicitações HTTP.
+
+Simplifique a criação das URIs utilizando um substantivo. Exemplo, em uma API disponibilizada em um domínio minhaloja.com.br:
+
+minhaloja.com.br/cliente
+minhaloja.com.br/produto
+minhaloja.com.br/pedido
+Segurança
+
+Proteger os dados trafegados pela sua API até seu aplicativo Android é extremamente importante. Existem formas complexas e mais simples de se fazer isso.
+
+A mais simples é utilizar a autenticação HTTP basic, que é uma de um cliente (aplicativo Android) informar suas credenciais de acesso ao fazer uma requisição HTTP.
+
+Ela é a técnica mais simples de exigir controle de acesso as URIs da sua plataforma, pois não requer cookies, identificadores de sessão ou páginas de login. São usados somente cabeçalhos HTTP estáticos.
+
+Utilizar Soluções Prontas
+
+Existem algumas soluções prontas para conseguir conectar um banco de dados externo ao seu aplicativo Android. São os Backend as a Service, serviços de construção de plataformas de APIs completas.
+
+As mais famosas e confiáveis que existem no mercado hoje são o Back4App e o Firebase. O primeiro é o sucessor do Parse.com, antiga plataforma do Facebook para este mesmo tipo de serviço, e o segundo é uma plataforma da Google.
+
+Eu fiz uma entrevista bem legal com o Davi Macêdo, fundador do Back4App. Confira aqui!
+Esses serviços possuem várias funcionalidades que vale a pena conferir e utilizar no desenvolvimento do seu aplicativo Android.
+
+Integração com Banco de Dados
+
+Você pode utilizar um banco de dados NoSQL hospedado em nuvem, onde os dados são armazenados no formato JSON e expostos via uma API fácil de usar.
+
+É possível também, codificar algumas regras específicas da sua lógica para serem utilizadas pelos aplicativos.
+
+Enviar mensagens via Notificação Push
+
+Utilizando o Google Cloud Messaging,  é possível entregar e receber mensagens e notificações de forma confiável e sem custo.
+
+Monitoração do Aplicativo
+
+É possível acompanhar as instalações, aberturas de aplicativos, comportamento dos usuários e outros dados valiosos. Esta informação revela como o aplicativo pode ser melhorado para melhor servir os usuários existentes e atrair novos.
+
+Considerações Finais
+
+A utilização de API’s são bem difundidas pela internet por sua facilidade e transparência no uso. Dependendo do modelo de negócios, é possível criar suas API’s juntamente com os serviços citados acima.
+
+Porém, caso haja muitas regras específicas, faz sentido criar seu próprio servidor e hospedar sua própria API customizada.
+
+Espero que esse artigo tenha ajudado a mostrar como implementar uma arquitetura onde os dados fiquem em um servidor e o aplicativo sirva apenas para coletá-los e exibi-los.
+
+Gostou do conteúdo sobre como usar banco de dados externo no Android?
+
+Então compartilhe esse artigo com seus amigos e qualquer dúvida deixe nos comentários aqui em baixo.

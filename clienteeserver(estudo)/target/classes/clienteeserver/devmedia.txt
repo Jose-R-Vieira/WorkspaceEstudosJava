@@ -1,0 +1,152 @@
+Neste artigo veremos como desenvolver aplicações em Java que podem comunicar-se via rede local ou via internet, usando sockets. Os sockets são compostos por um conjunto de primitivas do sistema operacional e foram originalmente desenvolvidos para o BSD Unix. Podem ser utilizados nos mais variados sistemas operacionais com recursos de comunicação em rede, sendo suportados pela maioria das linguagens de programação. Sockets são suportados em Java desde o JDK 1.0, para sua utilização devemos fazer uso das classes contidas no pacote java.net. Um exemplo interessante da programação de sockets em Java são os drivers JDBC do tipo 4, que usam sockets para comunicar-se diretamente com a API de rede do banco de dados.
+
+Estrutura básica de uma aplicação de rede
+
+Uma aplicação que utiliza sockets normalmente é composta por uma parte servidora e diversos clientes. Um cliente solicita determinado serviço ao servidor, o servidor processa a solicitação e devolve a informação ao cliente (ver Figura 1). Muitos serviços podem ser disponibilizados numa mesma máquina, sendo então diferenciados não só pelo endereço IP, mas também por um número de porta. Porém, o mais comum é termos uma máquina dedicada oferecendo apenas um ou dois serviços, evitando assim a concorrência.
+
+
+imagem 1 : olhar no pacote clienteeserver.
+
+Como primeiros passos na criação do servidor, é necessário importar o pacote java.net e em seguida instanciar um objeto do tipo ServerSocket, responsável por atender pedidos via rede e em determinada porta. Após receber uma conexão, um objeto do tipo Socket deve ser criado para manter a comunicação entre o cliente e o servidor.
+
+Vejamos um exemplo. A seguinte linha cria o ServerSocket, que irá esperar conexões na porta 12345 (caso esta porta já esteja em uso, uma exceção será lançada):
+
+ServerSocket server = new ServerSocket(12345);
+
+Em seguida criamos um objeto Socket, o qual irá tratar da comunicação com o cliente, assim que um pedido de conexão chegar ao servidor e a conexão for aceita:
+
+Socket client = server.accept();
+
+Como vimos no exemplo, um socket servidor precisa definir o número da porta para receber conexões dos clientes. Este número pode variar entre 0 e 65535, porém, em nossas aplicações só devemos utilizar de 1024 em diante, pois as portas com números abaixo deste são reservados para o uso do sistema (por exemplo a porta 80 é usada pelo protocolo HTTP, 25 pelo SMTP, 110 pelo POP3, entre vários outros serviços).
+
+Endereços IP
+
+Cada máquina conectada a uma rede possui um endereço IP único de maneira que possa ser identificada na rede. A classe InetAdress nos permite obter informações sobre um computador conectado a rede. Os principais métodos desta classe são os seguintes:
+
+getAddress(): Este método retorna um array de bytes contendo o endereço IP. Para isso, o nome do host que se deseja obter o endereço IP é fornecido ao método getByName da classe  InetAddress, veja um exemplo:
+
+byte[] b = InetAddress.getByName("localhost").getAddress();
+System.out.println(b[0] + "." + b[1] + "." + b[2] + "." + b[3]);
+
+getHostAddress(): Este método retorna uma String contendo o endereço IP no formato 999.999.999.999, veja um exemplo:
+
+System.out.println("Endereço: " + InetAddress.getByName("localhost").getHostAddress() );
+
+getHostName(): Dado um array de bytes contendo o endereço IP de um host, este método retorna uma String com o nome do host, veja um exemplo:
+
+byte[] addr = {127,0,0,1};
+System.out.println(InetAddress.getByAddress(addr).getHostName());
+
+O protocolo TCP
+
+Quando necessitamos de uma troca confiável de informações, isto é, quando é necessária a confirmação de recebimento da mensagem enviada, devemos utilizar o protocolo TCP (Transmission Control Protocol). Este protocolo estabelece uma conexão entre dois pontos interligados. Por exemplo, uma mensagem enviada de um host (o termo host representa uma máquina conectada na rede) a outro é confirmada pelo host receptor indicando o correto recebimento da mensagem. Uma mensagem pode ser enviada em vários pacotes, o TCP cuida para que os pacotes recebidos sejam remontados no host de destino na ordem correta (caso algum pacote não tenha sido recebido, o TCP requisita novamente este pacote). Somente após a montagem de todos os pacotes é que as informações ficam disponíveis para nossas aplicações. A programação do TCP com sockets utiliza streams, o que simplifica muito o processe de leitura e envio de dados pela rede.
+
+Streams são objetos Java que permitem obter dados de qualquer fonte de entrada, seja o teclado, um arquivo ou até mesmo um fluxo de bytes recebidos pela rede (o que é o nosso caso). Isto torna a manipulação de dados da rede como se fossem arquivos, ao ler dados enviados é como se estivéssemos lendo um arquivo e ao enviar dados é como se estivéssemos gravando dados em um arquivo.
+
+Um primeiro servidor TCP
+
+Vamos começar agora a trabalhar na prática com sockets. Primeiro vamos montar um servidor TCP que permite a seus clientes solicitarem a data e a hora atuais do servidor. A primeira versão deste servidor tem uma limitação (que mostraremos mais tarde como resolver): apenas um cliente pode ser atendido por vez
+
+Uma das características importantes do TCP é que os pedidos de conexões dos clientes vão sendo mantidos em uma fila pelo sistema operacional até que o servidor possa atendê-los. Isto evita que o cliente receba uma negação ao seu pedido, pois o servidor pode estar ocupado com outro processo e não conseguir atender o cliente naquele momento.
+
+Cada sistema operacional pode manter em espera um número limitado de conexões até que sejam atendidas. Quando o sistema operacional recebe mais conexões que esse limite, as conexões mais antigas vão sendo descartadas.
+
+Veja como funciona o nosso primeiro exemplo:
+
+Ao ser iniciado o servidor fica ouvindo na porta 12345 a espera de conexões de clientes;
+O cliente solicita uma conexão ao servidor;
+O servidor exibe uma mensagem na tela com o endereço IP do cliente conectado;
+O servidor aceita a conexão e envia um objeto Date ao cliente;
+O cliente recebe o objeto do servidor e faz o cast necessário, em seguida exibe na tela as informações de data;
+O servidor encerra a conexão.
+
+Na Listagem 1 é apresentado o código do nosso primeiro exemplo de servidor e na Listagem 2 é apresentado o código do cliente que utiliza o nosso servidor.
+
+Listagem 1: Código do servidor TCP básico
+
+vide projetos
+
+Listagem 2: Código do cliente TCP básico
+
+
+O protocolo UDP
+
+Quando necessitamos de uma troca não confiável de informações podemos usar o protocolo UDP (User Datagram Protocol), pois este protocolo não garante a entrega dos pacotes (o UDP não espera uma mensagem de confirmação do host de destino). É de responsabilidade da aplicação receptora a remontagem dos pacotes na ordem correta e a solicitação de reenvio de pacotes que não foram recebidos. O UDP utiliza datagram sockets para a troca de mensagens. As principais aplicações do UDP são aplicações como transmissões de vídeo, skype, voip, etc... Para exemplificar imagine um serviço de voz sobre IP onde um pacote é perdido enquanto dois usuários conversam, não faz sentido reenviar o pacote pois o usuário da outra ponta precisaria saber que ainda faltam pacotes a receber. Veja uma simulação abaixo da conversa entre dois usuários:
+
+Erika: Olá, Paulo.
+Paulo: Olá, Erika.
+Erika: Como você está?
+Paulo: Tudo bem e vc? (este pacote foi perdido)
+
+No exemplo acima o TCP enviaria novamente o pacote e o usuário da outra ponta deveria ficar esperando. Não faria nenhum sentido isso tratando-se de uma ligação telefônica. Este é um típico caso onde o UDP se aplica perfeitamente.
+
+Os datagram sockets são mensagens que podem ser enviadas pela rede quando não existe a necessidade de confirmação de entrega, de tempo de entrega e nem mesmo garantia de conteúdo. Datagramas são úteis em aplicações que não necessitam do estabelecimento de uma conexão para o envio da mensagem. Um bom exemplo do seu uso é o envio de mensagens em broadcast para clientes de uma rede (o servidor pode enviar um datagrama para todos os clientes avisando que irá reiniciar, por exemplo). Em Java podemos trabalhar com datagramas utilizando as classes DatagramPacket e DatagramSocket do pacote java.net.
+
+Um servidor UDP básico
+
+Antes de mostramos como criar um servidor TCP capaz de receber várias conexões simultâneas, vamos mostrar como criar um servidor UDP. Como vimos, o UDP envia os pacotes sem esperar por uma resposta do receptor. Este protocolo pode ser útil em situações como o envio de pacotes multimídia, por exemplo, ou um serviço de voz sobre ip, o que é muito comum.
+
+Nosso servidor UDP envia mensagens para os clientes de uma determinada rede local. Perceba neste exemplo que no UDP o cliente também aguarda mensagens que poderão ser enviadas pelo servidor, ou seja, mantém um DatagramSocket em uma determinada porta. Por exemplo, o seguinte trecho cria o DatagramSocket que irá esperar mensagens na porta 12346.
+
+DatagramSocket serverdgram = new DatagramSocket(12346);
+
+Veja na Listagem 3 o remetente UDP exemplo e na Listagem 4 o código do receptor UDP, na Figura 4 você pode ver a mensagem sendo enviada pelo remetente. Na Figura 5 temos o receptor sendo inicializado para receber as mensagens e na Figura 6 a mensagem recebida pelo receptor. Como estamos usando UDP neste caso o remetente sempre vai mostrar a mensagem indicando que a mensagem foi enviada, porém não existe a confirmação de que a mensagem foi recebida.
+
+Listagem 3. Classe RemetenteUDP
+
+Um servidor TCP com múltiplos threads
+
+Como vimos no nosso primeiro exemplo de servidor TCP, um servidor de produção não deve se limitar a processar uma conexão de cada vez, devendo ser capaz de atender inúmeras conexões simultaneamente. Veremos agora como montar um servidor TCP mais profissional usando threads.
+
+Um caso prático do uso de sockets em Java
+
+Vamos ver agora o exemplo de um cliente que solicita arquivos de imagem ao servidor. O cliente deve informar o caminho do arquivo no servidor, ao receber o pedido o servidor enviará o arquivo ao cliente. A aplicação exemplo solicita um arquivo JPG presente em um diretório do servidor, e ao receber o arquivo, exibe um JLabel o conteúdo do arquivo.
+
+Para cada solicitação de cliente será criada uma nova thread para gerenciar a troca de mensagens, deixando assim o servidor livre para esperar por novas conexões. Vejamos detalhadamente este processo.
+
+Na Listagem 5 temos o código do servidor de arquivos e na Listagem 6 o código da thread que trata do pedido específico. Na Figura 7 temos a aplicação em ação solicitando arquivos ao servidor e na Figura 8 temos o console de atividades do servidor. Na Listagem 7 você pode ver o código do botão Buscar da aplicação exemplo.
+
+Broadcast
+Broadcast significa enviar datagram sockets para todos os clientes conectados em uma determinada rede, uma das situações onde o broadcast é aplicado é o envio de mensagens de notificação (um exemplo clássico é um servidor informando a seus clientes que irá reinicializar).
+
+Multicasting
+Como vimos o broadcast é muito útil porém o fato de enviar mensagens a todos os clientes da rede em algumas situações não é desejado, pois é necessário o envio de mensagens apenas para um grupo de clientes da rede. Para resolver este problema usamos multicast, uma técnica que possibilita enviar datagramas para um grupo de clientes conectados na rede.
+
+Os clientes da rede interessados em receber estas mensagens devem participar de um grupo de multicasting. O multicast é suportado pelo UDP, o que consiste em mais uma diferença em relação ao TCP. Em Java temos a classe MulticastSocket do pacote java.net a qual nos permite trabalhar com multicast. Ela se assemelha bastante com um socket datagram porém com capacidades adicionais como formação de grupos multicast.
+
+Os endereços reservados para o multicast estão entre 224.0.0.0 e 239.255.255.255, sendo os endereços com prefixo 239 reservados para uso em intranets. Veja abaixo um exemplo de cliente assinante de multicast.
+
+InetAddress addrgrp = InetAddress.getByName("239.0.0.1");
+// Cria o Multicast para a porta 12347 que ira permitir ao cliente particicar de um grupo de multicasting
+MulticastSocket mcs = new MulticastSocket(12347);
+// Após a criação do MulticastSocket é necessário utilizar o método joinGroup(InetAddress) para que o MulticastSocket
+// seja associado ao endereço de multicasting, o que significa fazer a assinatura
+mcs.joinGroup(addrgrp);
+// Quando não desejar mais participar do grupo de multicasting, basta executar o método leaveGroup
+mcs.leaveGroup(addrgrp);
+
+Um servidor e um cliente Multicast
+
+Vamos montar agora um servidor e um cliente multicast. Neste exemplo temos a seguinte situação:
+
+O cliente assina um grupo multicast, no nosso caso “239.0.0.1”, a partir deste momento o cliente aguarda por mensagens do servidor;
+O servidor envia mensagens multicast para o grupo “239.0.0.1”;
+O cliente recebe a mensagem e a exibe na tela.
+Na Listagem 8 temos o código do servidor, o qual envia mensagens para um grupo de clientes e na Listagem 9 temos o código do cliente o qual espera por uma mensagem multicast do servidor. Na Figuras 9 e 10 temos respectivamente as atividades do servidor e do cliente.
+
+Listagem 8. Servidor multicast que envia mensagens para um grupo de clientes
+
+Conclusões
+
+Desenvolver aplicações que se comunicam em rede local ou internet é hoje uma necessidade crescente. Neste artigo aprendemos a desenvolver este tipo de aplicação usando Java e sockets. Os sockets em Java representam um recurso poderoso para desenvolvimento de aplicações que podem comunicar-se via rede. Apesar de existirem frameworks que facilitam o desenvolvimento de aplicações em rede com Java é importante ao leitor entender o fundamento da comunicação com sockets que é a base para toda e qualquer aplicação que utiliza comunicação em rede.
+
+Referencias
+
+Java, guia do programador – Peter Jandl Junior, editora Novatec
+
+Java, como programar – 6ª Edição – H. M. Deitel e P. J. Deitel, editora Prentice Hall
+
+Java network programming – 3rd Edition – Elliotte Rusty Harold, editora O’REILLY
+
+
+

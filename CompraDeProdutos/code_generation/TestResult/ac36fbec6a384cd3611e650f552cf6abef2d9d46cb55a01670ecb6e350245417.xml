@@ -1,0 +1,45 @@
+<acceptance-test-run title="05. Consultar produto no carrinho" name="05. Consultar produto no carrinho" steps="3" successful="0" failures="0" errors="1" skipped="2" ignored="0" pending="0" annotated-result="ERROR" result="ERROR" duration="3187" timestamp="2016-09-27T14:07:34.085-03:00" session-id="a2ffd6f0-ae0a-4320-8add-02dffda6c5d2">
+  <user-story id="AdicionarAoCarrinhoProdutoAppleiPhone5" name="Adicionar ao carrinho produto applei phone5" path="stories/CompraDeProdutos/AdicionarAoCarrinhoProdutoAppleiPhone5.story"/>
+  <tags>
+    <tag name="Compra de produtos" type="feature"/>
+    <tag name="Adicionar ao carrinho produto applei phone5" type="story"/>
+    <tag name="Compra de produtos/Rot. 01   adicionar ao carrinho produto apple i phone 5" type="story"/>
+  </tags>
+  <test-group name="Given que adicionei o produto no carrinho" result="ERROR">
+    <screenshots>
+      <screenshot image="f2c1896eb2396c2629a7b3a9c0a55765.png"/>
+    </screenshots>
+    <test-step result="ERROR" duration="2840">
+      <screenshots>
+        <screenshot image="f2c1896eb2396c2629a7b3a9c0a55765.png"/>
+        <screenshot image="f2c1896eb2396c2629a7b3a9c0a55765.png" source="pagesource6629354994343845332.html.txt"/>
+      </screenshots>
+      <description>Verifica se produto foi adicionado ao carrinho</description>
+      <error>org.openqa.selenium.NoSuchElementException: Unable to locate element: {&quot;method&quot;:&quot;xpath&quot;,&quot;selector&quot;:&quot;/html/body/div[2]/div/div/header/div[2]/a/em[1]&quot;}
+Command duration or timeout: 2.08 seconds
+For documentation on this error, please visit: http://seleniumhq.org/exceptions/no_such_element.html
+Build info: version: &apos;2.53.0&apos;, revision: &apos;35ae25b1534ae328c771e0856c93e187490ca824&apos;, time: &apos;2016-03-15 10:43:46&apos;
+System info: host: &apos;RSI4680&apos;, ip: &apos;10.1.11.81&apos;, os.name: &apos;Windows 7&apos;, os.arch: &apos;amd64&apos;, os.version: &apos;6.1&apos;, java.version: &apos;1.8.0_101&apos;
+Driver info: org.openqa.selenium.firefox.FirefoxDriver
+Capabilities [{applicationCacheEnabled=true, rotatable=false, handlesAlerts=true, databaseEnabled=true, version=46.0, platform=WINDOWS, nativeEvents=false, acceptSslCerts=true, webStorageEnabled=true, locationContextEnabled=true, browserName=firefox, takesScreenshot=true, javascriptEnabled=true, cssSelectorsEnabled=true}]
+Session ID: a2ffd6f0-ae0a-4320-8add-02dffda6c5d2
+*** Element info: {Using=xpath, value=/html/body/div[2]/div/div/header/div[2]/a/em[1]}</error>
+      <exception>org.openqa.selenium.NoSuchElementException:Unable to locate element: {&quot;method&quot;:&quot;xpath&quot;,&quot;selector&quot;:&quot;/html/body/div[2]/div/div/header/div[2]/a/em[1]&quot;}
+Command duration or timeout: 2.08 seconds
+For documentation on this error, please visit: http://seleniumhq.org/exceptions/no_such_element.html
+Build info: version: &apos;2.53.0&apos;, revision: &apos;35ae25b1534ae328c771e0856c93e187490ca824&apos;, time: &apos;2016-03-15 10:43:46&apos;
+System info: host: &apos;RSI4680&apos;, ip: &apos;10.1.11.81&apos;, os.name: &apos;Windows 7&apos;, os.arch: &apos;amd64&apos;, os.version: &apos;6.1&apos;, java.version: &apos;1.8.0_101&apos;
+Driver info: org.openqa.selenium.firefox.FirefoxDriver
+Capabilities [{applicationCacheEnabled=true, rotatable=false, handlesAlerts=true, databaseEnabled=true, version=46.0, platform=WINDOWS, nativeEvents=false, acceptSslCerts=true, webStorageEnabled=true, locationContextEnabled=true, browserName=firefox, takesScreenshot=true, javascriptEnabled=true, cssSelectorsEnabled=true}]
+Session ID: a2ffd6f0-ae0a-4320-8add-02dffda6c5d2
+*** Element info: {Using=xpath, value=/html/body/div[2]/div/div/header/div[2]/a/em[1]}&#xd;
+[br.com.rsinet.bdd.CompraDeProdutos.CompraDeProdutos.componentesdenegocio.passos.AdicionarAoCarrinhoProdutoAppleiPhone5Steps.verificaSeProdutoFoiAdicionadoAoCarrinho(AdicionarAoCarrinhoProdutoAppleiPhone5Steps.java:101), br.com.rsinet.bdd.CompraDeProdutos.CompraDeProdutos.componentesdenegocio.AdicionarAoCarrinhoProdutoAppleiPhone5.givenQueAdicioneiOProdutoNoCarrinho(AdicionarAoCarrinhoProdutoAppleiPhone5.java:76)]</exception>
+    </test-step>
+  </test-group>
+  <test-step result="SKIPPED" duration="0">
+    <description>When clico no icone do carrinho</description>
+  </test-step>
+  <test-step result="SKIPPED" duration="0">
+    <description>Then exibe os itens adicionados ao carrinho</description>
+  </test-step>
+</acceptance-test-run>

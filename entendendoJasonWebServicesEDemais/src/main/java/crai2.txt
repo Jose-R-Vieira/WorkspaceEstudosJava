@@ -1,0 +1,570 @@
+Como consumir um Web Service pelo Android
+
+Não vou entrar em detalhes de como cria um projeto Android pois já sabemos como fazer isso, e se não soubermos, o que não falta é tutorial aqui no fórum explicando sobre o assunto.
+
+Premissas:
+
+* Ter instalado o SDK Android, AVD e o Eclipse (pode ser qualquer versão, mas de preferência a última);
+* Ter o ambiente configurado, com pelo menos o Hello World Android rodando;
+* Para esse projeto foi usada a API Google 2.1, Level 7 (como o projeto não tem ligação direta com a API, pode ser qualquer API que deve funcionar).
+
+Com o nosso projeto criado, que chamei de ExConsumirWS, podemos ir direto ao código. Antes de entrar em activities e layouts, que não é o foco desse artigo, vamos começar pelo nosso WS cliente. Esse, ficará responsável pelo envio e recebimento das mensagens HTTP, ou seja, será a porta de entrada e saída da nossa aplicação para comunicação com o Web Service.
+
+Não podemos esquecer de importar a API google-gson para esse projeto também, que serve para converter objetos java em JSON e vice-versa. Para adicionar bibliotecas ao seu projeto android, basta criar o diretório "libs" na raiz do seu projeto e colocar os JARs dentro dela.
+
+Primeiro de tudo vamos precisar ter, exatamente, a mesma entidade (bean) que usamos no WS, já que nossa api (Jersey e GSON) usam essa estrutura para gerar o JSON e vice-versa, voltar ao objeto. Para isso, criei a classe Cliente dentro do pacote “br.com.exemplo.model”. Na verdade eu apenas copiei do projeto do WS e colei dentro desse diretório, pelo Eclipse mesmo, retirando a tag “@XmlRootElement” que não vamos precisar dela nesse projeto.
+
+
+package br.com.droid.model;
+
+import java.io.Serializable;
+
+public class Cliente implements Serializable {
+
+   private int id;
+   private String nome;
+   private String cpf;
+   private String endereco;
+
+// getters e setters    
+}
+ 
+
+
+
+Dica: Esse pacote model, seria ideal se fosse um .jar, gerado de um terceiro projeto, que você importaria nos dois projetos, assim, garantindo que os seus objetos sejam exatamente iguais.
+
+Tenho certeza que vocês repararam no “implements Serializable” na classe “Cliente”, mas comentarei sobre isso mais adiante.
+
+Para o nosso WS cliente, precisaremos de um objeto "HttpClient" sendo chamado em cada transação com o WS, logo, para não perder o controle de quantos estão em memória, criei um singletom para garantir apenas uma instância.
+
+
+package br.com.exemplo.webservice;
+
+import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.params.BasicHttpParams;
+import org.apache.http.params.HttpConnectionParams;
+import org.apache.http.params.HttpParams;
+
+public class HttpClientSingleton {
+    
+    private static final int JSON_CONNECTION_TIMEOUT = 3000;
+    private static final int JSON_SOCKET_TIMEOUT = 5000;
+    private static HttpClientSingleton instance;
+    private HttpParams httpParameters ;
+    private DefaultHttpClient httpclient;
+    
+    private void setTimeOut(HttpParams params){
+     HttpConnectionParams.setConnectionTimeout(params, JSON_CONNECTION_TIMEOUT);
+     HttpConnectionParams.setSoTimeout(params, JSON_SOCKET_TIMEOUT);
+    }
+    
+    private HttpClientSingleton() {
+     httpParameters = new BasicHttpParams();
+     setTimeOut(httpParameters);
+     httpclient = new DefaultHttpClient(httpParameters);
+    }
+    
+    public static DefaultHttpClient getHttpClientInstace(){
+     if(instance==null)
+         instance = new HttpClientSingleton();
+     return instance.httpclient;
+    }
+}
+ 
+
+
+Depois disso, vamos criar efetivamente a classe WebServiceCliente, que ficará responsável pelos “GET’s”, “POST’s”, “PUT’s” e “DELETE’s”, e será nossa interface com o WS. Ele pode ser único para a sua aplicação, já que raramente esses métodos serão diferentes, então não faz sentido ter um para cada objeto (Cliente, Pedido, Item de Pedido e etc).
+
+Nessa classe, eu implementei apenas o GET e o POST, mas vocês podes especializar, criando o PUT, para atualização de um registro, e o DELETE, para apagar um registro. O que mudaria é que teríamos 4 métodos nessa classe, um para cada um desses.
+
+Reparem que usamos o objeto “HttpGet” para o GET e o “HttpPost” para o POST, se vocês forem utilizar os outros métodos, usem o “HttpDelete” para o DELETE e o “HttpPut” para o PUT. 
+
+Atenção: Se decidirem usar esses métodos, não se esqueçam de colocar as anotações “@DELETE” e “@PUT” nos métodos correspondentes lá no Web Service. Senão você vai dar um DELETE em um método GET e não vai funcionar. Lembrem-se que esses métodos correspondem aos métodos do protocolo HTTP.
+
+
+package br.com.exemplo.webservice;
+
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.URI;
+import org.apache.http.HttpEntity;
+import org.apache.http.HttpResponse;
+import org.apache.http.client.methods.HttpGet;
+import org.apache.http.client.methods.HttpPost;
+import org.apache.http.entity.StringEntity;
+import android.util.Log;
+
+public class WebServiceCliente {
+
+    public final String[] get(String url) {
+
+     String[] result = new String[2];
+     HttpGet httpget = new HttpGet(url);
+     HttpResponse response;
+
+     try {
+         response = HttpClientSingleton.getHttpClientInstace().execute(httpget);
+         HttpEntity entity = response.getEntity();
+
+         if (entity != null) {
+             result[0] = String.valueOf(response.getStatusLine().getStatusCode());
+             InputStream instream = entity.getContent();
+             result[1] = toString(instream);
+             instream.close();
+             Log.i("get", "Result from post JsonPost : " + result[0] + " : " + result[1]);
+         }
+     } catch (Exception e) {
+         Log.e("NGVL", "Falha ao acessar Web service", e);
+         result[0] = "0";
+         result[1] = "Falha de rede!";
+     }
+     return result;
+    }
+
+    public final String[] post(String url, String json) {
+     String[] result = new String[2];
+     try {
+
+         HttpPost httpPost = new HttpPost(new URI(url));
+         httpPost.setHeader("Content-type", "application/json");
+         StringEntity sEntity = new StringEntity(json, "UTF-8");
+         httpPost.setEntity(sEntity);
+
+         HttpResponse response;
+         response = HttpClientSingleton.getHttpClientInstace().execute(httpPost);
+         HttpEntity entity = response.getEntity();
+
+         if (entity != null) {
+             result[0] = String.valueOf(response.getStatusLine().getStatusCode());
+             InputStream instream = entity.getContent();
+             result[1] = toString(instream);
+             instream.close();
+             Log.d("post", "Result from post JsonPost : " + result[0] + " : " + result[1]);
+         }
+
+     } catch (Exception e) {
+         Log.e("NGVL", "Falha ao acessar Web service", e);
+         result[0] = "0";
+         result[1] = "Falha de rede!";
+     }
+     return result;
+    }
+
+    private String toString(InputStream is) throws IOException {
+
+     byte[] bytes = new byte[1024];
+     ByteArrayOutputStream baos = new ByteArrayOutputStream();
+     int lidos;
+     while ((lidos = is.read(bytes)) > 0) {
+         baos.write(bytes, 0, lidos);
+     }
+     return new String(baos.toByteArray());
+    }
+}
+ 
+
+
+Levamos sempre em conta o grau de responsabilidade de uma classe. Ela nunca deve ter muitas funções ou fazer mais do que o necessário, nem ser muito grande, assim as boas práticas recomendam. Por isso essa quantidade de classes, que vocês devem estar se perguntando - Por que esse cara cria tanta classe?? - Agora está respondido.
+
+Agora vem a classe que vai fazer o meio de campo entre o nosso “WebServiceCliente” e a Activity.
+
+
+package br.com.exemplo.webservice;
+
+import java.util.ArrayList;
+import java.util.List;
+import br.com.exemplo.model.Cliente;
+import com.google.gson.Gson;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonParser;
+
+public class ClienteREST {
+
+    private static final String URL_WS = "http://10.0.2.2:8080/WebServiceREST/cliente/";
+
+    public Cliente getCliente(int id) throws Exception {
+
+     String[] resposta = new WebServiceCliente().get(URL_WS + id);
+     
+     if (resposta[0].equals("200")) {
+         Gson gson = new Gson();
+         Cliente cliente = gson.fromJson(resposta[1], Cliente.class);
+         return cliente;
+     } else {
+         throw new Exception(resposta[1]);
+     }
+    }
+    
+    public List<Cliente> getListaCliente() throws Exception {
+
+     String[] resposta = new WebServiceCliente().get(URL_WS + "buscarTodosGSON");
+//       String[] resposta = new WebServiceCliente().get(URL_WS + "buscarTodos");
+     
+     if (resposta[0].equals("200")) {
+         Gson gson = new Gson();
+         ArrayList<Cliente> listaCliente = new ArrayList<Cliente>();
+         JsonParser parser = new JsonParser();
+        JsonArray array = parser.parse(resposta[1]).getAsJsonArray();
+         
+        for (int i = 0; i < array.size(); i++) {
+             listaCliente.add(gson.fromJson(array.get(i), Cliente.class));
+         }
+         return listaCliente;
+     } else {
+         throw new Exception(resposta[1]);
+     }
+    }
+    
+    public String inserirCliente(Cliente cliente) throws Exception {
+     
+     Gson gson = new Gson();
+     String clienteJSON = gson.toJson(cliente);
+     String[] resposta = new WebServiceCliente().post(URL_WS + "inserir", clienteJSON);
+     if (resposta[0].equals("200")) {
+         return resposta[1];
+     } else {
+         throw new Exception(resposta[1]);
+     }
+    }
+    
+    public String deletarCliente(int id) {   
+     String[] resposta = new WebServiceCliente().get(URL_WS + "delete/" + id);
+     return resposta[1];
+    }
+}
+ 
+
+
+Primeira observação dessa classe é em relação a essa linha, que está comentada:
+
+String[] resposta = new WebServiceCliente().get(URL_WS + "buscarTodos");
+
+
+O que acontece com ela é o seguinte. Lembra os métodos que devolvem uma lista lá na classe “ClienteResource no nosso WS??
+
+Para refrescar a memória:
+
+
+…
+@GET
+    @Path("/buscarTodos")
+    @Produces("application/json")
+    public ArrayList<Cliente> selTodos(){
+     return Banco.getBancoInstance().getListaClientes();
+    }
+
+    @GET
+    @Path("/buscarTodosGSON")
+    @Produces("application/json")
+    public String selTodosGSON(){
+     return new Gson().toJson(Banco.getBancoInstance().getListaClientes());
+    }
+…
+ 
+
+
+Lá eu falei que entenderiamos isso aqui nesse artigo. O que acontece é que a forma com que o Jersey transforma uma lista (List) em JSON é diferente da forma com que o GSON faz isso. Então, por esse motivo que usamos o GSON no WS, para que a gente consiga receber essa lista aqui no Android.
+
+Deixei esses cometários e o método no WS para que vocês testem e vejam com os seus próprios olhos.
+
+Oportunidade de estudo para vocês: Achar uma forma de enviar uma lista, para que não presise usar o GSON no WS. Eu não achei, mas eu não tinha muito tempo para perder com isso e como a lib GSON é tão peguena, nem me preocupei mais.
+
+Outra coisa interessante que usei nesse método foi o “Exception” a meu favor. Ele vai devolver a mensagem de erro que vem do WS e lá na Activity, com o uso do try/catch, pego essa mensagem e jogo no Toast.
+
+Agora voltando ao nosso projeto, vamos colocar isso tudo pra funcionar e ver o resultados em activities.
+
+Falando em Android, a informação mais importante que precisamos saber é sobre permissão. Para consumo de WS, precisamos apenas da permissão para INTERNET. Sabendo disso, olhem como ficou o meu manifest.
+
+
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="br.com.exemplo"
+    android:versionCode="1"
+    android:versionName="1.0" >
+    <uses-sdk android:minSdkVersion="7" />
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <application
+        android:icon="@drawable/ic_launcher"
+        android:label="@string/app_name" >
+        <activity
+            android:name=".activity.ExConsumirWSActivity"
+            android:label="@string/app_name" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".activity.ListaClientes">
+        </activity>
+    </application>
+
+</manifest>
+ 
+
+
+Dica: As permissões sempre devem vir antes da tag “application”.
+
+Chegamos nas Activities. Já aproveito pra avisar que me reservei o direito de não fazer um monte de Activities e facilitar a minha vida. 
+
+
+package br.com.exemplo.activity;
+
+import java.util.ArrayList;
+import br.com.exemplo.R;
+import br.com.exemplo.model.Cliente;
+import br.com.exemplo.webservice.ClienteREST;
+import android.app.Activity;
+import android.content.Intent;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.TextView;
+import android.widget.Toast;
+
+public class ExConsumirWSActivity extends Activity {
+
+    private String id;
+
+    /** Called when the activity is first created. */
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+     super.onCreate(savedInstanceState);
+     setContentView(R.layout.main);
+
+     final EditText idEdt = (EditText) findViewById(R.id.editTextIdCliente);
+     final TextView txtView = (TextView) findViewById(R.id.textView1);
+     Button buscarIdBtn = (Button) findViewById(R.id.buttonBuscarPorId);
+     Button buscarTodosBtn = (Button) findViewById(R.id.buttonBuscarTodos);
+     Button deletarBtn = (Button) findViewById(R.id.buttonDeletarCliente);
+     Button inserirBtn = (Button) findViewById(R.id.buttonInserirCliente);
+
+     buscarIdBtn.setOnClickListener(new View.OnClickListener() {
+
+         @Override
+         public void onClick(View v) {
+             id = idEdt.getText().toString();
+             ClienteREST cliREST = new ClienteREST();
+             try {
+                 Cliente cliente = cliREST.getCliente(Integer.parseInt(id));
+                 txtView.setText(cliente.toString());
+             } catch (NumberFormatException e) {
+                 e.printStackTrace();
+                 gerarToast("Digite um ID válido!");
+             } catch (Exception e) {
+                 e.printStackTrace();
+                 gerarToast(e.getMessage());
+             }
+         }
+     });
+
+     buscarTodosBtn.setOnClickListener(new View.OnClickListener() {
+
+         @Override
+         public void onClick(View v) {
+             ClienteREST cliREST = new ClienteREST();
+             try {
+                 ArrayList<Cliente> listaCliente = (ArrayList<Cliente>) cliREST.getListaCliente();
+                 Intent i = new Intent(getApplicationContext(), ListaClientes.class);
+                 i.putExtra("lista", listaCliente);
+                 startActivity(i);
+             } catch (Exception e) {
+                 e.printStackTrace();
+                 gerarToast(e.getMessage());
+             }
+
+         }
+     });
+
+     deletarBtn.setOnClickListener(new View.OnClickListener() {
+
+         @Override
+         public void onClick(View v) {
+             id = idEdt.getText().toString();
+             ClienteREST cliREST = new ClienteREST();
+             try {
+                 String resposta = cliREST.deletarCliente(Integer.parseInt(id));
+                 txtView.setText(resposta);
+             } catch (NumberFormatException e) {
+                 e.printStackTrace();
+                 gerarToast("Digite um ID válido!");
+             } catch (Exception e) {
+                 e.printStackTrace();
+                 gerarToast(e.getMessage());
+             }
+
+         }
+     });
+
+     inserirBtn.setOnClickListener(new View.OnClickListener() {
+
+         @Override
+         public void onClick(View v) {
+             Cliente cliente = new Cliente();
+             cliente.setNome("João da Silva");
+             cliente.setCpf("000333444-01");
+             cliente.setEndereco("Rua do lado, 33");
+             //não coloquei o ID, pq isso é papel do banco, com um auto increment.
+             ClienteREST cliREST = new ClienteREST();
+             try {
+                 String resposta = cliREST.inserirCliente(cliente);
+                 txtView.setText(resposta);
+             } catch (Exception e) {
+                 e.printStackTrace();
+                 gerarToast(e.getMessage());
+             }
+         }
+     });
+    }
+
+    private void gerarToast(CharSequence message) {
+     int duration = Toast.LENGTH_LONG;
+     Toast toast = Toast
+             .makeText(getApplicationContext(), message, duration);
+     toast.show();
+    }
+}
+ 
+
+
+Pego a mensagem da exceção com o “getMessage()” e jogo no Toast. Simples, né?? 
+
+Agora a lista de clientes. Aqui está a explicação do “Serializable” lá na classe Cliente. Preciso que seja um objeto serializável para passar de uma activity para a outra usando o “putExtra()”, apenas isso. 
+
+
+package br.com.exemplo.activity;
+
+import java.util.ArrayList;
+import android.app.ListActivity;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
+import android.widget.TextView;
+import android.widget.Toast;
+import br.com.exemplo.R;
+import br.com.exemplo.model.Cliente;
+
+public class ListaClientes extends ListActivity {
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+     // TODO Auto-generated method stub
+     super.onCreate(savedInstanceState);
+
+     ArrayList<Cliente> listaClientes = new ArrayList<Cliente>();
+
+     if (getIntent().hasExtra("lista")) {
+
+         listaClientes = (ArrayList<Cliente>) getIntent().getExtras()
+                 .getSerializable("lista");
+     }
+
+     setListAdapter(new ArrayAdapter<Cliente>(this, R.layout.list_item,
+             listaClientes));
+
+     ListView lv = getListView();
+     lv.setTextFilterEnabled(true);
+
+     lv.setOnItemClickListener(new OnItemClickListener() {
+         public void onItemClick(AdapterView<?> parent, View view,
+                 int position, long id) {
+             // When clicked, show a toast with the TextView text
+             Toast.makeText(getApplicationContext(),
+                     ((TextView) view).getText(), Toast.LENGTH_SHORT).show();
+         }
+     });
+
+    }
+}
+ 
+
+
+Agora é só brincar!!
+
+
+Atualização...(10/02/2012)
+
+Recebi uma pergunta de um colega do fórum sobre a possibilidade de enviar uma lista ao WS, ao contrário de como já fizemos de consumir uma lista do WS. Para demonstrar como como fazer, abri essa atualização.
+
+A tarefa é simples, apenas precisaremos mudar a nossa camada que trata os objetos antes de enviá-los ao WS, começando pelo ClienteRest.
+
+Nele eu adicionei apenas esse método, que vai receber a lista de clientes, converter para JSON e enviar, junto com a URL, para o WebServiceCliente, que não foi alterado.
+
+
+public String inserirListaClientes(ArrayList<Cliente> listaClientes) throws Exception {
+    Gson gson = new Gson();
+    String clienteJSON = gson.toJson(listaClientes);
+    String[] resposta = new WebServiceCliente().post(URL_WS + "inserirLista", clienteJSON);
+    if (resposta[0].equals("200")) {
+        return resposta[1];
+    } else {
+        throw new Exception(resposta[1]);
+    }
+}
+ 
+
+
+Na minha Activity ExConsumirWSActivity, criei um novo botão para criar a lista de clientes e passá-la adiante para a classe que trata com o WS.
+
+
+Button inserirListaBtn = (Button) findViewById(R.id.buttonInserirListaClientes);
+inserirListaBtn.setOnClickListener(new View.OnClickListener() {
+    @Override
+    public void onClick(View v) {
+        ArrayList<Cliente> listaClientes = new ArrayList<Cliente>();
+        Cliente cliente1 = new Cliente();
+        cliente1.setNome("João da Silva");
+        cliente1.setCpf("000333444-01");
+        cliente1.setEndereco("Rua do lado, 33");
+        listaClientes.add(cliente1);
+        
+        Cliente cliente2 = new Cliente();
+        cliente2.setNome("Marcos Ribeiro");
+        cliente2.setCpf("777777777-99");
+        cliente2.setEndereco("Rua de cima, 340");
+        listaClientes.add(cliente2);
+        
+        Cliente cliente3 = new Cliente();
+        cliente3.setNome("Zezinho do posto");
+        cliente3.setCpf("999999999-22");
+        cliente3.setEndereco("Rua de baixo, 66");
+        listaClientes.add(cliente3);
+        
+        //não coloquei o ID, pq isso é papel do banco, com um auto increment.
+        ClienteREST cliREST = new ClienteREST();
+        try {
+            String resposta = cliREST.inserirListaClientes(listaClientes);
+            txtView.setText(resposta);
+        } catch (Exception e) {
+            e.printStackTrace();
+            gerarToast(e.getMessage());
+        }
+    }
+});
+ 
+
+
+Bom, é isso!! Simples, rápido e muito fácil!! /uu
+
+Abraços!!
+
+PS.: Como fiz esse tutorial hoje e não tive tempo de reler algumas vezes, se tiver algum erro, por favor, me avise para que a correção seja feita.
+
+
+Confiram o artigo anterior sobre como criar o WS:
+
+[Artigo] Web Service RESTful [+Java+JSON+Code]
+
+Não percam o próximo Artigo:
+
+[Artigo] Web Service RESTful 3 [+PgSQL+DAO+Business+Factory]
+
+
+Você não tem permissões suficientes para ver os arquivos anexados nesta mensagem.

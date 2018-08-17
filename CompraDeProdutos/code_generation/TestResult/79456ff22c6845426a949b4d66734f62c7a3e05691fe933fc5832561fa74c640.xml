@@ -1,0 +1,25 @@
+<acceptance-test-run title="01. Logar no sistema" name="01. Logar no sistema" steps="3" successful="0" failures="1" skipped="2" ignored="0" pending="0" annotated-result="FAILURE" result="FAILURE" duration="13281" timestamp="2016-09-27T14:07:03.235-03:00" session-id="a2ffd6f0-ae0a-4320-8add-02dffda6c5d2">
+  <user-story id="AdicionarAoCarrinhoProdutoAppleiPhone5" name="Adicionar ao carrinho produto applei phone5" path="stories/CompraDeProdutos/AdicionarAoCarrinhoProdutoAppleiPhone5.story"/>
+  <tags>
+    <tag name="Compra de produtos" type="feature"/>
+    <tag name="Adicionar ao carrinho produto applei phone5" type="story"/>
+    <tag name="Compra de produtos/Rot. 01   adicionar ao carrinho produto apple i phone 5" type="story"/>
+  </tags>
+  <test-group name="Given que estou no menu Your Account" result="FAILURE">
+    <test-step result="FAILURE" duration="12241">
+      <screenshots>
+        <screenshot image="c3a680dbe22109171e5589c2de6a94ff.png" source="pagesource5290413015424305719.html.txt"/>
+      </screenshots>
+      <description>Ir para menu your account</description>
+      <error>java.lang.AssertionError: expected [http://store.demoqa.com/] but found [http:store.demoqa.com/products-page/your-account/]</error>
+      <exception>java.lang.AssertionError:expected [http://store.demoqa.com/] but found [http:store.demoqa.com/products-page/your-account/]&#xd;
+[br.com.rsinet.bdd.CompraDeProdutos.CompraDeProdutos.componentesdenegocio.passos.AdicionarAoCarrinhoProdutoAppleiPhone5Steps.irParaMenuYourAccount(AdicionarAoCarrinhoProdutoAppleiPhone5Steps.java:19), br.com.rsinet.bdd.CompraDeProdutos.CompraDeProdutos.componentesdenegocio.AdicionarAoCarrinhoProdutoAppleiPhone5.givenQueEstouNoMenuYourAccount(AdicionarAoCarrinhoProdutoAppleiPhone5.java:16)]</exception>
+    </test-step>
+  </test-group>
+  <test-step result="SKIPPED" duration="2">
+    <description>When preencho os dados de acesso And clico em Login</description>
+  </test-step>
+  <test-step result="SKIPPED" duration="0">
+    <description>Then o acesso e realizado com sucesso</description>
+  </test-step>
+</acceptance-test-run>

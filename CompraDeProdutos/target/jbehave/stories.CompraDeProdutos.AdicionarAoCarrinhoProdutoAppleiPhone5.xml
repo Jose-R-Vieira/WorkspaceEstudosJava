@@ -1,0 +1,83 @@
+<story path="stories/CompraDeProdutos/AdicionarAoCarrinhoProdutoAppleiPhone5.story" title="Features: Rot. 01 - Adicionar ao carrinho produto Apple iPhone 5">
+<scenario keyword="Scenario:" title="01. Logar no sistema">
+<step outcome="successful">Given que estou no menu Your Account</step>
+<step outcome="successful">When preencho os dados de acesso And clico em Login</step>
+<step outcome="successful">Then o acesso e realizado com sucesso</step>
+</scenario>
+<scenario keyword="Scenario:" title="02. Pesquisar produto iPhone">
+<step outcome="successful">Given que estou na home</step>
+<step outcome="successful">When efetuo uma pesquisa do item iPhone</step>
+<step outcome="successful">Then sao exibidos os produtos relacionados a iPhone</step>
+</scenario>
+<scenario keyword="Scenario:" title="03. Detalhe do produto">
+<step outcome="successful">Given que estou na tela com os produtos relacionados a iPhones</step>
+<step outcome="failed" keyword="FAILED">When clico em iPhone 5<failure>net.serenitybdd.core.exceptions.SerenityManagedException: Timed out after 2 seconds. Element not found
+For documentation on this error, please visit: http://seleniumhq.org/exceptions/no_such_element.html
+Build info: version: &apos;2.53.0&apos;, revision: &apos;35ae25b1534ae328c771e0856c93e187490ca824&apos;, time: &apos;2016-03-15 10:43:46&apos;
+System info: host: &apos;RSI4680&apos;, ip: &apos;10.1.11.81&apos;, os.name: &apos;Windows 7&apos;, os.arch: &apos;amd64&apos;, os.version: &apos;6.1&apos;, java.version: &apos;1.8.0_101&apos;
+Driver info: driver.version: unknown</failure></step>
+<step outcome="notPerformed" keyword="NOT PERFORMED">Then sao exibidos os detalhes do produto</step>
+<failure>net.serenitybdd.core.exceptions.SerenityManagedException: Timed out after 2 seconds. Element not found
+For documentation on this error, please visit: http://seleniumhq.org/exceptions/no_such_element.html
+Build info: version: &apos;2.53.0&apos;, revision: &apos;35ae25b1534ae328c771e0856c93e187490ca824&apos;, time: &apos;2016-03-15 10:43:46&apos;
+System info: host: &apos;RSI4680&apos;, ip: &apos;10.1.11.81&apos;, os.name: &apos;Windows 7&apos;, os.arch: &apos;amd64&apos;, os.version: &apos;6.1&apos;, java.version: &apos;1.8.0_101&apos;
+Driver info: driver.version: unknown
+	at net.serenitybdd.core.exceptions.SerenityManagedException.detachedCopyOf(SerenityManagedException.java:20)
+	at net.thucydides.core.steps.StepInterceptor.runTestStep(StepInterceptor.java:338)
+	at net.thucydides.core.steps.StepInterceptor.testStepResult(StepInterceptor.java:134)
+	at net.thucydides.core.steps.StepInterceptor.intercept(StepInterceptor.java:61)
+	at br.com.rsinet.bdd.CompraDeProdutos.CompraDeProdutos.componentesdenegocio.passos.AdicionarAoCarrinhoProdutoAppleiPhone5Steps$$EnhancerByCGLIB$$667bd1f0.clicarEmIphone5(&lt;generated&gt;)
+	at br.com.rsinet.bdd.CompraDeProdutos.CompraDeProdutos.componentesdenegocio.AdicionarAoCarrinhoProdutoAppleiPhone5.whenClicoEmIPhone5(AdicionarAoCarrinhoProdutoAppleiPhone5.java:51)
+	(reflection-invoke)
+	at org.jbehave.core.steps.StepCreator$ParametrisedStep.perform(StepCreator.java:599)
+	at org.jbehave.core.embedder.PerformableTree$FineSoFar.run(PerformableTree.java:340)
+...</failure>
+</scenario>
+<scenario keyword="Scenario:" title="04. Adicionar ao carrinho">
+<step outcome="failed" keyword="FAILED">Given que estou na tela de detalhe do produto<failure>java.lang.AssertionError: expected [iPhone | Search Results | ONLINE STORE] but found [iPhone 5 | ONLINE STORE]</failure></step>
+<step outcome="notPerformed" keyword="NOT PERFORMED">When clico em Add to cart</step>
+<step outcome="notPerformed" keyword="NOT PERFORMED">Then exibe a mensagem: You just added iPhone 5 to your cart And clico em Continue Shopping</step>
+<failure>java.lang.AssertionError: expected [iPhone | Search Results | ONLINE STORE] but found [iPhone 5 | ONLINE STORE]
+	at org.testng.Assert.fail(Assert.java:94)
+	at org.testng.Assert.failNotEquals(Assert.java:496)
+	at org.testng.Assert.assertEquals(Assert.java:125)
+	at org.testng.Assert.assertEquals(Assert.java:178)
+	at org.testng.Assert.assertEquals(Assert.java:188)
+	at br.com.rsinet.bdd.CompraDeProdutos.CompraDeProdutos.componentesdenegocio.passos.AdicionarAoCarrinhoProdutoAppleiPhone5Steps.verificaSeEstaNaTelaDeDetalheDoProduto(AdicionarAoCarrinhoProdutoAppleiPhone5Steps.java:81)
+	at br.com.rsinet.bdd.CompraDeProdutos.CompraDeProdutos.componentesdenegocio.passos.AdicionarAoCarrinhoProdutoAppleiPhone5Steps$$EnhancerByCGLIB$$667bd1f0.CGLIB$verificaSeEstaNaTelaDeDetalheDoProduto$7(&lt;generated&gt;)
+	at br.com.rsinet.bdd.CompraDeProdutos.CompraDeProdutos.componentesdenegocio.passos.AdicionarAoCarrinhoProdutoAppleiPhone5Steps$$EnhancerByCGLIB$$667bd1f0$$FastClassByCGLIB$$72e8d61f.invoke(&lt;generated&gt;)
+	at net.sf.cglib.proxy.MethodProxy.invokeSuper(MethodProxy.java:228)
+	at net.thucydides.core.steps.StepInterceptor.invokeMethod(StepInterceptor.java:369)
+	at net.thucydides.core.steps.StepInterceptor.executeTestStepMethod(StepInterceptor.java:354)
+	at net.thucydides.core.steps.StepInterceptor.runTestStep(StepInterceptor.java:329)
+	at net.thucydides.core.steps.StepInterceptor.testStepResult(StepInterceptor.java:134)
+	at net.thucydides.core.steps.StepInterceptor.intercept(StepInterceptor.java:61)
+	at br.com.rsinet.bdd.CompraDeProdutos.CompraDeProdutos.componentesdenegocio.passos.AdicionarAoCarrinhoProdutoAppleiPhone5Steps$$EnhancerByCGLIB$$667bd1f0.verificaSeEstaNaTelaDeDetalheDoProduto(&lt;generated&gt;)
+	at br.com.rsinet.bdd.CompraDeProdutos.CompraDeProdutos.componentesdenegocio.AdicionarAoCarrinhoProdutoAppleiPhone5.givenQueEstouNaTelaDeDetalheDoProduto(AdicionarAoCarrinhoProdutoAppleiPhone5.java:61)
+	(reflection-invoke)
+	at org.jbehave.core.steps.StepCreator$ParametrisedStep.perform(StepCreator.java:599)
+	at org.jbehave.core.embedder.PerformableTree$FineSoFar.run(PerformableTree.java:340)
+...</failure>
+</scenario>
+<scenario keyword="Scenario:" title="05. Consultar produto no carrinho">
+<step outcome="failed" keyword="FAILED">Given que adicionei o produto no carrinho<failure>java.lang.ClassCastException: net.serenitybdd.core.pages.WebElementFacadeImpl cannot be cast to java.lang.String</failure></step>
+<step outcome="notPerformed" keyword="NOT PERFORMED">When clico no icone do carrinho</step>
+<step outcome="notPerformed" keyword="NOT PERFORMED">Then exibe os itens adicionados ao carrinho</step>
+<failure>java.lang.ClassCastException: net.serenitybdd.core.pages.WebElementFacadeImpl cannot be cast to java.lang.String
+	at br.com.rsinet.bdd.CompraDeProdutos.CompraDeProdutos.componentesdenegocio.passos.AdicionarAoCarrinhoProdutoAppleiPhone5Steps.verificaSeProdutoFoiAdicionadoAoCarrinho(AdicionarAoCarrinhoProdutoAppleiPhone5Steps.java:98)
+	at br.com.rsinet.bdd.CompraDeProdutos.CompraDeProdutos.componentesdenegocio.passos.AdicionarAoCarrinhoProdutoAppleiPhone5Steps$$EnhancerByCGLIB$$667bd1f0.CGLIB$verificaSeProdutoFoiAdicionadoAoCarrinho$8(&lt;generated&gt;)
+	at br.com.rsinet.bdd.CompraDeProdutos.CompraDeProdutos.componentesdenegocio.passos.AdicionarAoCarrinhoProdutoAppleiPhone5Steps$$EnhancerByCGLIB$$667bd1f0$$FastClassByCGLIB$$72e8d61f.invoke(&lt;generated&gt;)
+	at net.sf.cglib.proxy.MethodProxy.invokeSuper(MethodProxy.java:228)
+	at net.thucydides.core.steps.StepInterceptor.invokeMethod(StepInterceptor.java:369)
+	at net.thucydides.core.steps.StepInterceptor.executeTestStepMethod(StepInterceptor.java:354)
+	at net.thucydides.core.steps.StepInterceptor.runTestStep(StepInterceptor.java:329)
+	at net.thucydides.core.steps.StepInterceptor.testStepResult(StepInterceptor.java:134)
+	at net.thucydides.core.steps.StepInterceptor.intercept(StepInterceptor.java:61)
+	at br.com.rsinet.bdd.CompraDeProdutos.CompraDeProdutos.componentesdenegocio.passos.AdicionarAoCarrinhoProdutoAppleiPhone5Steps$$EnhancerByCGLIB$$667bd1f0.verificaSeProdutoFoiAdicionadoAoCarrinho(&lt;generated&gt;)
+	at br.com.rsinet.bdd.CompraDeProdutos.CompraDeProdutos.componentesdenegocio.AdicionarAoCarrinhoProdutoAppleiPhone5.givenQueAdicioneiOProdutoNoCarrinho(AdicionarAoCarrinhoProdutoAppleiPhone5.java:76)
+	(reflection-invoke)
+	at org.jbehave.core.steps.StepCreator$ParametrisedStep.perform(StepCreator.java:599)
+	at org.jbehave.core.embedder.PerformableTree$FineSoFar.run(PerformableTree.java:340)
+...</failure>
+</scenario>
+</story>

@@ -1,0 +1,99 @@
+Manifest-Version: 1.0
+Created-By: 1.6.0_17 (Sun Microsystems Inc.)
+
+Name: assets/dat/vict.mid
+SHA1-Digest: eSEo9y91toL/2Ssm0zFeUYPOp/0=
+
+Name: assets/dat/lng
+SHA1-Digest: 4+/wkVZr546aF/3Dp9dLCXJ87BA=
+
+Name: assets/dat/lng_de
+SHA1-Digest: S0SAGpZKu/lG9xcoAJa5TC8Q/LE=
+
+Name: assets/dat/pic3.png
+SHA1-Digest: R8cdEtweQZCXHm0kpdCLE4ljpvo=
+
+Name: resources.arsc
+SHA1-Digest: RKynGEN2NfXMLi3EFkvSFnobdhQ=
+
+Name: assets/dat/lng_pt
+SHA1-Digest: 9gT0Nn7nD99XKBj+s/Nd8yEmrP0=
+
+Name: assets/dat/city.mid
+SHA1-Digest: 3382TFvuTahILFLH5QOHpZpGrao=
+
+Name: assets/dat/failgame.mid
+SHA1-Digest: y28i1LJ4ruIXkv5hQERt4meRyTk=
+
+Name: assets/dat/bad.mid
+SHA1-Digest: mH++bjD2LM0bNaxs562Ugr4qDJA=
+
+Name: assets/dat/good.mid
+SHA1-Digest: ACTyY22ekszDjlwmjBqbpzcThkY=
+
+Name: AndroidManifest.xml
+SHA1-Digest: tD0O1mhsfyzRia4BSSZQwpRvRz4=
+
+Name: assets/dat/pic5.png
+SHA1-Digest: OpLQVJ6GtdBLFlm3ITSpx/hpy4c=
+
+Name: assets/dat/m
+SHA1-Digest: CsaZQyv5S5I+MrOEMGYU6VQQ3CE=
+
+Name: assets/dat/menu.mid
+SHA1-Digest: SX9fIYO0id//yscSjZHjZV7cR3E=
+
+Name: assets/dat/lng_es
+SHA1-Digest: g2INbmWcVyX4ZaF+gnhuAWR+mi0=
+
+Name: assets/dat/pic0.png
+SHA1-Digest: rTOkes5NTReu8aDHEYoDS38Dagw=
+
+Name: assets/dat/game1.mid
+SHA1-Digest: XG2m5h2KW8XEoFHqpRi0EMOhY2A=
+
+Name: assets/dat/pic2.png
+SHA1-Digest: XaW8WtrTaU6tQWWj3KV2r2Np6KU=
+
+Name: assets/dat/lng_it
+SHA1-Digest: NHPWUd5vFRb5Yizc9rC4GyGFsQ0=
+
+Name: classes.dex
+SHA1-Digest: iL0d1NGhxT+kcTn9JpopeNGD0Pc=
+
+Name: assets/dat/neutral.mid
+SHA1-Digest: x92JHyDPNVMDUl5DJFX0BP9DM+g=
+
+Name: assets/dat/pic6.png
+SHA1-Digest: wVwWUVeYAyeCDlO3HqKHtYJw7HA=
+
+Name: assets/dat/empty.mid
+SHA1-Digest: /mjVYEx6kKU0Fv4qfa3zk219x6g=
+
+Name: assets/dat/war.mid
+SHA1-Digest: oHSjzZE4Y3hz1o4HL3Tf7OFkNk0=
+
+Name: assets/dat/fs.png
+SHA1-Digest: /XZ4EUGSHvD/AQaGVKRbCExEVCI=
+
+Name: res/drawable/icon.png
+SHA1-Digest: 5NCwgGMOQoMTpb+2xCda9uDgxWE=
+
+Name: assets/dat/logo.png
+SHA1-Digest: DD6285Q4JR7y/gGck5Fs3A/ogxw=
+
+Name: assets/dat/map.mid
+SHA1-Digest: KL4C/VNf4hcAWUIanJmMDP35h+I=
+
+Name: assets/dat/pic1.png
+SHA1-Digest: YOs6odJtbO5f9OCoX22ulNlEdj0=
+
+Name: assets/dat/game2.mid
+SHA1-Digest: DXsLCuYDabGYklV2kEr8EWLJPYs=
+
+Name: assets/dat/pic4.png
+SHA1-Digest: pzhPwgfsyMNeBtcM8eQDrBFbiXs=
+
+Name: assets/dat/lng_fr
+SHA1-Digest: rgDSHPGnAkesdcedpUzjIFpyJRo=
+

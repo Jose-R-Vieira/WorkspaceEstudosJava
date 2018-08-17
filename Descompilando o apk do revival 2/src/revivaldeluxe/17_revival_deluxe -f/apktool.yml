@@ -1,0 +1,20 @@
+!!brut.androlib.meta.MetaInfo
+apkFileName: 17_revival_deluxe.apk
+compressionType: false
+doNotCompress: null
+isFrameworkApk: false
+packageInfo:
+  forcedPackageId: '127'
+  renameManifestPackage: null
+sdkInfo:
+  minSdkVersion: '4'
+sharedLibrary: false
+unknownFiles: {}
+usesFramework:
+  ids:
+  - 1
+  tag: null
+version: 2.2.0
+versionInfo:
+  versionCode: '10904'
+  versionName: 1.9.4

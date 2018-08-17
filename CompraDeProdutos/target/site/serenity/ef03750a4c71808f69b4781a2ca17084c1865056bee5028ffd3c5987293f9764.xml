@@ -1,0 +1,29 @@
+<acceptance-test-run title="04. Adicionar ao carrinho" name="04. Adicionar ao carrinho" steps="3" successful="0" failures="1" skipped="2" ignored="0" pending="0" annotated-result="FAILURE" result="FAILURE" duration="1027" timestamp="2016-10-05T11:18:11.643-03:00" session-id="ef70f7d4-cccc-49f4-a078-340884385907">
+  <user-story id="AdicionarAoCarrinhoProdutoAppleiPhone5" name="Adicionar ao carrinho produto applei phone5" path="stories/CompraDeProdutos/AdicionarAoCarrinhoProdutoAppleiPhone5.story"/>
+  <tags>
+    <tag name="Compra de produtos" type="feature"/>
+    <tag name="Adicionar ao carrinho produto applei phone5" type="story"/>
+    <tag name="Compra de produtos/Rot. 01   adicionar ao carrinho produto apple i phone 5" type="story"/>
+  </tags>
+  <test-group name="Given que estou na tela de detalhe do produto" result="FAILURE">
+    <screenshots>
+      <screenshot image="a4d5d9f6a55bc76260b72b8920ab1bda.png"/>
+    </screenshots>
+    <test-step result="FAILURE" duration="649">
+      <screenshots>
+        <screenshot image="a4d5d9f6a55bc76260b72b8920ab1bda.png"/>
+        <screenshot image="a4d5d9f6a55bc76260b72b8920ab1bda.png" source="pagesource2622876994424494167.html.txt"/>
+      </screenshots>
+      <description>Verifica se esta na tela de detalhe do produto</description>
+      <error>java.lang.AssertionError: expected [iPhone | Search Results | ONLINE STORE] but found [iPhone 5 | ONLINE STORE]</error>
+      <exception>java.lang.AssertionError:expected [iPhone | Search Results | ONLINE STORE] but found [iPhone 5 | ONLINE STORE]&#xd;
+[br.com.rsinet.bdd.CompraDeProdutos.CompraDeProdutos.componentesdenegocio.passos.AdicionarAoCarrinhoProdutoAppleiPhone5Steps.verificaSeEstaNaTelaDeDetalheDoProduto(AdicionarAoCarrinhoProdutoAppleiPhone5Steps.java:81), br.com.rsinet.bdd.CompraDeProdutos.CompraDeProdutos.componentesdenegocio.AdicionarAoCarrinhoProdutoAppleiPhone5.givenQueEstouNaTelaDeDetalheDoProduto(AdicionarAoCarrinhoProdutoAppleiPhone5.java:61)]</exception>
+    </test-step>
+  </test-group>
+  <test-step result="SKIPPED" duration="0">
+    <description>When clico em Add to cart</description>
+  </test-step>
+  <test-step result="SKIPPED" duration="0">
+    <description>Then exibe a mensagem: You just added iPhone 5 to your cart And clico em Continue Shopping</description>
+  </test-step>
+</acceptance-test-run>

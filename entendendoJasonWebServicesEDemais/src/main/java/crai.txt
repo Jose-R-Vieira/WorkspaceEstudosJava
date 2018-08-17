@@ -1,0 +1,528 @@
+Pessoal,
+
+Como a galera tem muita dúvida de como criar um Web Service, por onde começar e tudo mais, decidi ajudar você e criei esse artigo bem simples, mas que vocês, se seguirem até o final, sairão com um Web Service criado e pronto pra usar. 
+
+Lembrando que o foco aqui é o Web Service! Sobre o Android e o Banco de Dados, abordaremos, em breve, em outros artigos.
+
+
+Web Service RESTful com JSON, usando a API Jersey!
+
+
+Nesse artigo desenvolveremos um Web Service para ser consumido por uma app Android. Sabendo disso, precisamos entender alguns pontos críticos do nosso pequeno Droid.
+
+Processamento e memória: Como não temos disponível grandes quantidades de memória e CPU, precisamos pegar leve com isso. A resposta pra isso é usar um Web Service simples, o RESTful, que não é orientado a conexão, ou seja, não grava o estado das conexões e não utiliza cookies.
+
+Banda disponível para internet: Como as conexões 3G e GPRS ainda estão bem atrás das nossas expectativas, precisaremos pegar leve com isso também, logo, já podemos descartar aqueles protocolos baseados em XML, teremos que aderir ao JSON, já que com mensagens menores, menos gastaremos do nosso plano de dados.
+
+Agora precisamos saber o que é um Web Service, RESTful, JSON e para que eles servem.
+
+Web Service nada mais é que uma “interface” que serve, normalmente, para integrar aplicações diferentes, que por sua própria natureza não se comunicam. Existem diferentes arquiteturas para web service, uma delas é o RESTful, que será abordada nesse artigo, que é bem mais simples que as outras, baseadas em SOAP.
+
+REST é uma técnica de de engenharia de software para sistemas distribuídos desenvolvida pelo Roy Fielding. A REST (Transferência do Estado Representacional) é pretendida como uma imagem do design da aplicação se comportará: uma rede de websites (um estado virtual), onde o usuário progride com uma aplicação selecionando as ligações (transições do estado), tendo como resultado a página seguinte (que representa o estado seguinte da aplicação) que está sendo transferida ao usuário e apresentada para seu uso. Sistemas que seguem os princípios do REST são conhecidos como RESTful. 
+
+O que é importante ter em mente é que o principal em um restful web service são as URLs do sistema (geralmente são referidas como restful url’s), e os resources. Um resource é um recurso, uma entidade, ou seja, é um objeto com informação que será representado por meio de um XML. Em geral, a URL para acessar esse recurso será sempre a mesma, porém caso mudemos o método HTTP (GET, POST, PUT, DELETE) o resultado da requisição será diferente. Veja os exemplos tabela abaixo:
+
+Método......exemplo.com/recurso.......exemplo.com/recurso/1
+GET...........lista os recursos...............detalhes de um recurso
+POST.........adiciona um recurso.........-
+PUT...........-.......................................atualiza um recurso
+DELETE......-.......................................remove um recurso
+
+Porém saiba que no REST não existe um padrão definido, as operações listadas acima são apenas uma sugestão. Ao desenvolver um web service você não é obrigado a implementar todas as operações para seguir um determinado padrão, você só precisa implementar o que é necessário no seu contexto. Por exemplo, eu posso decidir que os recursos não podem ser apagados e não implementar nenhuma operação para o método DELETE. O que deve ser levado em consideração é a convenção das ações. GET deve ser usado para “leitura”, por exemplo listar os detalhes de um recurso. POST deve ser usado para adicionar novos recursos. PUT deve ser utilizado para alterar recursos já existentes. E DELETE para apagar recursos.
+
+JSON é um formato leve para a notação de dados a serem transmitidos, derivado da sintaxe de objetos em Javascript, uma alternativa ao intensamente utilizado XML. JSON é fortemente recomendado ao usar com Android, por consumir menos banda de nossa conexão com a internet.
+
+Abaixo podemos ver a diferença entre os dois.
+
+JSON
+
+{"widget": {
+    "debug": "on",
+    "window": {
+        "title": "Sample Konfabulator Widget",
+       "name": "main_window",
+       "width": 500,
+       "height": 500
+    },
+   "image": { 
+        "src": "Images/Sun.png",
+        "name": "sun1",
+       "hOffset": 250,
+       "vOffset": 250,
+       "alignment": "center"
+    },
+   "text": {
+        "data": "Click Here",
+        "size": 36,
+        "style": "bold",
+       "name": "text1",
+       "hOffset": 250,
+       "vOffset": 100,
+       "alignment": "center",
+        "onMouseUp": "sun1.opacity = (sun1.opacity / 100) * 90;"
+    }
+}}   
+ 
+
+
+XML
+
+<widget>
+   <debug>on</debug>
+   <window title="Sample Konfabulator Widget">
+       <name>main_window</name>
+       <width>500</width>
+       <height>500</height>
+   </window>
+   <image src="Images/Sun.png" name="sun1">
+       <hOffset>250</hOffset>
+       <vOffset>250</vOffset>
+       <alignment>center</alignment>
+   </image>
+   <text data="Click Here" size="36" style="bold">
+       <name>text1</name>
+       <hOffset>250</hOffset>
+       <vOffset>100</vOffset>
+       <alignment>center</alignment>
+       <onMouseUp>
+           sun1.opacity = (sun1.opacity / 100) * 90;
+       </onMouseUp>
+   </text>
+</widget>
+ 
+
+
+Agora que já sabemos toda a teoria que precisamos, vamos colocar a mão na massa.
+
+Muitos, quando descobrem que precisam desenvolver um WS, acabam desistindo por achar que é muito difícil e demoraria dias para desenvolver. Então, decidi fazer um artigo mostrando a simplicidade de se fazer um, em Java, usando a API Jersey.
+
+Premissas:
+
+* Ter instalado o Eclipse IDE for Java EE;
+* Tomcat instalado e configurado(Para esse tutorial, usei a versão 6);
+* Ter o JDK EE/JRE instalado;
+
+Obs.: Quem quiser pode tentar o EasyEclipse, que já vem com o tomcat, mas eu nunca usei e nem sei se funciona bem.
+
+Obs2.: O que não falta é tutorial pela internet sobre integração entre Tomcat e Eclipse, já que o foco desse artigo não é esse.
+
+JAX-RS e Jersey
+
+O JAX-RS é uma especificação (a JSR-311) que define a criação de um WebService com arquitetura RESTful. Na sua API, são utilizadas anotações, que simplificam a necessidade extra de configurações. Atualmente, o JAX-RS é parte integrante do Java EE.
+Como o JAX-RS é apenas uma especificação, é necessário escolher uma implementação. Entre os projetos que o implementam, temos o Jersey, que é open source e mantido pela Oracle, e que é a implementação de referência do JAX-RS.
+
+Recursos que iremos precisar:
+
+O Jersey deverá ser baixado no site oficial. Haverá duas opções, uma é um arquivo zip com todas as dependências e documentação inclusas. Para o tutorial, usei a versão 1.11 do Jersey.
+A outra é o jersey-bundle, um jar que já inclui todas as dependências necessárias. Neste exemplo, vamos utilizar o zip mesmo. Haverão cinco jars que devem ser adicionados ao projeto:
+
+* asm.jar
+* jersey-core
+* jersey-server
+* jersey-servlet
+* jsr311-api
+
+Estes são os jars obrigatórios em qualquer projeto utilizando o Jersey. No nosso caso, como vamos utilizar o JSON, vamos precisar de mais alguns jars:
+
+* jersey-json
+
+No caso do JAX-RS, para rodar o nosso web service RESTful é necessário um Web Container. No exemplo irei utilizar o Tomcat, porém qualquer outro WebContainer como o Jetty, ou
+mesmo um servidor de aplicação Java EE como o Glassfish ou o JBoss, que já possuem um WebContainer, funcionariam do mesmo jeito. 
+
+Outro recurso interessante que vamos utilizar é a api google-gson. Api que serve para converter objetos java em JSON e vice-versa.
+
+Configurando nosso ambiente:
+
+Para começar, devemos criar um projeto do tipo Dynamic Web Project no Eclipse. Para o nosso exemplo, criei um projeto chamado WebServiceREST.
+
+Quando criamos um projeto web, se o tomcat já estiver configurado, na tela de “New Dynamic Web Project”, tem um item chamado “Target runtime”, basta selecionar o “Apache Tomcat v6.0” e o “Dynamic web module version” fica em “2.5”.
+
+Para adicionar as libs no seu projeto, basta copiar os jars para o diretório “lib”. Nesse nosso exemplo, ele fica em “workspace/WebServiceREST/WebContent/WEB-INF/lib”. 
+
+Pronto, estamos preparados para um pouco de código.
+
+Antes de começar, vamos rodar um pequeno exemplo para testar o nosso ambiente. Como o de costume, o famoso “Hello World”.
+
+
+package br.com.droid.resources;
+
+import javax.ws.rs.GET;
+import javax.ws.rs.Path;
+import javax.ws.rs.Produces;
+
+@Path("/helloworld")
+public class HelloWorldResource {
+
+    @GET
+    @Produces("text/plain")
+    public String showHelloWorld() {
+     return "Olá mundo!";   
+    }
+}
+ 
+
+
+Antes de rodar o exemplo, devemos configurar o web.xml e cadastrar a servlet do Jersey. Ele fica dentro do projeto, em “WebServiceREST/WebContent/WEB-INF”. Preste atenção que devemos passar um parâmetro na inicialização. Esse parâmetro corresponde ao pacote onde estão os nossos resources. Basta seguir o exemplo conforme abaixo:
+
+
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xmlns:web="http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" id="WebApp_ID" version="2.5">
+  <display-name>WebServiceREST</display-name>
+  <servlet>
+    <servlet-name>Jersey REST Service</servlet-name>
+    <servlet-class>com.sun.jersey.spi.container.servlet.ServletContainer</servlet-class>
+    <init-param>
+    <param-name>com.sun.jersey.config.property.packages</param-name>
+    <param-value>br.com.droid.resources</param-value>
+    </init-param>
+    <load-on-startup>1</load-on-startup>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>Jersey REST Service</servlet-name>
+    <url-pattern>/*</url-pattern>
+  </servlet-mapping>
+  <welcome-file-list>
+    <welcome-file>index.html</welcome-file>
+    <welcome-file>index.htm</welcome-file>
+    <welcome-file>index.jsp</welcome-file>
+    <welcome-file>default.html</welcome-file>
+    <welcome-file>default.htm</welcome-file>
+    <welcome-file>default.jsp</welcome-file>
+  </welcome-file-list>
+</web-app>
+ 
+
+
+Ao tentar rodar o exemplo pela primeira vez, possivelmente o Eclipse mostrará uma caixa de diálogo para escolher qual servidor utilizar. Lembre-se que você já deve ter o Tomcat instalado e configurado no Eclipse para que ele apareça como uma das opções. Bem, após clicar no botão de executar, caso não tenha aparecido nenhuma exception, podemos testar acessando http://localhost:8080/WebServiceREST/helloworld na barra de endereços do navegador. Altere a URL caso você tenha dado um nome diferente para a aplicação, ou tenha configurado o Tomcat em outra porta. Se tudo estiver certo, você deve ver a mensagem “Olá mundo!”. Nada muito complicado, mas já é o suficiente para saber que está funcionando.
+
+Anotações
+Pelo nosso exemplo anterior, já vimos o Jersey em ação e a única coisa que nós fizemos foi adicionar algumas anotações à nossa classe. O Jersey é todo baseado em anotações, e existem várias delas. Vamos listar as mais importantes.
+●	@Path – essa anotação recebe uma string como parâmentro e indica qual é o path da URL. No exemplo anterior, tivemos a classe anotada com o valor ”/helloworld”, e por isso que acessamos a URL como http://localhost:8080/WebServiceREST/helloworld.
+●	@GET – anotação que indica qual o método correspondente do HTTP. Como dito anteriormente, podemos ter a mesma URL para ações diferentes desde que o método HTTP também seja diferente. Da mesma forma, temos as anotações @POST, @PUT e @DELETE.
+●	@Produces – anotação que indica qual o mime-type do conteúdo da resposta que será enviada para o cliente. No exemplo acima, foi “text/plain” para indicar que é texto puro. Em um web service isso é pouco usual, em geral vamos utilizar valores como “text/xml” para devolver XML ou "application/json" para devolver JSON.
+●	@Consumes – anotação que indica qual o mime-type do conteúdo da requisição. Em geral é utilizado principalmente em requisições do tipo POST ou PUT, em que o cliente precisa enviar a informação do que ele deseja adicionar/alterar. Do mesmo jeito que o web service “devolve” JSON ou XML, ele pode “consumir” (receber) conteúdo JSON ou XML.
+
+Agora vamos fazer um exemplo bem simples de CRUD. Primeiro vamos precisar de uma entidade, um bean para conter as informações que nós queremos manipular. Veja o exemplo abaixo:
+
+
+package br.com.droid.model;
+import javax.xml.bind.annotation.XmlRootElement;
+
+@XmlRootElement
+public class Cliente {
+
+    private int id;
+    private String nome;
+    private String cpf;
+    private String endereco;
+
+// getters e setters    
+}
+ 
+
+
+Note a presença da anotação @XmlRootElement na definição da nossa classe. Ela é fundamental para que o Jersey conheça a representação do objeto Cliente em JSON. Desse modo os atributos irão se tornar nós no momento em que o JSON for enviado ao cliente(Android). E do mesmo jeito, quando chegar um JSON no corpo de uma requisição, o Jersey vai saber converter esse JSON em um objeto do tipo Cliente.
+
+No mundo real, geralmente você vai ter uma tabela “Cliente” em alguma base de dados e vai desejar buscar a informação quando for requisitado. Aqui para que o exemplo fique mais simples e a gente mantenha o foco apenas na funcionalidade do Jersey, vamos utilizar um Singleton com uma lista para simular a nossa base de dados. Veja o exemplo abaixo:
+
+A classe Banco funciona como um DAO. No construtor, aproveitei para inserir um cliente.
+
+
+package br.com.droid;
+
+import java.util.ArrayList;
+import br.com.droid.model.Cliente;
+
+public class Banco {
+
+    private static Banco instance;
+    private ArrayList<Cliente> listaClientes;
+    private int idCliente;
+    
+    private Banco() {
+     idCliente = 1;
+     listaClientes = new ArrayList<Cliente>();
+     Cliente cliente = new Cliente();
+     cliente.setCpf("111222333-00");
+     cliente.setNome("Alexandre Antunes");
+     cliente.setEndereco("Rua das ruas, 9");
+     inserir(cliente);
+    }
+    
+    public static Banco getBancoInstance(){
+     if(instance==null)
+         instance = new Banco();
+     return instance;
+    }
+    
+    public ArrayList<Cliente> getListaClientes(){
+     return listaClientes;
+    }
+    
+    public String inserir(Cliente cliente){
+     cliente.setId(idCliente++);
+     listaClientes.add(cliente);
+     return "Cliente inserido no banco com sucesso!";
+    }
+    
+    public Cliente buscar(int id){
+     Cliente cliente = null;
+     for (int i = 0; i < listaClientes.size(); i++) {
+         if (listaClientes.get(i).getId() == id){
+             cliente = new Cliente();
+             cliente = listaClientes.get(i);
+             break;
+         }
+     }
+     return cliente;
+    }
+    
+    private int getPosition(int id) {
+     int pos = -1;
+     for (int i = 0; i < listaClientes.size(); i++) {
+         if (listaClientes.get(i).getId() == id){
+             pos = i;
+         }
+     }
+     return pos;
+    }
+    
+    public String delete(int id){
+     Cliente cliente = buscar(id);
+     int pos = getPosition(id);
+     if(cliente == null || pos < 0){
+         return "Cliente não encontrado!";
+     } else {
+         listaClientes.remove(pos);
+         return "Cliente removido com sucesso!";
+     }
+         
+    }
+}
+ 
+
+
+O próximo passo é criar o nosso WebResource, que é o responsável por receber e responder as requisições dos aplicativos clientes.
+
+
+package br.com.droid.resources;
+
+import java.util.ArrayList;
+import javax.ws.rs.Consumes;
+import javax.ws.rs.GET;
+import javax.ws.rs.POST;
+import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
+import javax.ws.rs.Produces;
+import com.google.gson.Gson;
+import br.com.droid.Banco;
+import br.com.droid.exception.NoContentException;
+import br.com.droid.model.Cliente;
+
+@Path("/cliente")
+public class ClienteResource {
+    
+    @GET
+    @Path("/buscarTodos")
+    @Produces("application/json")
+    public ArrayList<Cliente> selTodos(){
+     return Banco.getBancoInstance().getListaClientes();
+    }
+
+    @GET
+    @Path("/buscarTodosGSON")
+    @Produces("application/json")
+    public String selTodosGSON(){
+     return new Gson().toJson(Banco.getBancoInstance().getListaClientes());
+    }
+    
+    @GET
+    @Path("/{id}")
+    @Produces("application/json")
+    public Cliente getCliente(@PathParam("id") int id){
+     Cliente cliente = Banco.getBancoInstance().buscar(id);
+     
+     if(cliente == null)
+         throw new NoContentException("Cliente não encontrado!");
+     
+     return cliente;
+    }
+    
+    @GET
+    @Path("/delete/{id}")
+    @Produces("application/json")
+    public String deleteCliente(@PathParam("id") int id){
+     return Banco.getBancoInstance().delete(id);
+    }
+    
+    @POST
+    @Path("/inserir")
+    @Produces("application/json")
+    @Consumes("application/json")
+    public String inserirCliente(Cliente cliente) {
+     return Banco.getBancoInstance().inserir(cliente);
+    }
+}
+ 
+
+
+Reparem que tenho 2 métodos fazendo a mesma coisa, um é o selTodos() e o outro é o selTodosGSON(). Por enquanto não faz muito sentido ter esses dois métodos, mas quando a gente estiver fazendo o nosso app Android para conumir esse WS, veremos a diferença na prática.
+
+Em um deles eu deixei o Jersey devolver o JSON e no outro eu usei o GSON para gerar o JSON.
+
+O que acontece é que o jersey não se entende bem com o GSON, mas precisamos que o GSON saiba ler o JSON devolvido e mapear no nosso objeto quando estivermos no Android, então vamos usar GSON<=>GSON que não tem erro!!
+
+O bônus:
+
+Com certeza vocês devem ter reparado na linha:
+
+throw new NoContentException("Cliente não encontrado!");
+
+
+Que está na classe ClienteResource, dentro do método getCliente(). Então, o que fiz foi apenas criar uma exceção “customizada” para conseguir devolver um objeto mapeado em JSON ou um erro.
+
+
+package br.com.droid.exception;
+
+import javax.ws.rs.WebApplicationException;
+import javax.ws.rs.core.Response;
+import javax.ws.rs.core.Response.Status;
+
+public class NoContentException extends WebApplicationException {
+    private static final long serialVersionUID = 1L;
+
+    public NoContentException(String mensagem) {
+     super(Response.status(Status.NOT_FOUND).entity(mensagem).build());
+    }
+    
+}
+ 
+
+
+Para que eu consiga mapear os erros no android, fiz uma associação com os erros do HTTP. Assim, o “404 Not Found” já me diz o que preciso saber sobre o que aconteceu, bastando colocar no corpo da mensagem http algo mais expecífico como “Cliente não encontrado!”. O interessante é que o WS me devolve essa mensagem de erro em forma de “String”, então posso jogá-la direto na tela.
+
+Poderia ser um “401 Unauthorized” para devolver uma falha na tentativa de login.
+
+Uma mensagem sem erro é retornado “200 OK” e no corpo da mensagem, nesse caso, o objeto “Cliente” em forma de JSON.
+
+Pontos fortes: 
+
+* Não preciso ficar mapeando os erros com inteiro, por exemplo: “-1” se não foi encontrado, “0” se deu tudo certo e por aí vai.
+* O Android não precisa saber o tipo de erro, ele pega a mensagem e joga na tela. 
+* Fácil de implementar e de se organizar.
+
+Ponto fraco:
+
+* Essa mensagem vai consumir mais “dados” do que se fosse um caracter apenas.
+
+Agora a parte mais importante, vamos testar o nosso Web Service.
+
+Para testá-lo vamos precisar apenas do Poster, uma extenção do Firefox e Chrome para testar web service ou qualquer outro “web resource” que trabalhe com requisições HTTP.
+
+Depois de devidamente instalado, vamos ao que interessa. Pelo eclipse, inicie o seu projeto, da mesma dorma que fizemos anteriormente com o “Hello World”, botão direito no projeto>Run As>Run on Server.
+
+Vá para o Firefox, abra o Poster, digite a url abaixo no campo URL do Poster e clique em “GET”:
+
+http://localhost:8080/WebServiceREST/cl ... uscarTodos
+
+O retorno deve ser esse:
+
+{"cliente":{"cpf":"111222333-00","endereco":"Rua das ruas, 9","id":"1","nome":"Alexandre Antunes"}}
+
+
+Para inserir um cliente, basta enviar para o WS o JSON do novo cliente para a url:
+
+Novo cliente:
+
+{"cpf":"000333444-00","endereco":"Rua das ruas, 21","id":"0","nome":"Michel Antunes"}
+
+
+URL: http://localhost:8080/WebServiceREST/cliente/inserir
+
+Lembrando que agora você deve usar o método POST, já que está enviando dados ao WS.
+
+Outra coisa importante é dizer qual o Content Type da mensagem que vc está enviando, que no nosso caso é “application/json”.
+
+Agora é só brincar!!
+
+
+Atualização...(10/02/2012)
+
+Recebi uma pergunta de um colega do fórum sobre a possibilidade de enviar uma lista ao WS, ao contrário de como já fizemos de consumir uma lista do WS. Para demonstrar como como fazer, abri essa atualização.
+
+Para prepararmos o nosso WS para receber essa lista, no mundo real, precisaremos fazer modificações na camada Business e na Resources, mas como o nosso é apenas um lab, modificaremos a classe Banco e a ClienteResource.
+
+Não cheguei a explicar o que é e o que faz a camada "Business" porque não temos ela nesse projeto, mas basicamente ele fica entre a camada DAO e a camada Resources. Ela fica responsável por toda a manipulação, seja verificação, validação ou qualquer outra coisa que o objeto precise, antes de enviá-lo ao DAO. Explicarei melhor esse processo no nosso terceiro Artigo.
+
+Vamos começar de dentro pra fora, ou seja, do sentido Banco até Interface do usuário ou WS, que é o nosso caso. 
+
+Na classe Banco, incluí apenas um método, que recebe uma lista de clientes e inclui no banco.
+
+
+public String inserirLista(ArrayList<Cliente> listaCliente) {
+     for (int i = 0; i < listaCliente.size(); i++) {
+          inserir(listaCliente.get(i));
+     }
+     return "Lista de clientes inserida no banco com sucesso!";
+}
+ 
+
+
+E na classe ClienteResource incluí o método que vai se comunicar com o mundo externo.
+
+
+@POST
+@Path("/inserirLista")
+@Produces("application/json")
+@Consumes("application/json")
+public String inserirLista(String listaClientesJson) {
+    Gson gson = new Gson();
+    ArrayList<Cliente> listaClientes = new ArrayList<Cliente>();
+    JsonParser parser = new JsonParser();
+    JsonArray array = parser.parse(listaClientesJson).getAsJsonArray();
+    
+    for (int i = 0; i < array.size(); i++) {
+        listaClientes.add(gson.fromJson(array.get(i), Cliente.class));
+    }       
+    return Banco.getBancoInstance().inserirLista(listaClientes);
+}
+ 
+
+
+Percebam que eu voltei a usar a api google-gson pelo mesmo fato anterior, compatibilidade entre essa api e o Jersey.
+
+Bom, é isso!! Simples, rápido e muito fácil!! /uu
+Abraços!!
+
+PS.: Tenham paciência que vão sair, eu sou um só!!  /ww
+PS2.: Se tiver algum erro, por favor, me avise para que a correção seja feita.
+
+
+Fontes e referências:
+Artigo sobre WS REST: http://www.k19.com.br/artigos/criando-u ... l-em-java/
+Artigo sobre WS REST usando JSON: http://www.k19.com.br/artigos/webservic ... ando-json/
+Tese do Roy Fielding: http://www.ics.uci.edu/~fielding/pubs/d ... _style.htm
+REST na Wikipedia: http://en.wikipedia.org/wiki/Representa ... e_Transfer
+REST na Wikipedia (pt-BR): http://pt.wikipedia.org/wiki/REST
+JSON na Wikipedia: http://pt.wikipedia.org/wiki/JSON
+
+
+Não percam os próximos Artigos:
+
+[Artigo] Web Service RESTful 2 [+Consumir+Android]
+[Artigo] Web Service RESTful 3 [+PgSQL+DAO+Business+Factory]
+
+
+Você não tem permissões suficientes para ver os arquivos anexados nesta mensagem.
+
+_________________
+Alexandre Antunes
+@a3b @bemobi
+Moto X
+
+App@Bemobi: Apps Club - Loja de Apps baseada em assinatura que dá direito a usar ~400 Apps.
+
+Campanha: Facilite sua vida e a dos outros usuários.
+Objetivo: Vamos colocar a tag [RESOLVIDO] no título do tópico quando o problema for resolvido.
+
+Use a ferramenta de busca do fórum e não espere tanto para que a sua dúvida seja respondida!

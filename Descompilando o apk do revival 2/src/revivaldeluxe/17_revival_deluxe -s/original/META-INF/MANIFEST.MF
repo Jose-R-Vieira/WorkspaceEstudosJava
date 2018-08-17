@@ -1,0 +1,84 @@
+Manifest-Version: 1.0
+Created-By: 1.6.0_07 (Sun Microsystems Inc.)
+
+Name: assets/dat/new.mid
+SHA1-Digest: OOnxSPsXU3R8Y2eN8JqLJlz3bRM=
+
+Name: assets/img/h.png
+SHA1-Digest: MtZYGpbPd6guPxsbjjHd2HZZV/8=
+
+Name: assets/dat/vict.mid
+SHA1-Digest: wo0PBbSg4mzjDH/qu2GtAqbNm/M=
+
+Name: assets/dat/lng
+SHA1-Digest: MtSCdRE7abTVf/TxyqO+aKiP+QM=
+
+Name: assets/img/abc.png
+SHA1-Digest: +Qf/iEavp0MkA1+nSqZ7kaQCuT4=
+
+Name: assets/img/logo.png
+SHA1-Digest: DD6285Q4JR7y/gGck5Fs3A/ogxw=
+
+Name: assets/m1yrLk
+SHA1-Digest: BG5vVXEvco0Uehk1z3cCxe0dNgE=
+
+Name: resources.arsc
+SHA1-Digest: Gl3gv2kDuhx08tx6nsOZ3EFczFA=
+
+Name: assets/img/pl.png
+SHA1-Digest: r19MwghbLv6yy9AX+2VMAzsLrv8=
+
+Name: assets/dat/city.mid
+SHA1-Digest: y8fpDaVRWj0qk9zBykx7FkUviSg=
+
+Name: assets/img/fs.png
+SHA1-Digest: 2zAMDM1dlROiAUB/Q6QgHalZzY4=
+
+Name: AndroidManifest.xml
+SHA1-Digest: GA+3R/dcMZ4nLpHpOvfY7XD92fw=
+
+Name: assets/img/pic1.png
+SHA1-Digest: c2Nqq6JNMSKqWAyy95mBRVnEGMs=
+
+Name: assets/img/zd.png
+SHA1-Digest: v18yQoGscdLfcPYSCb6ohwmjFc8=
+
+Name: assets/dat/p
+SHA1-Digest: QGywphA0hz2vBm6kH95wi+ORLNE=
+
+Name: assets/dat/m
+SHA1-Digest: 9c4Z7uxoIHJDw/QCEtzyDv/PWU8=
+
+Name: assets/dat/fail.mid
+SHA1-Digest: 8Vu0+8ajO9Mh5FWzd6/IxJ6WgK0=
+
+Name: assets/img/map.png
+SHA1-Digest: OIFYyq6VwnlX18eAEmYopwG5bek=
+
+Name: assets/img/p.png
+SHA1-Digest: fiP/BQVUJLlMgZecL72eCrRdiDc=
+
+Name: assets/dat/miss.mid
+SHA1-Digest: 9yZ8VfXzQ72iMN8h+2+nGevQIwE=
+
+Name: assets/dat/main.mid
+SHA1-Digest: WZ3BD2Jab1X9ZFTNmswnUzRZTXE=
+
+Name: classes.dex
+SHA1-Digest: HVMRwq8w0UmECQZ/huEavCrfATo=
+
+Name: assets/dat/war.mid
+SHA1-Digest: oHSjzZE4Y3hz1o4HL3Tf7OFkNk0=
+
+Name: res/drawable/icon.png
+SHA1-Digest: 5pYb2hYjgfpaT/eXGEmVAYUFjPA=
+
+Name: assets/img/s.png
+SHA1-Digest: XpR1B4TFLcG9lBYkXZDjiCAZeFM=
+
+Name: assets/dat/map.mid
+SHA1-Digest: 85b3zVyYR9u5h9JYr5loojuSb1E=
+
+Name: assets/img/z.png
+SHA1-Digest: ncH7gJffO/smVF5tqEOa1WvWinU=
+

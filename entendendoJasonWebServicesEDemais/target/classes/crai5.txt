@@ -1,0 +1,973 @@
+Thiago Galbiatti Vespa
+Precisando é só avisar!
+Pesquisar por: 
+Search
+ Pesquisar Menu Principal
+Home
+Curriculum
+Contato
+Navegação das Postagens← Anterior Próximo →
+Enviar dados para o servidor com Android
+Postado em: 19/12/2012 por: Thiago Galbiatti Vespa — 30 Comentários ↓
+Em um post anterior, eu descrevi como criar uma aplicação para receber dados no servidor. Nesse post eu vou criar uma aplicação Android que envia dados para o servidor. Alguns pontos precisam ser levados em consideração:
+
+Toda conexão (vamos usar Socket nesse exemplo) precisa ser feita em uma thread separada
+O Android não permite alterar componentes visuais em threads separadas
+O servidor tem que estar ouvindo em um IP que o Android possa conectar
+
+Antes de abordarmos o código de fato e esses pontos, vamos criar primeiro o design da aplicação. O layout principal vai consistir em um campo que você pode informar o host e a porta, um campo de texto para você escrever os dados, um botão para enviar os dados e um label para exibir o status.
+
+activity_main.xml
+activity_main.xml
+Isso pode ser contemplado com o seguinte código de layout:
+
+01
+02
+03
+04
+05
+06
+07
+08
+09
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical" >
+ 
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+ 
+        <EditText
+            android:id="@+id/txtHostPort"
+            android:layout_width="236dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentTop="true"
+            android:layout_toRightOf="@+id/textView1"
+            android:ems="10"
+            android:hint="@string/host_port_hint" >
+ 
+            <requestFocus />
+        </EditText>
+ 
+        <TextView
+            android:id="@+id/textView1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:text="@string/host_port_label" />
+    </RelativeLayout>
+ 
+    <EditText
+        android:id="@+id/txtValor"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.50"
+        android:ems="10"
+        android:inputType="textMultiLine" />
+ 
+    <Button
+        android:id="@+id/btnSend"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/btn_send" />
+ 
+    <TextView
+        android:id="@+id/txtStatus"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text=""
+        android:textSize="20sp" />
+ 
+</LinearLayout>
+Também devemos dar permissão de conexão (internet) para o aplicativo. No AndroidManifest.xml adicione a seguinte permissão:
+
+1
+<uses-permission android:name="android.permission.INTERNET"/>
+Agora vamos ao primeiro ponto: "Toda conexão (vamos usar Socket nesse exemplo) precisa ser feita em uma thread separada". Para realizar esse feito vamos utilizar um AsyncTask. O AsyncTask é uma classe excelente para quando precisamos realizar tarefas separadas da thread principal de maneira assíncrona e precisamos também atualizar a interface com o usuário que está em outra thread. Essa classe possui um método chamado publishProgress. Ao chamar esse método ele automaticamente chama o método onProgressUpdate que pode ser utilizado para atualizar a interface com o usuário. Dessa maneira também solucionamos o ponto 2: "O Android não permite alterar componentes visuais em threads separadas".
+
+O processamento principal deve ser feito no método doInBackground. Com essas informações, implementei a seguinte AsyncTask:
+
+001
+002
+003
+004
+005
+006
+007
+008
+009
+010
+011
+012
+013
+014
+015
+016
+017
+018
+019
+020
+021
+022
+023
+024
+025
+026
+027
+028
+029
+030
+031
+032
+033
+034
+035
+036
+037
+038
+039
+040
+041
+042
+043
+044
+045
+046
+047
+048
+049
+050
+051
+052
+053
+054
+055
+056
+057
+058
+059
+060
+061
+062
+063
+064
+065
+066
+067
+068
+069
+070
+071
+072
+073
+074
+075
+076
+077
+078
+079
+080
+081
+082
+083
+084
+085
+086
+087
+088
+089
+090
+091
+092
+093
+094
+095
+096
+097
+098
+099
+100
+101
+102
+103
+104
+105
+106
+107
+108
+package br.com.thiagovespa.android.socketandroid;
+ 
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.net.InetSocketAddress;
+import java.net.Socket;
+import java.net.SocketAddress;
+ 
+import android.os.AsyncTask;
+import android.util.Log;
+ 
+/**
+ * Classe para envio de dados via socket
+ *
+ * @author Thiago Galbiatti Vespa
+ *
+ */
+public abstract class SocketTask extends AsyncTask<String, String, Boolean> {
+ 
+    private Socket socket;
+    private InputStream is;
+    private OutputStream os;
+    private String host;
+    private int port;
+    private int timeout;
+ 
+    /**
+     * Construtor com host, porta e timeout
+     *
+     * @param host
+     *            host para conexão
+     * @param port
+     *            porta para conexão
+     * @param timeout
+     *            timeout da conexão
+     */
+    public SocketTask(String host, int port, int timeout) {
+        super();
+        this.host = host;
+        this.port = port;
+        this.timeout = timeout;
+    }
+ 
+    /**
+     * Envia dados adicionais se estiver conectado
+     *
+     * @param data
+     *            dados addicionais
+     * @throws IOException
+     */
+    public void sendData(String data) throws IOException {
+        if (socket != null && socket.isConnected()) {
+            os.write(data.getBytes());
+        }
+    }
+ 
+    @Override
+    protected Boolean doInBackground(String... params) {
+        boolean result = false;
+        try {
+            SocketAddress sockaddr = new InetSocketAddress(host, port);
+            socket = new Socket();
+            socket.connect(sockaddr, timeout); // milisegundos
+            if (socket.isConnected()) {
+                publishProgress("CONNECTED");
+                is = socket.getInputStream();
+                os = socket.getOutputStream();
+                for (String p : params) {
+                    os.write(p.getBytes());
+                }
+                byte[] buff = new byte[2048];
+                int buffData = is.read(buff, 0, 2048);
+                while (buffData != -1) {
+                    String response = new String(buff);
+                    // Envia os dados
+                    publishProgress(response);
+                    buffData = is.read(buff, 0, 2048);
+                }
+            } else {
+                publishProgress("CONNECT ERROR");
+            }
+        } catch (IOException e) {
+            publishProgress("ERROR");
+            Log.e("SocketAndroid", "Erro de entrada e saida", e);
+            result = true;
+        } catch (Exception e) {
+            publishProgress("ERROR");
+            Log.e("SocketAndroid", "Erro generico", e);
+            result = true;
+        } finally {
+            try {
+                if (is != null) {
+                    is.close();
+                }
+                if (os != null) {
+                    os.close();
+                }
+                if (socket != null) {
+                    socket.close();
+                }
+            } catch (Exception e) {
+                Log.e("SocketAndroid", "Erro ao fechar conexao", e);
+            }
+        }
+        return result;
+    }
+}
+O código realiza um conexão socket (linha 62, 63 e 64), envia os dados (linha 70) e envia a resposta para a tela na linha 77. Agora é só utilizá-la na Activity principal.
+
+01
+02
+03
+04
+05
+06
+07
+08
+09
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+package br.com.thiagovespa.android.socketandroid;
+ 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+ 
+import android.app.Activity;
+import android.os.Bundle;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.widget.Button;
+import android.widget.TextView;
+ 
+public class MainActivity extends Activity {
+    private Button btnSend;
+    private TextView txtStatus;
+    private TextView txtValor;
+    private TextView txtHostPort;
+    private SocketTask st;
+ 
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+        btnSend = (Button) findViewById(R.id.btnSend);
+        txtStatus = (TextView) findViewById(R.id.txtStatus);
+        txtValor = (TextView) findViewById(R.id.txtValor);
+        txtHostPort = (TextView) findViewById(R.id.txtHostPort);
+        btnSend.setOnClickListener(btnConnectListener);
+    }
+ 
+    private OnClickListener btnConnectListener = new OnClickListener() {
+        public void onClick(View v) {
+ 
+            // Recupera host e porta
+            String hostPort = txtHostPort.getText().toString();
+            int idxHost = hostPort.indexOf(":");
+            final String host = hostPort.substring(0, idxHost);
+            final String port = hostPort.substring(idxHost + 1);
+ 
+            // Instancia a classe de conexão com socket
+            st = new SocketTask(host, Integer.parseInt(port), 5000) {
+                @Override
+                protected void onProgressUpdate(String... progress) {
+                    SimpleDateFormat sdf = new SimpleDateFormat(
+                            "dd/MM/yyyy HH:mm:ss");
+                    // Recupera o retorno
+                    txtStatus.setText(sdf.format(new Date()) + " - "
+                            + progress[0]);
+                }
+            };
+ 
+            st.execute(txtValor.getText() == null ? "" : txtValor.getText()
+                    .toString()); // Envia os dado
+        }
+    };
+ 
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        st.cancel(true);
+    }
+}
+O primeiro passo é instanciar a SocketTask (linha 41) sobreescrever o método onProgressUpdate (linha 43) e invocar o método execute (linha 52), que é responsável por colocar a thread nova em execução.
+
+Após isso, precisamos resolver o ponto 3: "O servidor tem que estar ouvindo em um IP que o Android possa conectar". Inicie o aplicativo desse post utilizando um IP que esteja na mesma rede do Android ao invés de 127.0.0.1. Execute a aplicação Android, informe o IP e a porta utilizados para iniciar o servidor, escreva um texto e clique no botão "Enviar Dados". O servidor irá receber os dados e gravar em um arquivo.
+
+O código completo com o projeto para o eclipse está disponível aqui. Utilizando o mesmo raciocínio dá para fazer várias aplicações, como obter dados do servidor, realizar um chat, gravar imagens no servidor, ... É só usar a criatividade.
+
+Google+
+Compartilhe isso:
+Compartilhar
+Relacionado
+Criando uma Splash Screen em Android
+02/10/2012
+Em "Android"
+Testando o OpenSwing
+20/09/2010
+Em "Java"
+Stuck Threads no WebLogic
+06/09/2012
+Em "Java"
+Este post foi publicado em: Android,Java Listada nas Tags: android,aplicativos,eclipse,java por: Thiago Galbiatti Vespa. Arquivado em: Link permanente.
+
+Sobre: Thiago Galbiatti Vespa
+
+Thiago Galbiatti Vespa é mestre em Ciências da Computação e Matemática Computacional pela USP e bacharel em Ciências da Computação pela UNESP. Coordenador de projetos do JavaNoroeste, membro do JCP (Java Community Process), consultor Oracle, arquiteto de software de empresas de médio e grande porte, palestrante de vários eventos e colaborador de projetos open source. Possui as certificações: Oracle Certified Master, Java EE 5 Enterprise Architect – Step 1, 2 and 3; Oracle WebCenter Portal 11g Certified Implementation Specialist; Oracle Service Oriented Architecture Infrastructure Implementation Certified Expert; Oracle Certified Professional, Java EE 5 Web Services Developer; Oracle Certified Expert, NetBeans Integrated Development Environment 6.1 Programmer; Oracle Certified Professional, Java Programmer; Oracle Certified Associate, Java SE 5/SE 6
+Ver todas as postagens de: Thiago Galbiatti Vespa →
+Profile
+Sign in with TwitterSign in with Facebook
+or
+Comment
+
+Name
+
+Email
+Not published
+
+Website
+Post It
+  Notifique-me sobre novos comentários por e-mail.
+ Notifique-me sobre novas publicações por e-mail.
+30 Replies
+29 Comments
+1 Tweet
+0 Facebook
+0 Pingbacks
+last reply was 19/12/2012
+bgualda retweeted this
+
+Lazzarini
+03/07/2013
+Boa tarde Thiago, preciso de um aplicativo que envie fotos e digitalização do aparelho android direto para meu servidor, resumindo muito é isso que preciso, você tem disponibilidade para desenvolve-lo? Caso sim favor me passar um orçamento.
+responder
+
+Martins
+18/07/2013
+Olá Thiago.
+Parabéns pela didática aplicada e pela clareza no código.
+Estou testando este post e encontrei o seguinte problema durante a
+execução de envio:
+Cenário: aplicativo socket utils na porta 8090 funcionando ok
+Ao clicar no botão ocorre o seguinte erro registrado em log:
+07-18 20:14:01.236: I/Choreographer(844): Skipped 50 frames! The application may be doing too much work on its main thread.
+07-18 20:14:04.540: I/Choreographer(844): Skipped 44 frames! The application may be doing too much work on its main thread.
+07-18 20:14:05.497: D/AndroidRuntime(844): Shutting down VM
+07-18 20:14:05.497: W/dalvikvm(844): threadid=1: thread exiting with uncaught exception (group=0x40a71930)
+07-18 20:14:05.547: E/AndroidRuntime(844): FATAL EXCEPTION: main
+07-18 20:14:05.547: E/AndroidRuntime(844): java.lang.StringIndexOutOfBoundsException: length=0; regionStart=0; regionLength=-1
+07-18 20:14:05.547: E/AndroidRuntime(844): at java.lang.String.startEndAndLength(String.java:583)
+07-18 20:14:05.547: E/AndroidRuntime(844): at java.lang.String.substring(String.java:1464)
+07-18 20:14:05.547: E/AndroidRuntime(844): at br.com.thiagovespa.android.socketandroid.MainActivity$1.onClick(MainActivity.java:37)
+07-18 20:14:05.547: E/AndroidRuntime(844): at android.view.View.performClick(View.java:4204)
+07-18 20:14:05.547: E/AndroidRuntime(844): at android.view.View$PerformClick.run(View.java:17355)
+07-18 20:14:05.547: E/AndroidRuntime(844): at android.os.Handler.handleCallback(Handler.java:725)
+07-18 20:14:05.547: E/AndroidRuntime(844): at android.os.Handler.dispatchMessage(Handler.java:92)
+07-18 20:14:05.547: E/AndroidRuntime(844): at android.os.Looper.loop(Looper.java:137)
+07-18 20:14:05.547: E/AndroidRuntime(844): at android.app.ActivityThread.main(ActivityThread.java:5041)
+07-18 20:14:05.547: E/AndroidRuntime(844): at java.lang.reflect.Method.invokeNative(Native Method)
+07-18 20:14:05.547: E/AndroidRuntime(844): at java.lang.reflect.Method.invoke(Method.java:511)
+07-18 20:14:05.547: E/AndroidRuntime(844): at com.android.internal.os.ZygoteInit$MethodAndArgsCaller.run(ZygoteInit.java:793)
+07-18 20:14:05.547: E/AndroidRuntime(844): at com.android.internal.os.ZygoteInit.main(ZygoteInit.java:560)
+07-18 20:14:05.547: E/AndroidRuntime(844): at dalvik.system.NativeStart.main(Native Method)
+Se possível responda pelo e-mail, grato.
+responder
+
+Thiago Galbiatti Vespa
+replied:29/07/2013
+O que tem nessa linha de código: MainActivity.java:37 ?
+Possivelmente você está usando o método substring de forma errada. Com um string vazia e tentando acessar uma posição que não existe, por isso o StringIndexOutOfBoundsException.
+responder
+
+Valter V. Wolff
+02/10/2013
+Olá Thiago, eu gostaria de algo que fizesse o contrário, ou seja, que um servidor enviasse uma mensagem para um android. O que pretendo fazer é um trabalho de inclusão, onde pessoas surdas possam receber uma mensagem tipo ("Tocou o alarme IFF") e acionar o vibra call quando soar o alarme no Instituto onde estudam, lógico que pra isso o relógio do servidor deverá estar sincronizado com o relógio que toca o alarme, (isso é fácil), o detalhe está em fazer com que somente alguns aparelhos recebessem essa mensagem, ou os telefones cadastrados, ou os telefones q tiveram uma app especifica, e isso poderia ser enviado via uma rede wireless/wifi, pois temos várias redes internas no Instituto.
+Se puder me enviar algo ficarei grato.
+responder
+
+Andre Nunes
+17/10/2013
+Boa Madrugada.... fiz o envio de mensagem com PUSH GCM, mais no meu caso que demora muito o recebimento no celular se eu colocar no wirelles ficar rapido o recebimento, tenho net claro que funciona bem quando faco alguma requisicao, vc acha melhor fazer via socket ainda nao usei, preciso ter velocidade na comunicacao com servidor com celular android; voce pode ajudar-me.
+responder
+
+Thiago Galbiatti Vespa
+replied:24/10/2013
+Socket é uma boa solução.
+responder
+
+Erivaldo
+15/08/2014
+Cara... Vc poderia me ajudar? Meu problema é o seguinte:
+Tenho uma aplicação servidor, em java. E uma aplicação cliente, em android. Quando eu utilizo o emulador do eclipse, ele funciona normal... Porem, quando instalo o app no celular(Ja testei 2 celulares), ela não conecta de forma alguma, dando erro!
+Obs: Acredito q seja alguma proteção do aparelho a respeito da comunicação.
+responder
+
+Thiago Galbiatti Vespa
+replied:25/08/2014
+Tem como enviar o código?
+responder
+
+Amanda Lúcia Carstens Ramos
+replied:10/01/2015
+Oi Thiago,
+tive o mesmo problema, no emulador funciona e no celular não... É o mesmo código que você passou..
+obrigada!
+responder
+
+Thiago Galbiatti Vespa
+replied:09/02/2015
+Consegue pegar o erro no logcat com o celular?
+responder
+
+Augusto
+14/11/2014
+Ficou muito bom o tutorial!
+Mas preciso colocar alem do host e da porta o restante do endereço (Ex. 192.168.0.09:8080/pasta/pasta02). Tem como fazer isso??
+Agradeço desde já.
+responder
+
+Thiago Galbiatti Vespa
+replied:14/11/2014
+Tem sim.
+responder
+
+Amanda Lúcia Carstens Ramos
+10/01/2015
+Oi Thiago, preciso de uma ajuda, tentei rodar os dois programas aqui citados, o aplicativo Android e o servidor, porém quando mando enviar os dados pelo aplicativo ele aparece a data e "ERROR", referente a essa parte do código:
+catch (IOException e) {
+publishProgress("ERROR");
+Log.e("SocketAndroid", "Erro de entrada e saida", e);
+result = true;
+}
+o que eu posso fazer?
+Obrigada pelas postagens e pela ajuda!
+responder
+
+Thiago Galbiatti Vespa
+replied:09/02/2015
+Você consegue me passar o erro que dá no LogCat?
+responder
+
+Alvaro
+27/03/2015
+Olá, em primeiro lugar parabéns pelo post. No meu caso eu só precisava dar um "GET + url" não existe uma maneira mais simples de fazer isso? No caso, estou tentando fazer o android acionar o Arduino + Ethernet Shield, sé precisava que o android desse um comando GET na url 192.168.1.55/L por exemplo, não preciso de nenhum retorno, nem baixar nenhuma informação da página, nada. Tem jeito? Abraço!
+responder
+
+josemar
+replied:31/10/2015
+Oi Alvaro!
+Conseguiu fazer alguma coisa como o arduino trabalhando desta forma?
+Quero fazer mais ou menos isto que você está tentando fazer.
+responder
+
+Thiago Galbiatti Vespa
+replied:05/11/2015
+Consegui sim... tanto arduino, quanto raspberry pi (que fica mais fácil, pois dá pra subir um servidor nele)
+responder
+
+josemar
+replied:07/11/2015
+então estou trabalhando com o novo Android Studio e fiz estou programa que está aqui no blog para funcionar ele mas o que consegui foi apenas saber que o arduino está conectado ou não.
+Eu escrevo um caracter no celular e envio mas não acontece nada no meu arduino pode me dar uma dica.
+Pois fiz a mesma idéia do programa utilizando o App Inventor e funcionou mas com este exemplo que tem no site não.
+Pode me ajudar?
+responder
+
+Thiago Galbiatti Vespa
+replied:11/11/2015
+Teria como você me enviar seu código?
+
+josemar
+replied:11/11/2015
+Segue o código que utilizei no arduino para ser feito um exemplo de conexão
+/*
+Web Server
+A simple web server that shows the value of the analog input pins.
+using an Arduino Wiznet Ethernet shield.
+Circuit:
+* Ethernet shield attached to pins 10, 11, 12, 13
+* Analog inputs attached to pins A0 through A5 (optional)
+*/
+#include
+#include
+// Enter a MAC address and IP address for your controller below.
+// The IP address will be dependent on your local network:
+byte mac[] = {
+0xDE, 0xAD, 0xBE, 0xEF, 0xFE, 0xED
+};
+IPAddress ip(192, 168, 0, 177);
+EthernetServer server(80);
+const byte ledPin = A0;// Select pin for Main Light
+String readString;
+void setup() {
+// Open serial communications and wait for port to open:
+pinMode(ledPin, OUTPUT);
+Serial.begin(9600);
+while (!Serial) {
+; // wait for serial port to connect. Needed for Leonardo only
+}
+// start the Ethernet connection and the server:
+Ethernet.begin(mac, ip);
+server.begin();
+Serial.print("server is at ");
+Serial.println(Ethernet.localIP());
+}
+void loop() {
+// listen for incoming clients
+EthernetClient client = server.available();
+if (client) {
+Serial.println("new client");
+// an http request ends with a blank line
+boolean currentLineIsBlank = true;
+while (client.connected()) {
+if (client.available()) {
+char c = client.read();
+if (readString.length() < 100)
+{
+readString = readString + c;// Store characters to string
+}
+Serial.write(c);
+// if you've gotten to the end of the line (received a newline
+// character) and the line is blank, the http request has ended,
+// so you can send a reply
+if (c == '\n' && currentLineIsBlank) {
+// send a standard http response header
+client.println("HTTP/1.1 200 OK");
+client.println("Content-Type: text/html");
+client.println("Connection: close"); // the connection will be closed after completion of the response
+client.println("Refresh: 5"); // refresh the page automatically every 5 sec
+client.println();
+client.println("");
+client.println("");
+client.println(F("Home Web Control"));
+client.println(F("Teste de Conexão Arduino UNO R3 Ethernet Shield Web Server"));
+client.println(F("WebServer teste de conexão"));
+client.print(F(""));
+client.println(F(""));
+//client.println(F(""));
+client.println(F(""));
+// output the value of each analog input pin
+for (int analogChannel = 0; analogChannel < 6; analogChannel++) {
+int sensorReading = analogRead(analogChannel);
+client.print("analog input ");
+client.print(analogChannel);
+client.print(" is ");
+client.print(sensorReading);
+client.println("");
+}
+if(readString.indexOf("/?led_on") > 0) digitalWrite(ledPin, HIGH);
+if(readString.indexOf("/?led_off") > 0) digitalWrite(ledPin, LOW);
+readString = "";// Clearing string for next read
+client.println("");
+break;
+}
+if (c == '\n') {
+// you're starting a new line
+currentLineIsBlank = true;
+}
+else if (c != '\r') {
+// you've gotten a character on the current line
+currentLineIsBlank = false;
+}
+}
+}
+// give the web browser time to receive the data
+delay(1);
+// close the connection:
+client.stop();
+Serial.println("client disconnected");
+}
+}
+
+Thiago Galbiatti Vespa
+replied:12/11/2015
+Você consegue me dizer se no log do Serial aparece a conexão:
+Serial.print("server is at ");
+Serial.println(Ethernet.localIP());
+??
+
+josemar
+replied:14/11/2015
+sim consigo!
+server is at 192.168.0.177
+new client
+É isso que ele responde
+client disconnected
+new client
+?led_offclient disconnected
+new client
+casa client disconnected
+new client
+teste de conexao client disconnected
+new client
+?led_onclient disconnected
+Detalhe o aplicativo no android funciona apenas uma vez para que o arduino receba um outro comando tenho que fechar o aplicativo e abri-lo novamente.
+------------------------------
+Mas eu tenho outro aplicativo que foi feito no AppInventor que está funcionando com esse codigo do arduino e ele responde os seguintes informações.
+server is at 192.168.0.177
+new client
+GET /?led_on HTTP/1.1
+User-Agent: Dalvik/1.6.0 (Linux; U; Android 4.4.2; LG-D295 Build/KOT49I)
+Host: 192.168.0.177
+Connection: Keep-Alive
+Accept-Encoding: gzip
+client disconnected
+new client
+GET /?led_off HTTP/1.1
+User-Agent: Dalvik/1.6.0 (Linux; U; Android 4.4.2; LG-D295 Build/KOT49I)
+Host: 192.168.0.177
+Connection: Keep-Alive
+Accept-Encoding: gzip
+
+Rhaisa Mariano
+30/09/2015
+Thiago, bom dia!
+Muito bom seu post, parabéns! Foi de grande ajuda.
+Estou com algumas dúvidas e gostaria de saber se você pode saná-las:
+- Depois de enviar os dados para o servidor a conexão fica aberta rodando em background, como faço para fechar a conexão com o servidor após o envio dos dados?
+- Se eu tento enviar mais dados usando a mesma função (st.execute) dá erro falando que a task já está em uso, como proceder?
+Desde já agradeço.
+responder
+
+Pedro Alves da Silva
+12/10/2015
+Bom dia Thiago,
+acompanho alguns de seus tutoriais, são muitos bons e realmente consigo aprender. Nesse exemplo de socket, ao clicar em "enviar dados" o app para de responder, será que devo adicionar mais algumas permissões no manifest alem de
+?o servidor esta ok, o webservice acesso tambem em minha rede, executei a aplicação para criar a conexão socket e ele esta aguardando conexões.
+Estou usando um ambiente em 4.1.2, poderia me informar se preciso adicionar algo para que a aplicação instancie a classe de conexão com o socket?
+Desde já grato !
+responder
+
+Thiago Galbiatti Vespa
+replied:13/10/2015
+Dá algum erro? Você está fazendo a operação em thread separada?
+responder
+
+Claudio Alfonso
+23/11/2015
+Olá thiago! Parabéns pelo excelente blog.
+Mano para enviar é entendi mas no caso de testar a conexão antes de enviar os dados? Nossa rede de internet/3g é peśsima portanto queria enviar os dados só depois de verificar se a conexão esta ok, como é possível? Agradeço a atenção.
+responder
+
+vanderlei
+27/12/2015
+fiz tudo certinho mas quando clico no botao para enviar os dados o app da erro . por que?
+post muito bom valeu ai
+responder
+
+Thiago Galbiatti Vespa
+replied:30/12/2015
+Qual erro?
+responder
+
+Vanderlei
+replied:30/12/2015
+A aplicação fecha
+responder
+Área da barra lateral principal
+Principais posts & páginas
+
+Quebrando CAPTCHAs
+Portas em uso no Linux
+Chamando um WebService SOAP com PHP
+Enviar dados para o servidor com Android
+Manipulando Token de Segurança
+Configurando cliente de OpenVPN no Ubuntu em modo gráfico
+Removendo espaços em branco com regex
+Seu Site como Aplicação no Android
+Desabilitar o Autocompletar em Campos Input
+Utilizando HSQLDB em suas aplicações
+Tags
+
+android aplicativos base de dados bash blu-ray bpel bpm bug c/c++ cdc eclipse evento html https imagem java java7 javascript jboss jdeveloper jee jme linux lwuit matemática netbeans oim oracle palestra plugin python review segurança soa soap ssl subversion tomcat tv digital ubuntu webcenter weblogic weblogic portal webservices x509
+Categorias
+
+Categorias
+Assinar Blog por Email
+
+Digite seu endereço de email para assinar este blog e receber notificações de novas publicações por email.
+
+Endereço de email 
+Endereço de email
+
+Assinar
+
+Pague com PagSeguro - é rápido, grátis e seguro!
+Doação via PayPal
+
+Donation Amount:
+
+10
+(Currency: USD)
+
+ 
+
+Links
+
+Autoria pelo Google
+Políticas de privacidade
+Por onde andares
+Sobre mim
+Eu pelo Google
+JavaNoroeste
+Globalcode
+Blog do Ednei
+Blog do Gualda
+Blog do Cássio
+Blog do Luan
+Arquivos
+
+Arquivos
+Siga-me
+
+Siga-me no FacebookSiga-me no TwitterSiga-me no LinkedInSiga-me no SkypeSiga-me no BuzzSiga-me no WordpressSiga-me no RSSSiga-me no E-mail
+QRCode
+
+QRCode
+Follow @thiagovespa
+Tweets
+
+Segue o Schema correspondente: http://t.co/4Y0TnZyg via @pastebin 4 anos ago
+Como diria @brunosargi “São as Tags da vida” http://t.co/kOmQk2YW via @pastebin 4 anos ago
+@luizrobertojr Segue a versão programática: http://t.co/wuCRwJxU 4 anos ago
+Aí @luizrobertojr minha lápide vai ser mais ou menos assim. Tem a versão declarativa e programática http://t.co/uobmJuAt 4 anos ago
+Óculos novo chegou :) – Modelo 3D de pobre :D http://t.co/D0QWOLza 4 anos ago
+Follow Me on Twitter
+
+Powered by Twitter Tools
+
+RSS Javanoroeste
+
+VAGAS: SAS, BIG DATA, Lotus Notes, Totvs, Python, Angular, Salesforce, Genexus, Dynamics e PHP 08/03/2017
+VAGAS: SAS, BIG DATA, Lotus Notes, Totvs, Python, Angular, Salesforce, Genexus, Dynamics e PHP * DESENVOLVEDOR LOTUS NOTES – LAPA/SÃO PAULO * CONSULTOR BIG DATA - Remoto 3x na semana e 2x na semana em CAMPINAS * CONSULTOR SAS – ALPHAVILLE * Desenvolv
+Lançamento: Android com Android Studio Passo a Passo 08/03/2017
+De: Editora Ciência Moderna Ltda. LANÇAMENTO EDITORA CIÊNCIA MODERNA LANÇAMENTO ------------------------------ Horário de funcionam
+[noticias] Grade do NoSQL fechada 06/03/2017
+De: Otávio Gonçalves de Santana [image: nosqlba-logo-full.png] O NoSQLBA, a conferência baiana sobre bancos de dados não relacionais está com a grade definida. Nesse evento teremos os minicursos sobre Rails com MongoDB, Spring data, DynamoDB e NoSQL com python. Além disso, dois dias com
+VAGA ARQUITETO JAVA – ZONA SUL/SÃO PAULO 09/02/2017
+*VAGA ARQUITETO JAVA – ZONA SUL/SÃO PAULO* *ARQUITETO JAVA * Experiência com frameworks JAVA (ZK, Spring, JPA) Conhecimento de frameworks RIA (HTML5, jQuery, AlloyUI, DOJO, AngularJS) Experiência no uso de ferramentas de desenvolvimento (Eclipse, SOAP UI) Conhecimento de ferrament
+Fwd: [jug-leaders] MicroProfile online meeting 31/01/2017
+De Otávio Gonçalves de Santana Hello, everyone. Soujava organized a MicroProfile on-line meeting with each provider in the next two weeks: - January 31th RedHat - February 2nd IBM - February 7th Payara - February 9th Tomitribe These meetings gonna be at the same time
+RSS Globalcoders
+
+Parceria Globalcode no projeto Samsung Ocean 08/08/2016
+Já faz algum tempo que a Globalcode e a Samsung tem uma parceria no projeto "Samsung Ocean". Esse é um projeto muito interessante com o objetivo de divulgar e difundir o uso de tecnologia, principalmente associado a dispositivos móveis como celulares e relógios inteligentes (smart watches).No projeto são oferecidos diversos treinamentos e workshops gratuitos. Alguns […]
+1a Temporada JavaScript na Globalcode 03/08/2016
+Tem mais novidade chegando na Globalcode: Preparativos para a Primeira Temporada JavaScript na Globalcode!Esta será uma oportunidade tanto para quem quer aprender quanto para quem quer ensinar!É especialista e quer compartilhar conhecimento sobre JavaScript, Angular, Node.JS, Bootrap ou outros frameworks?Cadastre o curso ou workshop que você gostaria de ministrarSe você está interessado ou interessada em […]
+Globalcoders no Devoxx Belgica e Marrocos 04/01/2016
+No final do ano passado nós tivemos a experiência incrível de participar de um dos maiores eventos de Java do mundo pela quarta vez, o Devoxx Bélgica, que reúne 3.500 desenvolvedores de toda Europa e também muitos dos melhores palestrantes do mundo.O Vinicius e eu apresentamos duas palestras sobre Internet das Coisas utilizando a IoT […]
+Programação para crianças, jovens e adultos 04/01/2016
+Se você me conhece já sabe que eu adoro programação e tecnologia e por mim todas as pessoas do mundo poderiam aprender a programar! Bastaria investir o suficiente para romper a primeira curva de aprendizado, aquela dificuldade que sentimos ao aprender a tocar algum instrumento musical... um novo idioma. Aquele sentimento de "eu não sei […]
+Você é desenvolver Java e quer aprender mais sobre Agile? 04/12/2015
+Já faz tempo que o mercado está mudando e cada vez mais empresas utilizam métodos ageis.A vida do desenvolver não é nada fácil, além de ter que ficar atualizado com a linguagem, frameworks e ferramentas cada vez mais precisa também ficar por dentro dos principais métodos e conceitos de Agile!Por isto, nós convidamos o Rafael […]
+Nuvem
+
+android aplicativos base de dados bash blu-ray bpel bpm bug c/c++ cdc eclipse evento html https imagem java java7 javascript jboss jdeveloper jee jme linux lwuit matemática netbeans oim oracle palestra plugin python review segurança soa soap ssl subversion tomcat tv digital ubuntu webcenter weblogic weblogic portal webservices x509
+Últimos posts
+
+Lero-lero por linha de comando
+Copiar arrays em Java
+Maneiras de medir o tempo em Java sem bibliotecas externas
+Túnel SSH
+Threads no escopo JEE
+Últimos comentários
+
+Rafael Barbolo em Quebrando CAPTCHAs
+Thiago Galbiatti Vespa em Quebrando CAPTCHAs
+Erick Prado em Quebrando CAPTCHAs
+Thiago Galbiatti Vespa em Chamando um WebService SOAP com PHP
+Aline Souza em MySQL Workbench
+Menu do Rodapé
+Políticas de privacidadeContato
+Direitos Autorais © 2017 Thiago Galbiatti Vespa. Todos os Direitos são Reservados.

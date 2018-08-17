@@ -1,0 +1,6 @@
+"Story","Title","Result","Date","Stability","Duration (s)"
+"Adicionar ao carrinho produto applei phone5","01. Logar no sistema","SUCCESS","2016-10-05T11:17:34.923-03:00","0.0","14.71"
+"Adicionar ao carrinho produto applei phone5","02. Pesquisar produto iPhone","SUCCESS","2016-10-05T11:17:49.723-03:00","0.0","13.41"
+"Adicionar ao carrinho produto applei phone5","03. Detalhe do produto","ERROR","2016-10-05T11:18:03.140-03:00","0.0","8.31"
+"Adicionar ao carrinho produto applei phone5","04. Adicionar ao carrinho","FAILURE","2016-10-05T11:18:11.643-03:00","0.0","1.03"
+"Adicionar ao carrinho produto applei phone5","05. Consultar produto no carrinho","ERROR","2016-10-05T11:18:12.685-03:00","0.0","0.98"

@@ -1,0 +1,59 @@
+Scanner s = new Scanner(System.in);
+String str = s.nextLine(); /* Vai pegar tudo até a primeira quebra de linha.
+                              Garanta que o número é válido!
+                           */
+try {
+       int i = Integer.parseInt(str); // Caso você queira tipo int, que é o usual.
+       long l = Long.parseDouble(str); /* É essencialmente a mesma coisa que o int, mas tem um
+                                          limite de dados maior que o int, por consumir mais
+                                          memória para a variável, e, por consequência um limite
+                                          superior maior para o valor da variável.
+                                       */
+} catch (NumberFormatException e) {
+  System.out.println("Numero com formato errado!");
+} finally {
+  s.close(); //fechar o Scanner para gerenciar melhor a memória.
+}
+
+
+
+
+Além do método Integer.ParseInt citado pelo mutley, também há o método Integer.ValueOf.
+
+public static int strToInt(String valor, int padrao) 
+{
+   try 
+   {
+       return Integer.valueOf(valor);
+   } 
+   catch (NumberFormatException e){
+       return padrao;
+   }
+}
+
+
+Exemplo de uso de strToInt:
+
+String str1 = "2015";
+String str2 = "20iiii5";
+
+int int1 = strToInt(str1, 2015);
+int int2 = strToInt(str2, 2015);
+
+System.out.println(int1); // 2015
+System.out.println(int2); // 2015
+
+
+
+ 0
+votar contra
+	
+
+Só usar o Integer.parseInt();
+
+ex: String str = "123"; int valor;
+
+valor = Integer.parseInt(str);
+
+
+

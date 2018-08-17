@@ -1,0 +1,122 @@
+<html>
+<head>
+<title>stories.CompraDeProdutos.AdicionarAoCarrinhoProdutoAppleiPhone5</title>
+<style type="text/css" media="all">
+@import url( "./style/jbehave-core.css" );
+</style>
+</head>
+<body>
+<div class="story">
+<h1>Features: Rot. 01 - Adicionar ao carrinho produto Apple iPhone 5</h1>
+<div class="path">stories/CompraDeProdutos/AdicionarAoCarrinhoProdutoAppleiPhone5.story</div>
+<div class="scenario">
+<h2>Scenario: 01. Logar no sistema</h2>
+<div class="step successful">Given que estou no menu Your Account</div>
+<div class="step successful">When preencho os dados de acesso And clico em Login</div>
+<div class="step successful">Then o acesso e realizado com sucesso</div>
+</div>
+<div class="scenario">
+<h2>Scenario: 02. Pesquisar produto iPhone</h2>
+<div class="step successful">Given que estou na home</div>
+<div class="step successful">When efetuo uma pesquisa do item iPhone</div>
+<div class="step successful">Then sao exibidos os produtos relacionados a iPhone</div>
+</div>
+<div class="scenario">
+<h2>Scenario: 03. Detalhe do produto</h2>
+<div class="step successful">Given que estou na tela com os produtos relacionados a iPhones</div>
+<div class="step failed">When clico em iPhone 5 <span class="keyword failed">(FAILED)</span><br/><span class="message failed">net.serenitybdd.core.exceptions.SerenityManagedException: Timed out after 2 seconds. Element not found
+For documentation on this error, please visit: http://seleniumhq.org/exceptions/no_such_element.html
+Build info: version: '2.53.0', revision: '35ae25b1534ae328c771e0856c93e187490ca824', time: '2016-03-15 10:43:46'
+System info: host: 'RSI4680', ip: '10.1.11.81', os.name: 'Windows 7', os.arch: 'amd64', os.version: '6.1', java.version: '1.8.0_101'
+Driver info: driver.version: unknown</span></div>
+<div class="step notPerformed">Then sao exibidos os detalhes do produto <span class="keyword notPerformed">(NOT PERFORMED)</span></div>
+<pre class="failure">net.serenitybdd.core.exceptions.SerenityManagedException: Timed out after 2 seconds. Element not found
+For documentation on this error, please visit: http://seleniumhq.org/exceptions/no_such_element.html
+Build info: version: '2.53.0', revision: '35ae25b1534ae328c771e0856c93e187490ca824', time: '2016-03-15 10:43:46'
+System info: host: 'RSI4680', ip: '10.1.11.81', os.name: 'Windows 7', os.arch: 'amd64', os.version: '6.1', java.version: '1.8.0_101'
+Driver info: driver.version: unknown
+	at net.serenitybdd.core.exceptions.SerenityManagedException.detachedCopyOf(SerenityManagedException.java:20)
+	at net.thucydides.core.steps.StepInterceptor.runTestStep(StepInterceptor.java:338)
+	at net.thucydides.core.steps.StepInterceptor.testStepResult(StepInterceptor.java:134)
+	at net.thucydides.core.steps.StepInterceptor.intercept(StepInterceptor.java:61)
+	at br.com.rsinet.bdd.CompraDeProdutos.CompraDeProdutos.componentesdenegocio.passos.AdicionarAoCarrinhoProdutoAppleiPhone5Steps$$EnhancerByCGLIB$$667bd1f0.clicarEmIphone5(&lt;generated&gt;)
+	at br.com.rsinet.bdd.CompraDeProdutos.CompraDeProdutos.componentesdenegocio.AdicionarAoCarrinhoProdutoAppleiPhone5.whenClicoEmIPhone5(AdicionarAoCarrinhoProdutoAppleiPhone5.java:51)
+	(reflection-invoke)
+	at org.jbehave.core.steps.StepCreator$ParametrisedStep.perform(StepCreator.java:599)
+	at org.jbehave.core.embedder.PerformableTree$FineSoFar.run(PerformableTree.java:340)
+...</pre>
+</div>
+<div class="scenario">
+<h2>Scenario: 04. Adicionar ao carrinho</h2>
+<div class="step failed">Given que estou na tela de detalhe do produto <span class="keyword failed">(FAILED)</span><br/><span class="message failed">java.lang.AssertionError: expected [iPhone | Search Results | ONLINE STORE] but found [iPhone 5 | ONLINE STORE]</span></div>
+<div class="step notPerformed">When clico em Add to cart <span class="keyword notPerformed">(NOT PERFORMED)</span></div>
+<div class="step notPerformed">Then exibe a mensagem: You just added iPhone 5 to your cart And clico em Continue Shopping <span class="keyword notPerformed">(NOT PERFORMED)</span></div>
+<pre class="failure">java.lang.AssertionError: expected [iPhone | Search Results | ONLINE STORE] but found [iPhone 5 | ONLINE STORE]
+	at org.testng.Assert.fail(Assert.java:94)
+	at org.testng.Assert.failNotEquals(Assert.java:496)
+	at org.testng.Assert.assertEquals(Assert.java:125)
+	at org.testng.Assert.assertEquals(Assert.java:178)
+	at org.testng.Assert.assertEquals(Assert.java:188)
+	at br.com.rsinet.bdd.CompraDeProdutos.CompraDeProdutos.componentesdenegocio.passos.AdicionarAoCarrinhoProdutoAppleiPhone5Steps.verificaSeEstaNaTelaDeDetalheDoProduto(AdicionarAoCarrinhoProdutoAppleiPhone5Steps.java:81)
+	at br.com.rsinet.bdd.CompraDeProdutos.CompraDeProdutos.componentesdenegocio.passos.AdicionarAoCarrinhoProdutoAppleiPhone5Steps$$EnhancerByCGLIB$$667bd1f0.CGLIB$verificaSeEstaNaTelaDeDetalheDoProduto$7(&lt;generated&gt;)
+	at br.com.rsinet.bdd.CompraDeProdutos.CompraDeProdutos.componentesdenegocio.passos.AdicionarAoCarrinhoProdutoAppleiPhone5Steps$$EnhancerByCGLIB$$667bd1f0$$FastClassByCGLIB$$72e8d61f.invoke(&lt;generated&gt;)
+	at net.sf.cglib.proxy.MethodProxy.invokeSuper(MethodProxy.java:228)
+	at net.thucydides.core.steps.StepInterceptor.invokeMethod(StepInterceptor.java:369)
+	at net.thucydides.core.steps.StepInterceptor.executeTestStepMethod(StepInterceptor.java:354)
+	at net.thucydides.core.steps.StepInterceptor.runTestStep(StepInterceptor.java:329)
+	at net.thucydides.core.steps.StepInterceptor.testStepResult(StepInterceptor.java:134)
+	at net.thucydides.core.steps.StepInterceptor.intercept(StepInterceptor.java:61)
+	at br.com.rsinet.bdd.CompraDeProdutos.CompraDeProdutos.componentesdenegocio.passos.AdicionarAoCarrinhoProdutoAppleiPhone5Steps$$EnhancerByCGLIB$$667bd1f0.verificaSeEstaNaTelaDeDetalheDoProduto(&lt;generated&gt;)
+	at br.com.rsinet.bdd.CompraDeProdutos.CompraDeProdutos.componentesdenegocio.AdicionarAoCarrinhoProdutoAppleiPhone5.givenQueEstouNaTelaDeDetalheDoProduto(AdicionarAoCarrinhoProdutoAppleiPhone5.java:61)
+	(reflection-invoke)
+	at org.jbehave.core.steps.StepCreator$ParametrisedStep.perform(StepCreator.java:599)
+	at org.jbehave.core.embedder.PerformableTree$FineSoFar.run(PerformableTree.java:340)
+...</pre>
+</div>
+<div class="scenario">
+<h2>Scenario: 05. Consultar produto no carrinho</h2>
+<div class="step failed">Given que adicionei o produto no carrinho <span class="keyword failed">(FAILED)</span><br/><span class="message failed">java.lang.ClassCastException: net.serenitybdd.core.pages.WebElementFacadeImpl cannot be cast to java.lang.String</span></div>
+<div class="step notPerformed">When clico no icone do carrinho <span class="keyword notPerformed">(NOT PERFORMED)</span></div>
+<div class="step notPerformed">Then exibe os itens adicionados ao carrinho <span class="keyword notPerformed">(NOT PERFORMED)</span></div>
+<pre class="failure">java.lang.ClassCastException: net.serenitybdd.core.pages.WebElementFacadeImpl cannot be cast to java.lang.String
+	at br.com.rsinet.bdd.CompraDeProdutos.CompraDeProdutos.componentesdenegocio.passos.AdicionarAoCarrinhoProdutoAppleiPhone5Steps.verificaSeProdutoFoiAdicionadoAoCarrinho(AdicionarAoCarrinhoProdutoAppleiPhone5Steps.java:98)
+	at br.com.rsinet.bdd.CompraDeProdutos.CompraDeProdutos.componentesdenegocio.passos.AdicionarAoCarrinhoProdutoAppleiPhone5Steps$$EnhancerByCGLIB$$667bd1f0.CGLIB$verificaSeProdutoFoiAdicionadoAoCarrinho$8(&lt;generated&gt;)
+	at br.com.rsinet.bdd.CompraDeProdutos.CompraDeProdutos.componentesdenegocio.passos.AdicionarAoCarrinhoProdutoAppleiPhone5Steps$$EnhancerByCGLIB$$667bd1f0$$FastClassByCGLIB$$72e8d61f.invoke(&lt;generated&gt;)
+	at net.sf.cglib.proxy.MethodProxy.invokeSuper(MethodProxy.java:228)
+	at net.thucydides.core.steps.StepInterceptor.invokeMethod(StepInterceptor.java:369)
+	at net.thucydides.core.steps.StepInterceptor.executeTestStepMethod(StepInterceptor.java:354)
+	at net.thucydides.core.steps.StepInterceptor.runTestStep(StepInterceptor.java:329)
+	at net.thucydides.core.steps.StepInterceptor.testStepResult(StepInterceptor.java:134)
+	at net.thucydides.core.steps.StepInterceptor.intercept(StepInterceptor.java:61)
+	at br.com.rsinet.bdd.CompraDeProdutos.CompraDeProdutos.componentesdenegocio.passos.AdicionarAoCarrinhoProdutoAppleiPhone5Steps$$EnhancerByCGLIB$$667bd1f0.verificaSeProdutoFoiAdicionadoAoCarrinho(&lt;generated&gt;)
+	at br.com.rsinet.bdd.CompraDeProdutos.CompraDeProdutos.componentesdenegocio.AdicionarAoCarrinhoProdutoAppleiPhone5.givenQueAdicioneiOProdutoNoCarrinho(AdicionarAoCarrinhoProdutoAppleiPhone5.java:76)
+	(reflection-invoke)
+	at org.jbehave.core.steps.StepCreator$ParametrisedStep.perform(StepCreator.java:599)
+	at org.jbehave.core.embedder.PerformableTree$FineSoFar.run(PerformableTree.java:340)
+...</pre>
+</div>
+</div>
+
+</body>
+<!--  SyntaxHighlighter resources:  should be included at end of body -->
+<link rel="stylesheet" type="text/css" href="./style/sh-3.0.83/shCore.css"/>
+<link rel="stylesheet" type="text/css" href="./style/sh-3.0.83/shThemeRDark.css"/>
+<script language="javascript" src="./js/sh-3.0.83/shCore.js"></script>
+<script language="javascript" src="./js/sh-3.0.83/shBrushBash.js"></script>
+<script language="javascript" src="./js/sh-3.0.83/shBrushCss.js"></script>
+<script language="javascript" src="./js/sh-3.0.83/shBrushDiff.js"></script>
+<script language="javascript" src="./js/sh-3.0.83/shBrushGroovy.js"></script>
+<script language="javascript" src="./js/sh-3.0.83/shBrushJava.js"></script>
+<script language="javascript" src="./js/sh-3.0.83/shBrushJScript.js"></script>
+<script language="javascript" src="./js/sh-3.0.83/shBrushPlain.js"></script>
+<script language="javascript" src="./js/sh-3.0.83/shBrushPython.js"></script>
+<script language="javascript" src="./js/sh-3.0.83/shBrushRuby.js"></script>
+<script language="javascript" src="./js/sh-3.0.83/shBrushScala.js"></script>
+<script language="javascript" src="./js/sh-3.0.83/shBrushXml.js"></script>
+<script language="javascript" src="./js/shBrushBdd.js"></script>
+<script type="text/javascript">
+    SyntaxHighlighter.defaults['gutter'] = false;
+    SyntaxHighlighter.defaults['toolbar'] = false;    
+    SyntaxHighlighter.all();
+</script>
+</html>

@@ -1,0 +1,29 @@
+<acceptance-test-run title="03. Detalhe do produto" name="03. Detalhe do produto" steps="3" successful="0" failures="1" skipped="2" ignored="0" pending="0" annotated-result="FAILURE" result="FAILURE" duration="894" timestamp="2016-09-27T14:07:21.339-03:00" session-id="a2ffd6f0-ae0a-4320-8add-02dffda6c5d2">
+  <user-story id="AdicionarAoCarrinhoProdutoAppleiPhone5" name="Adicionar ao carrinho produto applei phone5" path="stories/CompraDeProdutos/AdicionarAoCarrinhoProdutoAppleiPhone5.story"/>
+  <tags>
+    <tag name="Compra de produtos" type="feature"/>
+    <tag name="Adicionar ao carrinho produto applei phone5" type="story"/>
+    <tag name="Compra de produtos/Rot. 01   adicionar ao carrinho produto apple i phone 5" type="story"/>
+  </tags>
+  <test-group name="Given que estou na tela com os produtos relacionados a iPhones" result="FAILURE">
+    <screenshots>
+      <screenshot image="06b03f7d802deae9e49f2c596d9755d3.png"/>
+    </screenshots>
+    <test-step result="FAILURE" duration="604">
+      <screenshots>
+        <screenshot image="06b03f7d802deae9e49f2c596d9755d3.png"/>
+        <screenshot image="06b03f7d802deae9e49f2c596d9755d3.png" source="pagesource5965721874021064777.html.txt"/>
+      </screenshots>
+      <description>Verifica se estou na tela com os produtos relacionados AI phones</description>
+      <error>java.lang.AssertionError: expected [http://store.demoqa.com/] but found [http:store.demoqa.com/?s=iPhone&amp;post_type=wpsc-product]</error>
+      <exception>java.lang.AssertionError:expected [http://store.demoqa.com/] but found [http:store.demoqa.com/?s=iPhone&amp;post_type=wpsc-product]&#xd;
+[br.com.rsinet.bdd.CompraDeProdutos.CompraDeProdutos.componentesdenegocio.passos.AdicionarAoCarrinhoProdutoAppleiPhone5Steps.verificaSeEstouNaTelaComOsProdutosRelacionadosAIPhones(AdicionarAoCarrinhoProdutoAppleiPhone5Steps.java:65), br.com.rsinet.bdd.CompraDeProdutos.CompraDeProdutos.componentesdenegocio.AdicionarAoCarrinhoProdutoAppleiPhone5.givenQueEstouNaTelaComOsProdutosRelacionadosAIPhones(AdicionarAoCarrinhoProdutoAppleiPhone5.java:46)]</exception>
+    </test-step>
+  </test-group>
+  <test-step result="SKIPPED" duration="1">
+    <description>When clico em iPhone 5</description>
+  </test-step>
+  <test-step result="SKIPPED" duration="1">
+    <description>Then sao exibidos os detalhes do produto</description>
+  </test-step>
+</acceptance-test-run>

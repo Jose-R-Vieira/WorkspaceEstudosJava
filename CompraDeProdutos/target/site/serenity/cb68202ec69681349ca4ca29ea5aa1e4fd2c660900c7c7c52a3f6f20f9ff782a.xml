@@ -1,0 +1,43 @@
+<acceptance-test-run title="02. Pesquisar produto iPhone" name="02. Pesquisar produto iPhone" steps="3" successful="3" failures="0" skipped="0" ignored="0" pending="0" result="SUCCESS" duration="13406" timestamp="2016-10-05T11:17:49.723-03:00" session-id="ef70f7d4-cccc-49f4-a078-340884385907">
+  <user-story id="AdicionarAoCarrinhoProdutoAppleiPhone5" name="Adicionar ao carrinho produto applei phone5" path="stories/CompraDeProdutos/AdicionarAoCarrinhoProdutoAppleiPhone5.story"/>
+  <tags>
+    <tag name="Compra de produtos" type="feature"/>
+    <tag name="Adicionar ao carrinho produto applei phone5" type="story"/>
+    <tag name="Compra de produtos/Rot. 01   adicionar ao carrinho produto apple i phone 5" type="story"/>
+  </tags>
+  <test-group name="Given que estou na home" result="SUCCESS">
+    <screenshots>
+      <screenshot image="9bb04ad23d612c35276ce66fa5a9baea.png"/>
+      <screenshot image="7917ed3abc4d5b0c97be2ae492cf6d32.png"/>
+    </screenshots>
+    <test-step result="SUCCESS" duration="2619">
+      <screenshots>
+        <screenshot image="9bb04ad23d612c35276ce66fa5a9baea.png"/>
+        <screenshot image="7917ed3abc4d5b0c97be2ae492cf6d32.png"/>
+      </screenshots>
+      <description>Ir para home</description>
+    </test-step>
+  </test-group>
+  <test-group name="When efetuo uma pesquisa do item iPhone" result="SUCCESS">
+    <screenshots>
+      <screenshot image="a4d5d9f6a55bc76260b72b8920ab1bda.png"/>
+    </screenshots>
+    <test-step result="SUCCESS" duration="7701">
+      <screenshots>
+        <screenshot image="a4d5d9f6a55bc76260b72b8920ab1bda.png"/>
+      </screenshots>
+      <description>Efetua pesquisa</description>
+    </test-step>
+  </test-group>
+  <test-group name="Then sao exibidos os produtos relacionados a iPhone" result="SUCCESS">
+    <screenshots>
+      <screenshot image="a4d5d9f6a55bc76260b72b8920ab1bda.png"/>
+    </screenshots>
+    <test-step result="SUCCESS" duration="557">
+      <screenshots>
+        <screenshot image="a4d5d9f6a55bc76260b72b8920ab1bda.png"/>
+      </screenshots>
+      <description>Exibe produtos exibidos relacionados a iphone</description>
+    </test-step>
+  </test-group>
+</acceptance-test-run>

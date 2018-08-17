@@ -1,0 +1,23 @@
+/**
+* Este documento serve unica e exclusivamente como ponto de apoio ao desenvolvimento do software
+*
+* o aplicativo deve receber uma quantidade de campos (x)
+* o aplicativo deve receber uma quantidade de telas (Y)
+* o aplciativo deve receber um parametro binario quanto a conter javascript (JS)
+* o aplicativo deve receber um parametro binario quanto a conter ajax   (AJ)
+* o aplicativo deve receber o tempo medio de mapeamento  (TM)
+* o aplicativo deve calcular dado uma quantidade de telas e umas quantidade de tempo qual sera o total de horas gastos no mapeamento do projeto 
+* a formula para este calculo sera (((X+(Y*0.5)) se JS verdadeiro entao *1.5 senao void )  se AJ verdadeiro entao * 2 senao void ) finaly * TM = tempo total 
+* o aplciativo deve conter uma interface grafica amigavel 
+*
+* Orientação a objetos e polimorfismo para possivel ampliação 
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*/

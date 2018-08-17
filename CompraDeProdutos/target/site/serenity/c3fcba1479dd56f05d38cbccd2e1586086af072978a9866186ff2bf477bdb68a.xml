@@ -1,0 +1,44 @@
+<acceptance-test-run title="03. Detalhe do produto" name="03. Detalhe do produto" steps="3" successful="1" failures="0" errors="1" skipped="1" ignored="0" pending="0" annotated-result="ERROR" result="ERROR" duration="8314" timestamp="2016-10-05T11:18:03.140-03:00" session-id="ef70f7d4-cccc-49f4-a078-340884385907">
+  <user-story id="AdicionarAoCarrinhoProdutoAppleiPhone5" name="Adicionar ao carrinho produto applei phone5" path="stories/CompraDeProdutos/AdicionarAoCarrinhoProdutoAppleiPhone5.story"/>
+  <tags>
+    <tag name="Compra de produtos" type="feature"/>
+    <tag name="Adicionar ao carrinho produto applei phone5" type="story"/>
+    <tag name="Compra de produtos/Rot. 01   adicionar ao carrinho produto apple i phone 5" type="story"/>
+  </tags>
+  <test-group name="Given que estou na tela com os produtos relacionados a iPhones" result="SUCCESS">
+    <screenshots>
+      <screenshot image="a4d5d9f6a55bc76260b72b8920ab1bda.png"/>
+    </screenshots>
+    <test-step result="SUCCESS" duration="558">
+      <screenshots>
+        <screenshot image="a4d5d9f6a55bc76260b72b8920ab1bda.png"/>
+      </screenshots>
+      <description>Verifica se estou na tela com os produtos relacionados AI phones</description>
+    </test-step>
+  </test-group>
+  <test-group name="When clico em iPhone 5" result="ERROR">
+    <screenshots>
+      <screenshot image="a4d5d9f6a55bc76260b72b8920ab1bda.png"/>
+    </screenshots>
+    <test-step result="ERROR" duration="6817">
+      <screenshots>
+        <screenshot image="a4d5d9f6a55bc76260b72b8920ab1bda.png" source="pagesource8816753989432206316.html.txt"/>
+      </screenshots>
+      <description>Clicar em iphone5</description>
+      <error>org.openqa.selenium.NoSuchElementException: Timed out after 2 seconds. Element not found
+For documentation on this error, please visit: http://seleniumhq.org/exceptions/no_such_element.html
+Build info: version: &apos;2.53.0&apos;, revision: &apos;35ae25b1534ae328c771e0856c93e187490ca824&apos;, time: &apos;2016-03-15 10:43:46&apos;
+System info: host: &apos;RSI4680&apos;, ip: &apos;10.1.11.81&apos;, os.name: &apos;Windows 7&apos;, os.arch: &apos;amd64&apos;, os.version: &apos;6.1&apos;, java.version: &apos;1.8.0_101&apos;
+Driver info: driver.version: unknown</error>
+      <exception>org.openqa.selenium.NoSuchElementException:Timed out after 2 seconds. Element not found
+For documentation on this error, please visit: http://seleniumhq.org/exceptions/no_such_element.html
+Build info: version: &apos;2.53.0&apos;, revision: &apos;35ae25b1534ae328c771e0856c93e187490ca824&apos;, time: &apos;2016-03-15 10:43:46&apos;
+System info: host: &apos;RSI4680&apos;, ip: &apos;10.1.11.81&apos;, os.name: &apos;Windows 7&apos;, os.arch: &apos;amd64&apos;, os.version: &apos;6.1&apos;, java.version: &apos;1.8.0_101&apos;
+Driver info: driver.version: unknown&#xd;
+[br.com.rsinet.bdd.CompraDeProdutos.CompraDeProdutos.componentesdenegocio.passos.AdicionarAoCarrinhoProdutoAppleiPhone5Steps.clicarEmIphone5(AdicionarAoCarrinhoProdutoAppleiPhone5Steps.java:69), br.com.rsinet.bdd.CompraDeProdutos.CompraDeProdutos.componentesdenegocio.AdicionarAoCarrinhoProdutoAppleiPhone5.whenClicoEmIPhone5(AdicionarAoCarrinhoProdutoAppleiPhone5.java:51)]</exception>
+    </test-step>
+  </test-group>
+  <test-step result="SKIPPED" duration="11">
+    <description>Then sao exibidos os detalhes do produto</description>
+  </test-step>
+</acceptance-test-run>

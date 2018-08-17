@@ -1,0 +1,29 @@
+<acceptance-test-run title="02. Pesquisar produto iPhone" name="02. Pesquisar produto iPhone" steps="3" successful="0" failures="1" skipped="2" ignored="0" pending="0" annotated-result="FAILURE" result="FAILURE" duration="4663" timestamp="2016-09-27T14:07:16.663-03:00" session-id="a2ffd6f0-ae0a-4320-8add-02dffda6c5d2">
+  <user-story id="AdicionarAoCarrinhoProdutoAppleiPhone5" name="Adicionar ao carrinho produto applei phone5" path="stories/CompraDeProdutos/AdicionarAoCarrinhoProdutoAppleiPhone5.story"/>
+  <tags>
+    <tag name="Compra de produtos" type="feature"/>
+    <tag name="Adicionar ao carrinho produto applei phone5" type="story"/>
+    <tag name="Compra de produtos/Rot. 01   adicionar ao carrinho produto apple i phone 5" type="story"/>
+  </tags>
+  <test-group name="Given que estou na home" result="FAILURE">
+    <screenshots>
+      <screenshot image="c3a680dbe22109171e5589c2de6a94ff.png"/>
+    </screenshots>
+    <test-step result="FAILURE" duration="3582">
+      <screenshots>
+        <screenshot image="c3a680dbe22109171e5589c2de6a94ff.png"/>
+        <screenshot image="06b03f7d802deae9e49f2c596d9755d3.png" source="pagesource3678777875724774119.html.txt"/>
+      </screenshots>
+      <description>Ir para home</description>
+      <error>java.lang.AssertionError: expected [http://store.demoqa.com/] but found [http:store.demoqa.com/]</error>
+      <exception>java.lang.AssertionError:expected [http://store.demoqa.com/] but found [http:store.demoqa.com/]&#xd;
+[br.com.rsinet.bdd.CompraDeProdutos.CompraDeProdutos.componentesdenegocio.passos.AdicionarAoCarrinhoProdutoAppleiPhone5Steps.irParaHome(AdicionarAoCarrinhoProdutoAppleiPhone5Steps.java:42), br.com.rsinet.bdd.CompraDeProdutos.CompraDeProdutos.componentesdenegocio.AdicionarAoCarrinhoProdutoAppleiPhone5.givenQueEstouNaHome(AdicionarAoCarrinhoProdutoAppleiPhone5.java:31)]</exception>
+    </test-step>
+  </test-group>
+  <test-step result="SKIPPED" duration="17">
+    <description>When efetuo uma pesquisa do item iPhone</description>
+  </test-step>
+  <test-step result="SKIPPED" duration="1">
+    <description>Then sao exibidos os produtos relacionados a iPhone</description>
+  </test-step>
+</acceptance-test-run>

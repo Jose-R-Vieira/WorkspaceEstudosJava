@@ -1,0 +1,20 @@
+!!brut.androlib.meta.MetaInfo
+apkFileName: revival2ci_43in8y47.apk
+compressionType: false
+doNotCompress: null
+isFrameworkApk: false
+packageInfo:
+  forcedPackageId: '127'
+  renameManifestPackage: com.herocraft.game.revival2.lite
+sdkInfo:
+  minSdkVersion: '3'
+sharedLibrary: false
+unknownFiles: {}
+usesFramework:
+  ids:
+  - 1
+  tag: null
+version: 2.2.0
+versionInfo:
+  versionCode: '16'
+  versionName: 1.4.11

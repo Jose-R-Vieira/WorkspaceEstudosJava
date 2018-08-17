@@ -1,0 +1,1895 @@
+<root>
+	<hierarchy rotation="0">
+		<android.widget.FrameLayout index="0" text=""
+			class="android.widget.FrameLayout" package="br.com.original.bank"
+			content-desc="" checkable="false" checked="false" clickable="false"
+			enabled="true" focusable="false" focused="false" scrollable="false"
+			long-clickable="false" password="false" selected="false" bounds="[0,0][720,1184]"
+			resource-id="" instance="0">
+			<android.widget.LinearLayout index="0"
+				text="" class="android.widget.LinearLayout" package="br.com.original.bank"
+				content-desc="" checkable="false" checked="false" clickable="false"
+				enabled="true" focusable="false" focused="false" scrollable="false"
+				long-clickable="false" password="false" selected="false" bounds="[0,0][720,1184]"
+				resource-id="" instance="0">
+				<android.widget.FrameLayout index="0"
+					text="" class="android.widget.FrameLayout" package="br.com.original.bank"
+					content-desc="" checkable="false" checked="false" clickable="false"
+					enabled="true" focusable="false" focused="false" scrollable="false"
+					long-clickable="false" password="false" selected="false" bounds="[0,0][720,1184]"
+					resource-id="" instance="1">
+					<android.widget.LinearLayout index="0"
+						text="" class="android.widget.LinearLayout" package="br.com.original.bank"
+						content-desc="" checkable="false" checked="false" clickable="false"
+						enabled="true" focusable="false" focused="false" scrollable="false"
+						long-clickable="false" password="false" selected="false" bounds="[0,0][720,1184]"
+						resource-id="br.com.original.bank:id/action_bar_root" instance="1">
+						<android.widget.FrameLayout index="0"
+							text="" class="android.widget.FrameLayout" package="br.com.original.bank"
+							content-desc="" checkable="false" checked="false" clickable="false"
+							enabled="true" focusable="false" focused="false" scrollable="false"
+							long-clickable="false" password="false" selected="false"
+							bounds="[0,0][720,1184]" resource-id="android:id/content"
+							instance="2">
+							<android.widget.RelativeLayout
+								index="0" text="" class="android.widget.RelativeLayout" package="br.com.original.bank"
+								content-desc="" checkable="false" checked="false" clickable="false"
+								enabled="true" focusable="false" focused="false" scrollable="false"
+								long-clickable="false" password="false" selected="false"
+								bounds="[0,0][720,1184]" resource-id="br.com.original.bank:id/rlHomeFather"
+								instance="0">
+								<android.support.v4.widget.DrawerLayout
+									index="0" text="" class="android.support.v4.widget.DrawerLayout"
+									package="br.com.original.bank" content-desc="" checkable="false"
+									checked="false" clickable="false" enabled="true" focusable="false"
+									focused="false" scrollable="false" long-clickable="false"
+									password="false" selected="false" bounds="[0,0][720,1184]"
+									resource-id="br.com.original.bank:id/drawer_layout" instance="0">
+									<android.widget.RelativeLayout
+										index="0" text="" class="android.widget.RelativeLayout"
+										package="br.com.original.bank" content-desc="" checkable="false"
+										checked="false" clickable="false" enabled="true" focusable="false"
+										focused="false" scrollable="false" long-clickable="false"
+										password="false" selected="false" bounds="[0,0][720,1184]"
+										resource-id="" instance="1">
+										<android.widget.RelativeLayout
+											index="0" text="" class="android.widget.RelativeLayout"
+											package="br.com.original.bank" content-desc="" checkable="false"
+											checked="false" clickable="false" enabled="true" focusable="false"
+											focused="false" scrollable="false" long-clickable="false"
+											password="false" selected="false" bounds="[0,0][720,1184]"
+											resource-id="br.com.original.bank:id/conteudoHome" instance="2">
+											<android.widget.RelativeLayout
+												index="0" text="" class="android.widget.RelativeLayout"
+												package="br.com.original.bank" content-desc="" checkable="false"
+												checked="false" clickable="false" enabled="true" focusable="false"
+												focused="false" scrollable="false" long-clickable="false"
+												password="false" selected="false" bounds="[0,0][720,1184]"
+												resource-id="" instance="3">
+												<android.widget.FrameLayout
+													index="0" text="" class="android.widget.FrameLayout"
+													package="br.com.original.bank" content-desc="" checkable="false"
+													checked="false" clickable="false" enabled="true" focusable="true"
+													focused="false" scrollable="false" long-clickable="false"
+													password="false" selected="false" bounds="[0,0][720,1184]"
+													resource-id="br.com.original.bank:id/customSlidingLayerConteudoHome"
+													instance="3">
+													<android.widget.LinearLayout
+														index="0" text="" class="android.widget.LinearLayout"
+														package="br.com.original.bank" content-desc="" checkable="false"
+														checked="false" clickable="false" enabled="true"
+														focusable="false" focused="false" scrollable="false"
+														long-clickable="false" password="false" selected="false"
+														bounds="[0,824][720,1184]" resource-id="" instance="2">
+														<android.widget.ScrollView
+															index="0" text="" class="android.widget.ScrollView"
+															package="br.com.original.bank" content-desc="" checkable="false"
+															checked="false" clickable="false" enabled="true"
+															focusable="true" focused="false" scrollable="true"
+															long-clickable="false" password="false" selected="false"
+															bounds="[0,844][720,1184]"
+															resource-id="br.com.original.bank:id/customScrollViewConteudoHome"
+															instance="0">
+															<android.widget.LinearLayout
+																index="0" text="" class="android.widget.LinearLayout"
+																package="br.com.original.bank" content-desc=""
+																checkable="false" checked="false" clickable="false"
+																enabled="true" focusable="false" focused="false"
+																scrollable="false" long-clickable="false" password="false"
+																selected="false" bounds="[0,856][720,1184]"
+																resource-id="br.com.original.bank:id/linearLayoutScrollView"
+																instance="3">
+																<android.widget.FrameLayout
+																	index="0" text="" class="android.widget.FrameLayout"
+																	package="br.com.original.bank" content-desc=""
+																	checkable="false" checked="false" clickable="false"
+																	enabled="true" focusable="false" focused="false"
+																	scrollable="false" long-clickable="false" password="false"
+																	selected="false" bounds="[0,856][720,1184]"
+																	resource-id="br.com.original.bank:id/contentFragment"
+																	instance="4">
+																	<android.widget.LinearLayout
+																		index="0" text="" class="android.widget.LinearLayout"
+																		package="br.com.original.bank" content-desc=""
+																		checkable="false" checked="false" clickable="false"
+																		enabled="true" focusable="false" focused="false"
+																		scrollable="false" long-clickable="false" password="false"
+																		selected="false" bounds="[0,856][720,1184]"
+																		resource-id="" instance="4">
+																		<android.widget.FrameLayout
+																			index="0" text="" class="android.widget.FrameLayout"
+																			package="br.com.original.bank" content-desc=""
+																			checkable="false" checked="false" clickable="false"
+																			enabled="true" focusable="false" focused="false"
+																			scrollable="false" long-clickable="false" password="false"
+																			selected="false" bounds="[0,856][720,1184]"
+																			resource-id="" instance="5">
+																			<android.widget.LinearLayout
+																				index="0" text="" class="android.widget.LinearLayout"
+																				package="br.com.original.bank" content-desc=""
+																				checkable="false" checked="false" clickable="false"
+																				enabled="true" focusable="false" focused="false"
+																				scrollable="false" long-clickable="false" password="false"
+																				selected="false" bounds="[0,856][720,1184]"
+																				resource-id="br.com.original.bank:id/conteudoSaldo"
+																				instance="5">
+																				<android.widget.RelativeLayout
+																					index="0" text="" class="android.widget.RelativeLayout"
+																					package="br.com.original.bank" content-desc=""
+																					checkable="false" checked="false" clickable="false"
+																					enabled="true" focusable="false" focused="false"
+																					scrollable="false" long-clickable="false" password="false"
+																					selected="false" bounds="[0,856][720,1184]"
+																					resource-id="br.com.original.bank:id/relativeLayoutResumoSaldo"
+																					instance="4">
+																					<android.widget.LinearLayout
+																						index="0" text="" class="android.widget.LinearLayout"
+																						package="br.com.original.bank" content-desc=""
+																						checkable="false" checked="false" clickable="false"
+																						enabled="true" focusable="false" focused="false"
+																						scrollable="false" long-clickable="false"
+																						password="false" selected="false" bounds="[0,856][720,1184]"
+																						resource-id="" instance="6">
+																						<android.widget.RelativeLayout
+																							index="0" text="" class="android.widget.RelativeLayout"
+																							package="br.com.original.bank" content-desc=""
+																							checkable="false" checked="false" clickable="false"
+																							enabled="true" focusable="false" focused="false"
+																							scrollable="false" long-clickable="false"
+																							password="false" selected="false" bounds="[0,856][720,924]"
+																							resource-id="" instance="5">
+																							<android.widget.TextView
+																								index="0" text="Conta" class="android.widget.TextView"
+																								package="br.com.original.bank" content-desc=""
+																								checkable="false" checked="false" clickable="false"
+																								enabled="true" focusable="false" focused="false"
+																								scrollable="false" long-clickable="false"
+																								password="false" selected="false" bounds="[32,876][187,924]"
+																								resource-id="br.com.original.bank:id/textView1"
+																								instance="0" />
+																							<android.widget.TextView
+																								index="1" text="Atualizado às 10h11" class="android.widget.TextView"
+																								package="br.com.original.bank" content-desc=""
+																								checkable="false" checked="false" clickable="false"
+																								enabled="true" focusable="false" focused="false"
+																								scrollable="false" long-clickable="false"
+																								password="false" selected="false" bounds="[452,856][651,883]"
+																								resource-id="br.com.original.bank:id/textViewAtualizadoSaldo"
+																								instance="1" />
+																						</android.widget.RelativeLayout>
+																						<android.widget.LinearLayout
+																							index="1" text="" class="android.widget.LinearLayout"
+																							package="br.com.original.bank" content-desc=""
+																							checkable="false" checked="false" clickable="false"
+																							enabled="true" focusable="false" focused="false"
+																							scrollable="false" long-clickable="false"
+																							password="false" selected="false" bounds="[0,934][720,1074]"
+																							resource-id="br.com.original.bank:id/lnSaldoRowViewMeuDinheiroDisponivel"
+																							instance="7">
+																							<android.widget.TextView
+																								index="0" text="Meu dinheiro disponível:" class="android.widget.TextView"
+																								package="br.com.original.bank" content-desc=""
+																								checkable="false" checked="false" clickable="false"
+																								enabled="true" focusable="false" focused="false"
+																								scrollable="false" long-clickable="false"
+																								password="false" selected="false" bounds="[32,982][329,1013]"
+																								resource-id="" instance="2" />
+																							<android.view.View index="1"
+																								text="" class="android.view.View" package="br.com.original.bank"
+																								content-desc="" checkable="false" checked="false"
+																								clickable="false" enabled="true" focusable="false"
+																								focused="false" scrollable="false"
+																								long-clickable="false" password="false"
+																								selected="false" bounds="[329,997][396,999]"
+																								resource-id="" instance="0" />
+																							<android.widget.TextView
+																								index="2" text="R$" class="android.widget.TextView"
+																								package="br.com.original.bank" content-desc=""
+																								checkable="false" checked="false" clickable="false"
+																								enabled="true" focusable="false" focused="false"
+																								scrollable="false" long-clickable="false"
+																								password="false" selected="false" bounds="[396,980][431,1015]"
+																								resource-id="" instance="3" />
+																							<android.widget.Button
+																								index="4" text="197.789.947,36" class="android.widget.Button"
+																								package="br.com.original.bank" content-desc=""
+																								checkable="false" checked="false" clickable="true"
+																								enabled="true" focusable="true" focused="false"
+																								scrollable="false" long-clickable="false"
+																								password="false" selected="false" bounds="[443,966][688,1030]"
+																								resource-id="br.com.original.bank:id/bttnMeuSaldo"
+																								instance="0" />
+																						</android.widget.LinearLayout>
+																						<android.view.View index="2"
+																							text="" class="android.view.View" package="br.com.original.bank"
+																							content-desc="" checkable="false" checked="false"
+																							clickable="false" enabled="true" focusable="false"
+																							focused="false" scrollable="false"
+																							long-clickable="false" password="false" selected="false"
+																							bounds="[0,1074][720,1076]" resource-id=""
+																							instance="1" />
+																						<android.widget.LinearLayout
+																							index="3" text="" class="android.widget.LinearLayout"
+																							package="br.com.original.bank" content-desc=""
+																							checkable="false" checked="false" clickable="false"
+																							enabled="true" focusable="false" focused="false"
+																							scrollable="false" long-clickable="false"
+																							password="false" selected="false" bounds="[0,1076][720,1184]"
+																							resource-id="" instance="8">
+																							<android.widget.LinearLayout
+																								index="0" text="" class="android.widget.LinearLayout"
+																								package="br.com.original.bank" content-desc=""
+																								checkable="false" checked="false" clickable="false"
+																								enabled="true" focusable="false" focused="false"
+																								scrollable="false" long-clickable="false"
+																								password="false" selected="false" bounds="[0,1080][360,1182]"
+																								resource-id="br.com.original.bank:id/btnSaldoRowViewPagar"
+																								instance="9">
+																								<android.widget.Button
+																									index="0" text="PAGAR" class="android.widget.Button"
+																									package="br.com.original.bank" content-desc=""
+																									checkable="false" checked="false" clickable="true"
+																									enabled="true" focusable="true" focused="false"
+																									scrollable="false" long-clickable="false"
+																									password="false" selected="false" bounds="[60,1083][340,1179]"
+																									resource-id="br.com.original.bank:id/btnPagar"
+																									instance="1" />
+																							</android.widget.LinearLayout>
+																							<android.widget.LinearLayout
+																								index="1" text="" class="android.widget.LinearLayout"
+																								package="br.com.original.bank" content-desc=""
+																								checkable="false" checked="false" clickable="false"
+																								enabled="true" focusable="false" focused="false"
+																								scrollable="false" long-clickable="false"
+																								password="false" selected="false" bounds="[360,1080][720,1182]"
+																								resource-id="br.com.original.bank:id/btnSaldoRowViewTransferir"
+																								instance="10">
+																								<android.widget.Button
+																									index="0" text="TRANSFERIR" class="android.widget.Button"
+																									package="br.com.original.bank" content-desc=""
+																									checkable="false" checked="false" clickable="true"
+																									enabled="true" focusable="true" focused="false"
+																									scrollable="false" long-clickable="false"
+																									password="false" selected="false"
+																									bounds="[420,1083][700,1179]" resource-id="br.com.original.bank:id/btnTransferir"
+																									instance="2" />
+																							</android.widget.LinearLayout>
+																						</android.widget.LinearLayout>
+																					</android.widget.LinearLayout>
+																				</android.widget.RelativeLayout>
+																			</android.widget.LinearLayout>
+																		</android.widget.FrameLayout>
+																	</android.widget.LinearLayout>
+																</android.widget.FrameLayout>
+															</android.widget.LinearLayout>
+														</android.widget.ScrollView>
+													</android.widget.LinearLayout>
+												</android.widget.FrameLayout>
+												<android.widget.LinearLayout
+													index="1" text="" class="android.widget.LinearLayout"
+													package="br.com.original.bank" content-desc="" checkable="false"
+													checked="false" clickable="false" enabled="true" focusable="false"
+													focused="false" scrollable="false" long-clickable="false"
+													password="false" selected="false" bounds="[0,0][720,1184]"
+													resource-id="br.com.original.bank:id/mainView" instance="11">
+													<android.widget.LinearLayout
+														index="0" text="" class="android.widget.LinearLayout"
+														package="br.com.original.bank" content-desc="" checkable="false"
+														checked="false" clickable="false" enabled="true"
+														focusable="false" focused="false" scrollable="false"
+														long-clickable="false" password="false" selected="false"
+														bounds="[0,40][720,1184]" resource-id="" instance="12">
+														<android.widget.RelativeLayout
+															index="0" text="" class="android.widget.RelativeLayout"
+															package="br.com.original.bank" content-desc="" checkable="false"
+															checked="false" clickable="false" enabled="true"
+															focusable="false" focused="false" scrollable="false"
+															long-clickable="false" password="false" selected="false"
+															bounds="[0,40][720,362]" resource-id="" instance="6">
+															<android.widget.LinearLayout
+																index="0" text="" class="android.widget.LinearLayout"
+																package="br.com.original.bank" content-desc=""
+																checkable="false" checked="false" clickable="false"
+																enabled="true" focusable="false" focused="false"
+																scrollable="false" long-clickable="false" password="false"
+																selected="false" bounds="[0,40][720,362]"
+																resource-id="br.com.original.bank:id/lnConteudoHomeTopCard"
+																instance="13">
+																<android.view.ViewGroup index="0"
+																	text="" class="android.view.ViewGroup" package="br.com.original.bank"
+																	content-desc="" checkable="false" checked="false"
+																	clickable="false" enabled="true" focusable="false"
+																	focused="false" scrollable="false" long-clickable="false"
+																	password="false" selected="false" bounds="[0,50][720,162]"
+																	resource-id="br.com.original.bank:id/tool_bar"
+																	instance="0">
+																	<android.widget.ImageView
+																		index="0" text="" class="android.widget.ImageView"
+																		package="br.com.original.bank" content-desc=""
+																		checkable="false" checked="false" clickable="false"
+																		enabled="true" focusable="false" focused="false"
+																		scrollable="false" long-clickable="false" password="false"
+																		selected="false" bounds="[40,74][95,138]"
+																		resource-id="br.com.original.bank:id/iconLoading"
+																		instance="0" />
+																	<android.widget.ImageView
+																		index="1" text="" class="android.widget.ImageView"
+																		package="br.com.original.bank" content-desc=""
+																		checkable="false" checked="false" clickable="false"
+																		enabled="true" focusable="false" focused="false"
+																		scrollable="false" long-clickable="false" password="false"
+																		selected="false" bounds="[105,74][252,138]"
+																		resource-id="br.com.original.bank:id/nameLoading"
+																		instance="1" />
+																	<android.support.v7.widget.LinearLayoutCompat
+																		index="2" text=""
+																		class="android.support.v7.widget.LinearLayoutCompat"
+																		package="br.com.original.bank" content-desc=""
+																		checkable="false" checked="false" clickable="false"
+																		enabled="true" focusable="false" focused="false"
+																		scrollable="false" long-clickable="false" password="false"
+																		selected="false" bounds="[528,50][720,162]"
+																		resource-id="" instance="0">
+																		<android.widget.TextView
+																			index="0" text="" class="android.widget.TextView"
+																			package="br.com.original.bank" content-desc="Settings"
+																			checkable="false" checked="false" clickable="true"
+																			enabled="true" focusable="true" focused="false"
+																			scrollable="false" long-clickable="true" password="false"
+																			selected="false" bounds="[528,58][624,154]"
+																			resource-id="br.com.original.bank:id/action_notification"
+																			instance="4" />
+																		<android.widget.TextView
+																			index="1" text="" class="android.widget.TextView"
+																			package="br.com.original.bank" content-desc="Settings"
+																			checkable="false" checked="false" clickable="true"
+																			enabled="true" focusable="true" focused="false"
+																			scrollable="false" long-clickable="true" password="false"
+																			selected="false" bounds="[624,58][720,154]"
+																			resource-id="br.com.original.bank:id/action_comentario"
+																			instance="5" />
+																	</android.support.v7.widget.LinearLayoutCompat>
+																</android.view.ViewGroup>
+																<android.widget.LinearLayout
+																	index="1" text="" class="android.widget.LinearLayout"
+																	package="br.com.original.bank" content-desc=""
+																	checkable="false" checked="false" clickable="false"
+																	enabled="true" focusable="false" focused="false"
+																	scrollable="false" long-clickable="false" password="false"
+																	selected="false" bounds="[0,162][720,258]" resource-id=""
+																	instance="14">
+																	<android.widget.Button index="0"
+																		text="Início" class="android.widget.Button" package="br.com.original.bank"
+																		content-desc="" checkable="false" checked="false"
+																		clickable="true" enabled="true" focusable="true"
+																		focused="false" scrollable="false" long-clickable="false"
+																		password="false" selected="false" bounds="[40,162][140,258]"
+																		resource-id="br.com.original.bank:id/btInicio"
+																		instance="3" />
+																	<android.widget.Button index="1"
+																		text="Extrato" class="android.widget.Button" package="br.com.original.bank"
+																		content-desc="" checkable="false" checked="false"
+																		clickable="true" enabled="true" focusable="true"
+																		focused="false" scrollable="false" long-clickable="false"
+																		password="false" selected="false" bounds="[160,162][336,258]"
+																		resource-id="br.com.original.bank:id/btExtrato"
+																		instance="4" />
+																	<android.widget.Button index="2"
+																		text="Acesso Rápido" class="android.widget.Button"
+																		package="br.com.original.bank" content-desc=""
+																		checkable="false" checked="false" clickable="true"
+																		enabled="true" focusable="true" focused="false"
+																		scrollable="false" long-clickable="false" password="false"
+																		selected="false" bounds="[356,162][593,258]"
+																		resource-id="br.com.original.bank:id/btAcessoRapido"
+																		instance="5" />
+																	<android.widget.ImageButton
+																		NAF="true" index="3" text="" class="android.widget.ImageButton"
+																		package="br.com.original.bank" content-desc=""
+																		checkable="false" checked="false" clickable="true"
+																		enabled="true" focusable="true" focused="false"
+																		scrollable="false" long-clickable="false" password="false"
+																		selected="false" bounds="[633,162][688,258]"
+																		resource-id="br.com.original.bank:id/btMenu" instance="0" />
+																</android.widget.LinearLayout>
+																<android.widget.LinearLayout
+																	index="2" text="" class="android.widget.LinearLayout"
+																	package="br.com.original.bank" content-desc=""
+																	checkable="false" checked="false" clickable="false"
+																	enabled="true" focusable="false" focused="false"
+																	scrollable="false" long-clickable="false" password="false"
+																	selected="false" bounds="[0,268][720,332]"
+																	resource-id="br.com.original.bank:id/linearLayoutMsgCard"
+																	instance="15">
+																	<android.widget.TextView index="0"
+																		text="Veja suas atividades mais importantes para hoje."
+																		class="android.widget.TextView" package="br.com.original.bank"
+																		content-desc="" checkable="false" checked="false"
+																		clickable="false" enabled="true" focusable="false"
+																		focused="false" scrollable="false" long-clickable="false"
+																		password="false" selected="false" bounds="[130,268][590,332]"
+																		resource-id="" instance="6" />
+																</android.widget.LinearLayout>
+															</android.widget.LinearLayout>
+														</android.widget.RelativeLayout>
+														<android.widget.RelativeLayout
+															index="1" text="" class="android.widget.RelativeLayout"
+															package="br.com.original.bank" content-desc="" checkable="false"
+															checked="false" clickable="false" enabled="true"
+															focusable="false" focused="false" scrollable="false"
+															long-clickable="false" password="false" selected="false"
+															bounds="[0,362][720,1184]" resource-id="" instance="7">
+															<android.widget.FrameLayout
+																index="0" text="" class="android.widget.FrameLayout"
+																package="br.com.original.bank" content-desc=""
+																checkable="false" checked="false" clickable="false"
+																enabled="true" focusable="false" focused="false"
+																scrollable="false" long-clickable="false" password="false"
+																selected="false" bounds="[0,362][720,1184]"
+																resource-id="br.com.original.bank:id/swipeframeConteudoHome"
+																instance="6">
+																<android.widget.FrameLayout
+																	index="0" text="" class="android.widget.FrameLayout"
+																	package="br.com.original.bank" content-desc=""
+																	checkable="false" checked="false" clickable="false"
+																	enabled="true" focusable="false" focused="false"
+																	scrollable="false" long-clickable="false" password="false"
+																	selected="false" bounds="[60,362][660,722]"
+																	resource-id="br.com.original.bank:id/swipe_deck"
+																	instance="7">
+																	<android.widget.FrameLayout
+																		index="0" text="" class="android.widget.FrameLayout"
+																		package="br.com.original.bank" content-desc=""
+																		checkable="false" checked="false" clickable="false"
+																		enabled="true" focusable="false" focused="false"
+																		scrollable="false" long-clickable="false" password="false"
+																		selected="false" bounds="[108,394][612,722]"
+																		resource-id="" instance="8">
+																		<android.widget.FrameLayout
+																			index="0" text="" class="android.widget.FrameLayout"
+																			package="br.com.original.bank" content-desc=""
+																			checkable="false" checked="false" clickable="false"
+																			enabled="true" focusable="false" focused="false"
+																			scrollable="false" long-clickable="false" password="false"
+																			selected="false" bounds="[108,394][612,722]"
+																			resource-id="br.com.original.bank:id/frameLayoutCardHome"
+																			instance="9">
+																			<android.widget.LinearLayout
+																				index="0" text="" class="android.widget.LinearLayout"
+																				package="br.com.original.bank" content-desc=""
+																				checkable="false" checked="false" clickable="false"
+																				enabled="true" focusable="false" focused="false"
+																				scrollable="false" long-clickable="false" password="false"
+																				selected="false" bounds="[108,394][612,722]"
+																				resource-id="br.com.original.bank:id/lnItemCardHomeMain"
+																				instance="16">
+																				<android.widget.LinearLayout
+																					index="0" text="" class="android.widget.LinearLayout"
+																					package="br.com.original.bank" content-desc=""
+																					checkable="false" checked="false" clickable="false"
+																					enabled="true" focusable="false" focused="false"
+																					scrollable="false" long-clickable="false" password="false"
+																					selected="false" bounds="[108,394][612,722]"
+																					resource-id="br.com.original.bank:id/card"
+																					instance="17">
+																					<android.widget.RelativeLayout
+																						index="0" text="" class="android.widget.RelativeLayout"
+																						package="br.com.original.bank" content-desc=""
+																						checkable="false" checked="false" clickable="false"
+																						enabled="true" focusable="false" focused="false"
+																						scrollable="false" long-clickable="false"
+																						password="false" selected="false" bounds="[135,426][585,722]"
+																						resource-id="" instance="8">
+																						<android.widget.LinearLayout
+																							index="0" text="" class="android.widget.LinearLayout"
+																							package="br.com.original.bank" content-desc=""
+																							checkable="false" checked="false" clickable="false"
+																							enabled="true" focusable="false" focused="false"
+																							scrollable="false" long-clickable="false"
+																							password="false" selected="false" bounds="[135,426][585,458]"
+																							resource-id="br.com.original.bank:id/llayout"
+																							instance="18">
+																							<android.widget.ImageView
+																								index="0" text="" class="android.widget.ImageView"
+																								package="br.com.original.bank" content-desc=""
+																								checkable="false" checked="false" clickable="false"
+																								enabled="true" focusable="false" focused="false"
+																								scrollable="false" long-clickable="false"
+																								password="false" selected="false" bounds="[135,426][162,458]"
+																								resource-id="br.com.original.bank:id/imageViewIconCardHome"
+																								instance="2" />
+																							<android.widget.TextView
+																								index="1" text="Cartões" class="android.widget.TextView"
+																								package="br.com.original.bank" content-desc=""
+																								checkable="false" checked="false" clickable="false"
+																								enabled="true" focusable="false" focused="false"
+																								scrollable="false" long-clickable="false"
+																								password="false" selected="false" bounds="[179,426][585,458]"
+																								resource-id="br.com.original.bank:id/textViewTituloCardHome"
+																								instance="7" />
+																						</android.widget.LinearLayout>
+																						<android.widget.TextView
+																							index="1"
+																							text="Use seu cartão Original e aproveite as vantagens de fazer parte do Mastercard Surpreenda. naotempreco.com.br"
+																							class="android.widget.TextView" package="br.com.original.bank"
+																							content-desc="" checkable="false" checked="false"
+																							clickable="false" enabled="true" focusable="false"
+																							focused="false" scrollable="false"
+																							long-clickable="false" password="false" selected="false"
+																							bounds="[135,458][585,658]"
+																							resource-id="br.com.original.bank:id/textViewDetalheCardHome"
+																							instance="8" />
+																					</android.widget.RelativeLayout>
+																				</android.widget.LinearLayout>
+																			</android.widget.LinearLayout>
+																		</android.widget.FrameLayout>
+																	</android.widget.FrameLayout>
+																	<android.widget.FrameLayout
+																		index="1" text="" class="android.widget.FrameLayout"
+																		package="br.com.original.bank" content-desc=""
+																		checkable="false" checked="false" clickable="false"
+																		enabled="true" focusable="false" focused="false"
+																		scrollable="false" long-clickable="false" password="false"
+																		selected="false" bounds="[132,410][588,722]"
+																		resource-id="" instance="10">
+																		<android.widget.FrameLayout
+																			index="0" text="" class="android.widget.FrameLayout"
+																			package="br.com.original.bank" content-desc=""
+																			checkable="false" checked="false" clickable="false"
+																			enabled="true" focusable="false" focused="false"
+																			scrollable="false" long-clickable="false" password="false"
+																			selected="false" bounds="[132,410][588,722]"
+																			resource-id="br.com.original.bank:id/frameLayoutCardHome"
+																			instance="11">
+																			<android.widget.LinearLayout
+																				index="0" text="" class="android.widget.LinearLayout"
+																				package="br.com.original.bank" content-desc=""
+																				checkable="false" checked="false" clickable="false"
+																				enabled="true" focusable="false" focused="false"
+																				scrollable="false" long-clickable="false" password="false"
+																				selected="false" bounds="[132,410][588,722]"
+																				resource-id="br.com.original.bank:id/lnItemCardHomeMain"
+																				instance="19">
+																				<android.widget.LinearLayout
+																					index="0" text="" class="android.widget.LinearLayout"
+																					package="br.com.original.bank" content-desc=""
+																					checkable="false" checked="false" clickable="false"
+																					enabled="true" focusable="false" focused="false"
+																					scrollable="false" long-clickable="false" password="false"
+																					selected="false" bounds="[132,410][588,722]"
+																					resource-id="br.com.original.bank:id/card"
+																					instance="20">
+																					<android.widget.RelativeLayout
+																						index="0" text="" class="android.widget.RelativeLayout"
+																						package="br.com.original.bank" content-desc=""
+																						checkable="false" checked="false" clickable="false"
+																						enabled="true" focusable="false" focused="false"
+																						scrollable="false" long-clickable="false"
+																						password="false" selected="false" bounds="[156,442][564,722]"
+																						resource-id="" instance="9">
+																						<android.widget.LinearLayout
+																							index="0" text="" class="android.widget.LinearLayout"
+																							package="br.com.original.bank" content-desc=""
+																							checkable="false" checked="false" clickable="false"
+																							enabled="true" focusable="false" focused="false"
+																							scrollable="false" long-clickable="false"
+																							password="false" selected="false" bounds="[156,442][564,474]"
+																							resource-id="br.com.original.bank:id/llayout"
+																							instance="21">
+																							<android.widget.ImageView
+																								index="0" text="" class="android.widget.ImageView"
+																								package="br.com.original.bank" content-desc=""
+																								checkable="false" checked="false" clickable="false"
+																								enabled="true" focusable="false" focused="false"
+																								scrollable="false" long-clickable="false"
+																								password="false" selected="false" bounds="[156,442][181,474]"
+																								resource-id="br.com.original.bank:id/imageViewIconCardHome"
+																								instance="3" />
+																							<android.widget.TextView
+																								index="1" text="Investimento" class="android.widget.TextView"
+																								package="br.com.original.bank" content-desc=""
+																								checkable="false" checked="false" clickable="false"
+																								enabled="true" focusable="false" focused="false"
+																								scrollable="false" long-clickable="false"
+																								password="false" selected="false" bounds="[196,442][564,474]"
+																								resource-id="br.com.original.bank:id/textViewTituloCardHome"
+																								instance="9" />
+																						</android.widget.LinearLayout>
+																						<android.widget.TextView
+																							index="1"
+																							text="Acompanhe seus rendimentos de um jeito fácil e transparente."
+																							class="android.widget.TextView" package="br.com.original.bank"
+																							content-desc="" checkable="false" checked="false"
+																							clickable="false" enabled="true" focusable="false"
+																							focused="false" scrollable="false"
+																							long-clickable="false" password="false" selected="false"
+																							bounds="[156,474][564,674]"
+																							resource-id="br.com.original.bank:id/textViewDetalheCardHome"
+																							instance="10" />
+																						<android.widget.TextView
+																							index="2" text="Ver Investimentos" class="android.widget.TextView"
+																							package="br.com.original.bank" content-desc=""
+																							checkable="false" checked="false" clickable="true"
+																							enabled="true" focusable="false" focused="false"
+																							scrollable="false" long-clickable="false"
+																							password="false" selected="false" bounds="[156,632][564,718]"
+																							resource-id="br.com.original.bank:id/buttonCardHome"
+																							instance="11" />
+																					</android.widget.RelativeLayout>
+																				</android.widget.LinearLayout>
+																			</android.widget.LinearLayout>
+																		</android.widget.FrameLayout>
+																	</android.widget.FrameLayout>
+																	<android.widget.FrameLayout
+																		index="2" text="" class="android.widget.FrameLayout"
+																		package="br.com.original.bank" content-desc=""
+																		checkable="false" checked="false" clickable="false"
+																		enabled="true" focusable="false" focused="false"
+																		scrollable="false" long-clickable="false" password="false"
+																		selected="false" bounds="[81,378][639,722]"
+																		resource-id="" instance="12">
+																		<android.widget.FrameLayout
+																			index="0" text="" class="android.widget.FrameLayout"
+																			package="br.com.original.bank" content-desc=""
+																			checkable="false" checked="false" clickable="false"
+																			enabled="true" focusable="false" focused="false"
+																			scrollable="false" long-clickable="false" password="false"
+																			selected="false" bounds="[81,378][639,722]"
+																			resource-id="br.com.original.bank:id/frameLayoutCardHome"
+																			instance="13">
+																			<android.widget.LinearLayout
+																				index="0" text="" class="android.widget.LinearLayout"
+																				package="br.com.original.bank" content-desc=""
+																				checkable="false" checked="false" clickable="false"
+																				enabled="true" focusable="false" focused="false"
+																				scrollable="false" long-clickable="false" password="false"
+																				selected="false" bounds="[81,378][639,722]"
+																				resource-id="br.com.original.bank:id/lnItemCardHomeMain"
+																				instance="22">
+																				<android.widget.LinearLayout
+																					index="0" text="" class="android.widget.LinearLayout"
+																					package="br.com.original.bank" content-desc=""
+																					checkable="false" checked="false" clickable="false"
+																					enabled="true" focusable="false" focused="false"
+																					scrollable="false" long-clickable="false" password="false"
+																					selected="false" bounds="[81,378][639,722]"
+																					resource-id="br.com.original.bank:id/card"
+																					instance="23">
+																					<android.widget.RelativeLayout
+																						index="0" text="" class="android.widget.RelativeLayout"
+																						package="br.com.original.bank" content-desc=""
+																						checkable="false" checked="false" clickable="false"
+																						enabled="true" focusable="false" focused="false"
+																						scrollable="false" long-clickable="false"
+																						password="false" selected="false" bounds="[111,410][609,722]"
+																						resource-id="" instance="10">
+																						<android.widget.LinearLayout
+																							index="0" text="" class="android.widget.LinearLayout"
+																							package="br.com.original.bank" content-desc=""
+																							checkable="false" checked="false" clickable="false"
+																							enabled="true" focusable="false" focused="false"
+																							scrollable="false" long-clickable="false"
+																							password="false" selected="false" bounds="[111,410][609,442]"
+																							resource-id="br.com.original.bank:id/llayout"
+																							instance="24">
+																							<android.widget.ImageView
+																								index="0" text="" class="android.widget.ImageView"
+																								package="br.com.original.bank" content-desc=""
+																								checkable="false" checked="false" clickable="false"
+																								enabled="true" focusable="false" focused="false"
+																								scrollable="false" long-clickable="false"
+																								password="false" selected="false" bounds="[111,410][141,442]"
+																								resource-id="br.com.original.bank:id/imageViewIconCardHome"
+																								instance="4" />
+																							<android.widget.TextView
+																								index="1" text="Investimento" class="android.widget.TextView"
+																								package="br.com.original.bank" content-desc=""
+																								checkable="false" checked="false" clickable="false"
+																								enabled="true" focusable="false" focused="false"
+																								scrollable="false" long-clickable="false"
+																								password="false" selected="false" bounds="[159,410][609,442]"
+																								resource-id="br.com.original.bank:id/textViewTituloCardHome"
+																								instance="12" />
+																						</android.widget.LinearLayout>
+																						<android.widget.TextView
+																							index="1"
+																							text="Quer retornos melhores? Concentre seus investimentos com a gente e se beneficie do volume global."
+																							class="android.widget.TextView" package="br.com.original.bank"
+																							content-desc="" checkable="false" checked="false"
+																							clickable="false" enabled="true" focusable="false"
+																							focused="false" scrollable="false"
+																							long-clickable="false" password="false" selected="false"
+																							bounds="[111,442][609,642]"
+																							resource-id="br.com.original.bank:id/textViewDetalheCardHome"
+																							instance="13" />
+																						<android.widget.TextView
+																							index="2" text="Acessar Investimentos" class="android.widget.TextView"
+																							package="br.com.original.bank" content-desc=""
+																							checkable="false" checked="false" clickable="true"
+																							enabled="true" focusable="false" focused="false"
+																							scrollable="false" long-clickable="false"
+																							password="false" selected="false" bounds="[111,600][609,686]"
+																							resource-id="br.com.original.bank:id/buttonCardHome"
+																							instance="14" />
+																					</android.widget.RelativeLayout>
+																				</android.widget.LinearLayout>
+																			</android.widget.LinearLayout>
+																		</android.widget.FrameLayout>
+																	</android.widget.FrameLayout>
+																	<android.widget.FrameLayout
+																		index="3" text="" class="android.widget.FrameLayout"
+																		package="br.com.original.bank" content-desc=""
+																		checkable="false" checked="false" clickable="false"
+																		enabled="true" focusable="false" focused="false"
+																		scrollable="false" long-clickable="false" password="false"
+																		selected="false" bounds="[60,362][660,722]"
+																		resource-id="" instance="14">
+																		<android.widget.FrameLayout
+																			index="0" text="" class="android.widget.FrameLayout"
+																			package="br.com.original.bank" content-desc=""
+																			checkable="false" checked="false" clickable="false"
+																			enabled="true" focusable="false" focused="false"
+																			scrollable="false" long-clickable="false" password="false"
+																			selected="false" bounds="[60,362][660,722]"
+																			resource-id="br.com.original.bank:id/frameLayoutCardHome"
+																			instance="15">
+																			<android.widget.LinearLayout
+																				index="0" text="" class="android.widget.LinearLayout"
+																				package="br.com.original.bank" content-desc=""
+																				checkable="false" checked="false" clickable="false"
+																				enabled="true" focusable="false" focused="false"
+																				scrollable="false" long-clickable="false" password="false"
+																				selected="false" bounds="[60,362][660,722]"
+																				resource-id="br.com.original.bank:id/lnItemCardHomeMain"
+																				instance="25">
+																				<android.widget.LinearLayout
+																					index="0" text="" class="android.widget.LinearLayout"
+																					package="br.com.original.bank" content-desc=""
+																					checkable="false" checked="false" clickable="false"
+																					enabled="true" focusable="false" focused="false"
+																					scrollable="false" long-clickable="false" password="false"
+																					selected="false" bounds="[60,362][660,722]"
+																					resource-id="br.com.original.bank:id/card"
+																					instance="26">
+																					<android.widget.RelativeLayout
+																						index="0" text="" class="android.widget.RelativeLayout"
+																						package="br.com.original.bank" content-desc=""
+																						checkable="false" checked="false" clickable="false"
+																						enabled="true" focusable="false" focused="false"
+																						scrollable="false" long-clickable="false"
+																						password="false" selected="false" bounds="[92,394][628,710]"
+																						resource-id="" instance="11">
+																						<android.widget.LinearLayout
+																							index="0" text="" class="android.widget.LinearLayout"
+																							package="br.com.original.bank" content-desc=""
+																							checkable="false" checked="false" clickable="false"
+																							enabled="true" focusable="false" focused="false"
+																							scrollable="false" long-clickable="false"
+																							password="false" selected="false" bounds="[92,394][628,426]"
+																							resource-id="br.com.original.bank:id/llayout"
+																							instance="27">
+																							<android.widget.ImageView
+																								index="0" text="" class="android.widget.ImageView"
+																								package="br.com.original.bank" content-desc=""
+																								checkable="false" checked="false" clickable="false"
+																								enabled="true" focusable="false" focused="false"
+																								scrollable="false" long-clickable="false"
+																								password="false" selected="false" bounds="[92,394][124,426]"
+																								resource-id="br.com.original.bank:id/imageViewIconCardHome"
+																								instance="5" />
+																							<android.widget.TextView
+																								index="1" text=" Investimentos" class="android.widget.TextView"
+																								package="br.com.original.bank" content-desc=""
+																								checkable="false" checked="false" clickable="false"
+																								enabled="true" focusable="false" focused="false"
+																								scrollable="false" long-clickable="false"
+																								password="false" selected="false" bounds="[144,394][628,426]"
+																								resource-id="br.com.original.bank:id/textViewTituloCardHome"
+																								instance="15" />
+																						</android.widget.LinearLayout>
+																						<android.widget.TextView
+																							index="1"
+																							text="Contamos com fundos criteriosamente selecionados e disponíveis para aplicação a partir de R$ 1 mil. "
+																							class="android.widget.TextView" package="br.com.original.bank"
+																							content-desc="" checkable="false" checked="false"
+																							clickable="false" enabled="true" focusable="false"
+																							focused="false" scrollable="false"
+																							long-clickable="false" password="false" selected="false"
+																							bounds="[92,426][628,626]"
+																							resource-id="br.com.original.bank:id/textViewDetalheCardHome"
+																							instance="16" />
+																					</android.widget.RelativeLayout>
+																				</android.widget.LinearLayout>
+																			</android.widget.LinearLayout>
+																		</android.widget.FrameLayout>
+																	</android.widget.FrameLayout>
+																</android.widget.FrameLayout>
+															</android.widget.FrameLayout>
+														</android.widget.RelativeLayout>
+													</android.widget.LinearLayout>
+												</android.widget.LinearLayout>
+											</android.widget.RelativeLayout>
+										</android.widget.RelativeLayout>
+										<android.widget.RelativeLayout
+											index="1" text="" class="android.widget.RelativeLayout"
+											package="br.com.original.bank" content-desc="" checkable="false"
+											checked="false" clickable="false" enabled="true" focusable="false"
+											focused="false" scrollable="false" long-clickable="false"
+											password="false" selected="false" bounds="[0,0][720,1184]"
+											resource-id="br.com.original.bank:id/tutorialHome" instance="12" />
+									</android.widget.RelativeLayout>
+									<android.widget.LinearLayout index="1"
+										text="" class="android.widget.LinearLayout" package="br.com.original.bank"
+										content-desc="" checkable="false" checked="false" clickable="false"
+										enabled="true" focusable="false" focused="false" scrollable="false"
+										long-clickable="false" password="false" selected="false"
+										bounds="[80,0][720,1184]" resource-id="br.com.original.bank:id/navigation_drawer"
+										instance="28">
+										<android.widget.ListView index="0"
+											text="" class="android.widget.ListView" package="br.com.original.bank"
+											content-desc="" checkable="false" checked="false" clickable="true"
+											enabled="true" focusable="true" focused="false" scrollable="true"
+											long-clickable="false" password="false" selected="false"
+											bounds="[80,0][720,1184]" resource-id="br.com.original.bank:id/listViewMenu"
+											instance="0">
+											<android.widget.LinearLayout
+												index="0" text="" class="android.widget.LinearLayout"
+												package="br.com.original.bank" content-desc="" checkable="false"
+												checked="false" clickable="true" enabled="true" focusable="false"
+												focused="false" scrollable="false" long-clickable="false"
+												password="false" selected="false" bounds="[80,0][720,35]"
+												resource-id="" instance="29">
+												<android.widget.LinearLayout
+													index="0" text="" class="android.widget.LinearLayout"
+													package="br.com.original.bank" content-desc="" checkable="false"
+													checked="false" clickable="false" enabled="true" focusable="false"
+													focused="false" scrollable="false" long-clickable="false"
+													password="false" selected="false" bounds="[80,0][720,35]"
+													resource-id="br.com.original.bank:id/linearLayoutItem"
+													instance="30">
+													<android.widget.LinearLayout
+														index="0" text="" class="android.widget.LinearLayout"
+														package="br.com.original.bank" content-desc="" checkable="false"
+														checked="false" clickable="false" enabled="true"
+														focusable="false" focused="false" scrollable="false"
+														long-clickable="false" password="false" selected="false"
+														bounds="[100,0][700,5]" resource-id="" instance="31">
+														<android.widget.ImageView index="0"
+															text="" class="android.widget.ImageView" package="br.com.original.bank"
+															content-desc="" checkable="false" checked="false"
+															clickable="false" enabled="true" focusable="false"
+															focused="false" scrollable="false" long-clickable="false"
+															password="false" selected="false" bounds="[120,0][168,5]"
+															resource-id="br.com.original.bank:id/imgItemMenu"
+															instance="6" />
+													</android.widget.LinearLayout>
+												</android.widget.LinearLayout>
+											</android.widget.LinearLayout>
+											<android.widget.LinearLayout
+												index="1" text="" class="android.widget.LinearLayout"
+												package="br.com.original.bank" content-desc="" checkable="false"
+												checked="false" clickable="true" enabled="true" focusable="false"
+												focused="false" scrollable="false" long-clickable="false"
+												password="false" selected="false" bounds="[80,34][720,118]"
+												resource-id="" instance="32">
+												<android.widget.LinearLayout
+													index="0" text="" class="android.widget.LinearLayout"
+													package="br.com.original.bank" content-desc="" checkable="false"
+													checked="false" clickable="false" enabled="true" focusable="false"
+													focused="false" scrollable="false" long-clickable="false"
+													password="false" selected="false" bounds="[80,34][720,118]"
+													resource-id="br.com.original.bank:id/linearLayoutItem"
+													instance="33">
+													<android.widget.LinearLayout
+														index="0" text="" class="android.widget.LinearLayout"
+														package="br.com.original.bank" content-desc="" checkable="false"
+														checked="false" clickable="false" enabled="true"
+														focusable="false" focused="false" scrollable="false"
+														long-clickable="false" password="false" selected="false"
+														bounds="[100,54][700,88]" resource-id="" instance="34">
+														<android.widget.ImageView index="0"
+															text="" class="android.widget.ImageView" package="br.com.original.bank"
+															content-desc="" checkable="false" checked="false"
+															clickable="false" enabled="true" focusable="false"
+															focused="false" scrollable="false" long-clickable="false"
+															password="false" selected="false" bounds="[120,54][168,88]"
+															resource-id="br.com.original.bank:id/imgItemMenu"
+															instance="7" />
+														<android.widget.TextView index="1"
+															text="Cartões" class="android.widget.TextView" package="br.com.original.bank"
+															content-desc="" checkable="false" checked="false"
+															clickable="false" enabled="true" focusable="false"
+															focused="false" scrollable="false" long-clickable="false"
+															password="false" selected="false" bounds="[188,54][700,87]"
+															resource-id="br.com.original.bank:id/tvItemMenu"
+															instance="17" />
+													</android.widget.LinearLayout>
+												</android.widget.LinearLayout>
+											</android.widget.LinearLayout>
+											<android.widget.LinearLayout
+												index="2" text="" class="android.widget.LinearLayout"
+												package="br.com.original.bank" content-desc="" checkable="false"
+												checked="false" clickable="true" enabled="true" focusable="false"
+												focused="false" scrollable="false" long-clickable="false"
+												password="false" selected="false" bounds="[80,117][720,214]"
+												resource-id="" instance="35">
+												<android.widget.LinearLayout
+													index="0" text="" class="android.widget.LinearLayout"
+													package="br.com.original.bank" content-desc="" checkable="false"
+													checked="false" clickable="false" enabled="true" focusable="false"
+													focused="false" scrollable="false" long-clickable="false"
+													password="false" selected="false" bounds="[80,117][720,214]"
+													resource-id="br.com.original.bank:id/linearLayoutItem"
+													instance="36">
+													<android.widget.LinearLayout
+														index="0" text="" class="android.widget.LinearLayout"
+														package="br.com.original.bank" content-desc="" checkable="false"
+														checked="false" clickable="false" enabled="true"
+														focusable="false" focused="false" scrollable="false"
+														long-clickable="false" password="false" selected="false"
+														bounds="[100,137][700,184]" resource-id="" instance="37">
+														<android.widget.ImageView index="0"
+															text="" class="android.widget.ImageView" package="br.com.original.bank"
+															content-desc="" checkable="false" checked="false"
+															clickable="false" enabled="true" focusable="false"
+															focused="false" scrollable="false" long-clickable="false"
+															password="false" selected="false" bounds="[120,137][160,184]"
+															resource-id="br.com.original.bank:id/imgItemMenu"
+															instance="8" />
+														<android.widget.TextView index="1"
+															text="Programa de pontos" class="android.widget.TextView"
+															package="br.com.original.bank" content-desc="" checkable="false"
+															checked="false" clickable="false" enabled="true"
+															focusable="false" focused="false" scrollable="false"
+															long-clickable="false" password="false" selected="false"
+															bounds="[180,144][700,177]" resource-id="br.com.original.bank:id/tvItemMenu"
+															instance="18" />
+													</android.widget.LinearLayout>
+												</android.widget.LinearLayout>
+											</android.widget.LinearLayout>
+											<android.widget.LinearLayout
+												index="3" text="" class="android.widget.LinearLayout"
+												package="br.com.original.bank" content-desc="" checkable="false"
+												checked="false" clickable="true" enabled="true" focusable="false"
+												focused="false" scrollable="false" long-clickable="false"
+												password="false" selected="false" bounds="[80,213][720,303]"
+												resource-id="" instance="38">
+												<android.widget.LinearLayout
+													index="0" text="" class="android.widget.LinearLayout"
+													package="br.com.original.bank" content-desc="" checkable="false"
+													checked="false" clickable="false" enabled="true" focusable="false"
+													focused="false" scrollable="false" long-clickable="false"
+													password="false" selected="false" bounds="[80,213][720,303]"
+													resource-id="br.com.original.bank:id/linearLayoutItem"
+													instance="39">
+													<android.widget.LinearLayout
+														index="0" text="" class="android.widget.LinearLayout"
+														package="br.com.original.bank" content-desc="" checkable="false"
+														checked="false" clickable="false" enabled="true"
+														focusable="false" focused="false" scrollable="false"
+														long-clickable="false" password="false" selected="false"
+														bounds="[100,233][700,273]" resource-id="" instance="40">
+														<android.widget.ImageView index="0"
+															text="" class="android.widget.ImageView" package="br.com.original.bank"
+															content-desc="" checkable="false" checked="false"
+															clickable="false" enabled="true" focusable="false"
+															focused="false" scrollable="false" long-clickable="false"
+															password="false" selected="false" bounds="[120,233][168,273]"
+															resource-id="br.com.original.bank:id/imgItemMenu"
+															instance="9" />
+														<android.widget.TextView index="1"
+															text="Investimentos" class="android.widget.TextView"
+															package="br.com.original.bank" content-desc="" checkable="false"
+															checked="false" clickable="false" enabled="true"
+															focusable="false" focused="false" scrollable="false"
+															long-clickable="false" password="false" selected="false"
+															bounds="[188,236][700,269]" resource-id="br.com.original.bank:id/tvItemMenu"
+															instance="19" />
+													</android.widget.LinearLayout>
+												</android.widget.LinearLayout>
+											</android.widget.LinearLayout>
+											<android.widget.LinearLayout
+												index="4" text="" class="android.widget.LinearLayout"
+												package="br.com.original.bank" content-desc="" checkable="false"
+												checked="false" clickable="true" enabled="true" focusable="false"
+												focused="false" scrollable="false" long-clickable="false"
+												password="false" selected="false" bounds="[80,302][720,400]"
+												resource-id="" instance="41">
+												<android.widget.LinearLayout
+													index="0" text="" class="android.widget.LinearLayout"
+													package="br.com.original.bank" content-desc="" checkable="false"
+													checked="false" clickable="false" enabled="true" focusable="false"
+													focused="false" scrollable="false" long-clickable="false"
+													password="false" selected="false" bounds="[80,302][720,400]"
+													resource-id="br.com.original.bank:id/linearLayoutItem"
+													instance="42">
+													<android.widget.LinearLayout
+														index="0" text="" class="android.widget.LinearLayout"
+														package="br.com.original.bank" content-desc="" checkable="false"
+														checked="false" clickable="false" enabled="true"
+														focusable="false" focused="false" scrollable="false"
+														long-clickable="false" password="false" selected="false"
+														bounds="[100,322][700,370]" resource-id="" instance="43">
+														<android.widget.ImageView index="0"
+															text="" class="android.widget.ImageView" package="br.com.original.bank"
+															content-desc="" checkable="false" checked="false"
+															clickable="false" enabled="true" focusable="false"
+															focused="false" scrollable="false" long-clickable="false"
+															password="false" selected="false" bounds="[120,322][160,370]"
+															resource-id="br.com.original.bank:id/imgItemMenu"
+															instance="10" />
+														<android.widget.TextView index="1"
+															text="Seguros" class="android.widget.TextView" package="br.com.original.bank"
+															content-desc="" checkable="false" checked="false"
+															clickable="false" enabled="true" focusable="false"
+															focused="false" scrollable="false" long-clickable="false"
+															password="false" selected="false" bounds="[180,329][700,362]"
+															resource-id="br.com.original.bank:id/tvItemMenu"
+															instance="20" />
+													</android.widget.LinearLayout>
+												</android.widget.LinearLayout>
+											</android.widget.LinearLayout>
+											<android.widget.LinearLayout
+												index="5" text="" class="android.widget.LinearLayout"
+												package="br.com.original.bank" content-desc="" checkable="false"
+												checked="false" clickable="true" enabled="true" focusable="false"
+												focused="false" scrollable="false" long-clickable="false"
+												password="false" selected="false" bounds="[80,399][720,497]"
+												resource-id="" instance="44">
+												<android.widget.LinearLayout
+													index="0" text="" class="android.widget.LinearLayout"
+													package="br.com.original.bank" content-desc="" checkable="false"
+													checked="false" clickable="false" enabled="true" focusable="false"
+													focused="false" scrollable="false" long-clickable="false"
+													password="false" selected="false" bounds="[80,399][720,497]"
+													resource-id="br.com.original.bank:id/linearLayoutItem"
+													instance="45">
+													<android.widget.LinearLayout
+														index="0" text="" class="android.widget.LinearLayout"
+														package="br.com.original.bank" content-desc="" checkable="false"
+														checked="false" clickable="false" enabled="true"
+														focusable="false" focused="false" scrollable="false"
+														long-clickable="false" password="false" selected="false"
+														bounds="[100,419][700,467]" resource-id="" instance="46">
+														<android.widget.ImageView index="0"
+															text="" class="android.widget.ImageView" package="br.com.original.bank"
+															content-desc="" checkable="false" checked="false"
+															clickable="false" enabled="true" focusable="false"
+															focused="false" scrollable="false" long-clickable="false"
+															password="false" selected="false" bounds="[120,419][167,467]"
+															resource-id="br.com.original.bank:id/imgItemMenu"
+															instance="11" />
+														<android.widget.TextView index="1"
+															text="Agendamentos" class="android.widget.TextView"
+															package="br.com.original.bank" content-desc="" checkable="false"
+															checked="false" clickable="false" enabled="true"
+															focusable="false" focused="false" scrollable="false"
+															long-clickable="false" password="false" selected="false"
+															bounds="[187,426][700,459]" resource-id="br.com.original.bank:id/tvItemMenu"
+															instance="21" />
+													</android.widget.LinearLayout>
+												</android.widget.LinearLayout>
+											</android.widget.LinearLayout>
+											<android.widget.LinearLayout
+												index="6" text="" class="android.widget.LinearLayout"
+												package="br.com.original.bank" content-desc="" checkable="false"
+												checked="false" clickable="true" enabled="true" focusable="false"
+												focused="false" scrollable="false" long-clickable="false"
+												password="false" selected="false" bounds="[80,496][720,594]"
+												resource-id="" instance="47">
+												<android.widget.LinearLayout
+													index="0" text="" class="android.widget.LinearLayout"
+													package="br.com.original.bank" content-desc="" checkable="false"
+													checked="false" clickable="false" enabled="true" focusable="false"
+													focused="false" scrollable="false" long-clickable="false"
+													password="false" selected="false" bounds="[80,496][720,594]"
+													resource-id="br.com.original.bank:id/linearLayoutItem"
+													instance="48">
+													<android.widget.LinearLayout
+														index="0" text="" class="android.widget.LinearLayout"
+														package="br.com.original.bank" content-desc="" checkable="false"
+														checked="false" clickable="false" enabled="true"
+														focusable="false" focused="false" scrollable="false"
+														long-clickable="false" password="false" selected="false"
+														bounds="[100,516][700,564]" resource-id="" instance="49">
+														<android.widget.ImageView index="0"
+															text="" class="android.widget.ImageView" package="br.com.original.bank"
+															content-desc="" checkable="false" checked="false"
+															clickable="false" enabled="true" focusable="false"
+															focused="false" scrollable="false" long-clickable="false"
+															password="false" selected="false" bounds="[120,516][166,564]"
+															resource-id="br.com.original.bank:id/imgItemMenu"
+															instance="12" />
+														<android.widget.TextView index="1"
+															text="Comprovantes" class="android.widget.TextView"
+															package="br.com.original.bank" content-desc="" checkable="false"
+															checked="false" clickable="false" enabled="true"
+															focusable="false" focused="false" scrollable="false"
+															long-clickable="false" password="false" selected="false"
+															bounds="[186,523][700,556]" resource-id="br.com.original.bank:id/tvItemMenu"
+															instance="22" />
+													</android.widget.LinearLayout>
+												</android.widget.LinearLayout>
+											</android.widget.LinearLayout>
+											<android.widget.LinearLayout
+												index="7" text="" class="android.widget.LinearLayout"
+												package="br.com.original.bank" content-desc="" checkable="false"
+												checked="false" clickable="true" enabled="true" focusable="false"
+												focused="false" scrollable="false" long-clickable="false"
+												password="false" selected="false" bounds="[80,593][720,691]"
+												resource-id="" instance="50">
+												<android.widget.LinearLayout
+													index="0" text="" class="android.widget.LinearLayout"
+													package="br.com.original.bank" content-desc="" checkable="false"
+													checked="false" clickable="false" enabled="true" focusable="false"
+													focused="false" scrollable="false" long-clickable="false"
+													password="false" selected="false" bounds="[80,593][720,691]"
+													resource-id="br.com.original.bank:id/linearLayoutItem"
+													instance="51">
+													<android.widget.LinearLayout
+														index="0" text="" class="android.widget.LinearLayout"
+														package="br.com.original.bank" content-desc="" checkable="false"
+														checked="false" clickable="false" enabled="true"
+														focusable="false" focused="false" scrollable="false"
+														long-clickable="false" password="false" selected="false"
+														bounds="[100,613][700,661]" resource-id="" instance="52">
+														<android.widget.ImageView index="0"
+															text="" class="android.widget.ImageView" package="br.com.original.bank"
+															content-desc="" checkable="false" checked="false"
+															clickable="false" enabled="true" focusable="false"
+															focused="false" scrollable="false" long-clickable="false"
+															password="false" selected="false" bounds="[120,613][168,661]"
+															resource-id="br.com.original.bank:id/imgItemMenu"
+															instance="13" />
+														<android.widget.TextView index="1"
+															text="Depósito de cheque" class="android.widget.TextView"
+															package="br.com.original.bank" content-desc="" checkable="false"
+															checked="false" clickable="false" enabled="true"
+															focusable="false" focused="false" scrollable="false"
+															long-clickable="false" password="false" selected="false"
+															bounds="[188,620][700,653]" resource-id="br.com.original.bank:id/tvItemMenu"
+															instance="23" />
+													</android.widget.LinearLayout>
+												</android.widget.LinearLayout>
+											</android.widget.LinearLayout>
+											<android.widget.LinearLayout
+												index="8" text="" class="android.widget.LinearLayout"
+												package="br.com.original.bank" content-desc="" checkable="false"
+												checked="false" clickable="true" enabled="true" focusable="false"
+												focused="false" scrollable="false" long-clickable="false"
+												password="false" selected="false" bounds="[80,690][720,788]"
+												resource-id="" instance="53">
+												<android.widget.LinearLayout
+													index="0" text="" class="android.widget.LinearLayout"
+													package="br.com.original.bank" content-desc="" checkable="false"
+													checked="false" clickable="false" enabled="true" focusable="false"
+													focused="false" scrollable="false" long-clickable="false"
+													password="false" selected="false" bounds="[80,690][720,788]"
+													resource-id="br.com.original.bank:id/linearLayoutItem"
+													instance="54">
+													<android.widget.LinearLayout
+														index="0" text="" class="android.widget.LinearLayout"
+														package="br.com.original.bank" content-desc="" checkable="false"
+														checked="false" clickable="false" enabled="true"
+														focusable="false" focused="false" scrollable="false"
+														long-clickable="false" password="false" selected="false"
+														bounds="[100,710][700,758]" resource-id="" instance="55">
+														<android.widget.ImageView index="0"
+															text="" class="android.widget.ImageView" package="br.com.original.bank"
+															content-desc="" checkable="false" checked="false"
+															clickable="false" enabled="true" focusable="false"
+															focused="false" scrollable="false" long-clickable="false"
+															password="false" selected="false" bounds="[120,710][160,758]"
+															resource-id="br.com.original.bank:id/imgItemMenu"
+															instance="14" />
+														<android.widget.TextView index="1"
+															text="Gerenciador Financeiro" class="android.widget.TextView"
+															package="br.com.original.bank" content-desc="" checkable="false"
+															checked="false" clickable="false" enabled="true"
+															focusable="false" focused="false" scrollable="false"
+															long-clickable="false" password="false" selected="false"
+															bounds="[180,717][700,750]" resource-id="br.com.original.bank:id/tvItemMenu"
+															instance="24" />
+													</android.widget.LinearLayout>
+												</android.widget.LinearLayout>
+											</android.widget.LinearLayout>
+											<android.widget.LinearLayout
+												index="9" text="" class="android.widget.LinearLayout"
+												package="br.com.original.bank" content-desc="" checkable="false"
+												checked="false" clickable="true" enabled="true" focusable="false"
+												focused="false" scrollable="false" long-clickable="false"
+												password="false" selected="false" bounds="[80,787][720,885]"
+												resource-id="" instance="56">
+												<android.widget.LinearLayout
+													index="0" text="" class="android.widget.LinearLayout"
+													package="br.com.original.bank" content-desc="" checkable="false"
+													checked="false" clickable="false" enabled="true" focusable="false"
+													focused="false" scrollable="false" long-clickable="false"
+													password="false" selected="false" bounds="[80,787][720,885]"
+													resource-id="br.com.original.bank:id/linearLayoutItem"
+													instance="57">
+													<android.widget.LinearLayout
+														index="0" text="" class="android.widget.LinearLayout"
+														package="br.com.original.bank" content-desc="" checkable="false"
+														checked="false" clickable="false" enabled="true"
+														focusable="false" focused="false" scrollable="false"
+														long-clickable="false" password="false" selected="false"
+														bounds="[100,807][700,855]" resource-id="" instance="58">
+														<android.widget.ImageView index="0"
+															text="" class="android.widget.ImageView" package="br.com.original.bank"
+															content-desc="" checkable="false" checked="false"
+															clickable="false" enabled="true" focusable="false"
+															focused="false" scrollable="false" long-clickable="false"
+															password="false" selected="false" bounds="[120,807][168,855]"
+															resource-id="br.com.original.bank:id/imgItemMenu"
+															instance="15" />
+														<android.widget.TextView index="1"
+															text="Atendimento" class="android.widget.TextView"
+															package="br.com.original.bank" content-desc="" checkable="false"
+															checked="false" clickable="false" enabled="true"
+															focusable="false" focused="false" scrollable="false"
+															long-clickable="false" password="false" selected="false"
+															bounds="[188,814][700,847]" resource-id="br.com.original.bank:id/tvItemMenu"
+															instance="25" />
+													</android.widget.LinearLayout>
+												</android.widget.LinearLayout>
+											</android.widget.LinearLayout>
+											<android.widget.LinearLayout
+												index="10" text="" class="android.widget.LinearLayout"
+												package="br.com.original.bank" content-desc="" checkable="false"
+												checked="false" clickable="true" enabled="true" focusable="false"
+												focused="false" scrollable="false" long-clickable="false"
+												password="false" selected="false" bounds="[80,884][720,1002]"
+												resource-id="" instance="59">
+												<android.widget.LinearLayout
+													index="0" text="" class="android.widget.LinearLayout"
+													package="br.com.original.bank" content-desc="" checkable="false"
+													checked="false" clickable="false" enabled="true" focusable="false"
+													focused="false" scrollable="false" long-clickable="false"
+													password="false" selected="false" bounds="[80,884][720,1002]"
+													resource-id="br.com.original.bank:id/linearLayoutItem"
+													instance="60">
+													<android.widget.LinearLayout
+														index="0" text="" class="android.widget.LinearLayout"
+														package="br.com.original.bank" content-desc="" checkable="false"
+														checked="false" clickable="false" enabled="true"
+														focusable="false" focused="false" scrollable="false"
+														long-clickable="false" password="false" selected="false"
+														bounds="[80,914][720,962]" resource-id="" instance="61">
+														<android.widget.ImageView index="0"
+															text="" class="android.widget.ImageView" package="br.com.original.bank"
+															content-desc="" checkable="false" checked="false"
+															clickable="false" enabled="true" focusable="false"
+															focused="false" scrollable="false" long-clickable="false"
+															password="false" selected="false" bounds="[100,914][162,962]"
+															resource-id="br.com.original.bank:id/imgItemMenu"
+															instance="16" />
+														<android.widget.TextView index="1"
+															text="Sair da conta" class="android.widget.TextView"
+															package="br.com.original.bank" content-desc="" checkable="false"
+															checked="false" clickable="false" enabled="true"
+															focusable="false" focused="false" scrollable="false"
+															long-clickable="false" password="false" selected="false"
+															bounds="[182,921][720,954]" resource-id="br.com.original.bank:id/tvItemMenu"
+															instance="26" />
+													</android.widget.LinearLayout>
+												</android.widget.LinearLayout>
+											</android.widget.LinearLayout>
+											<android.widget.LinearLayout
+												index="11" text="" class="android.widget.LinearLayout"
+												package="br.com.original.bank" content-desc="" checkable="false"
+												checked="false" clickable="true" enabled="true" focusable="false"
+												focused="false" scrollable="false" long-clickable="false"
+												password="false" selected="false" bounds="[80,1001][720,1184]"
+												resource-id="" instance="62">
+												<android.widget.LinearLayout
+													index="0" text="" class="android.widget.LinearLayout"
+													package="br.com.original.bank" content-desc="" checkable="false"
+													checked="false" clickable="false" enabled="true" focusable="false"
+													focused="false" scrollable="false" long-clickable="false"
+													password="false" selected="false" bounds="[80,1001][720,1184]"
+													resource-id="br.com.original.bank:id/linearLayoutItem"
+													instance="63">
+													<android.widget.LinearLayout
+														index="0" text="" class="android.widget.LinearLayout"
+														package="br.com.original.bank" content-desc="" checkable="false"
+														checked="false" clickable="false" enabled="true"
+														focusable="false" focused="false" scrollable="false"
+														long-clickable="false" password="false" selected="false"
+														bounds="[100,1021][700,1054]" resource-id="" instance="64">
+														<android.widget.TextView index="0"
+															text="Política de privacidade" class="android.widget.TextView"
+															package="br.com.original.bank" content-desc="" checkable="false"
+															checked="false" clickable="false" enabled="true"
+															focusable="false" focused="false" scrollable="false"
+															long-clickable="false" password="false" selected="false"
+															bounds="[120,1021][700,1054]" resource-id="br.com.original.bank:id/tvItemMenu"
+															instance="27" />
+													</android.widget.LinearLayout>
+												</android.widget.LinearLayout>
+											</android.widget.LinearLayout>
+										</android.widget.ListView>
+									</android.widget.LinearLayout>
+								</android.support.v4.widget.DrawerLayout>
+								<android.widget.FrameLayout index="1"
+									text="" class="android.widget.FrameLayout" package="br.com.original.bank"
+									content-desc="" checkable="false" checked="false" clickable="false"
+									enabled="true" focusable="false" focused="false" scrollable="false"
+									long-clickable="false" password="false" selected="false"
+									bounds="[0,0][720,1184]" resource-id="br.com.original.bank:id/containerFragmentWorklight"
+									instance="16">
+									<android.widget.RelativeLayout
+										index="0" text="" class="android.widget.RelativeLayout"
+										package="br.com.original.bank" content-desc="" checkable="false"
+										checked="false" clickable="false" enabled="true" focusable="false"
+										focused="false" scrollable="false" long-clickable="false"
+										password="false" selected="false" bounds="[0,0][720,1184]"
+										resource-id="" instance="13">
+										<android.webkit.WebView index="0" text=""
+											class="android.webkit.WebView" package="br.com.original.bank"
+											content-desc="" checkable="false" checked="false" clickable="false"
+											enabled="true" focusable="false" focused="false" scrollable="false"
+											long-clickable="false" password="false" selected="false"
+											bounds="[0,0][720,1184]" resource-id="" instance="0">
+											<android.webkit.WebView index="0"
+												text="" class="android.webkit.WebView" package="br.com.original.bank"
+												content-desc="" checkable="false" checked="false" clickable="false"
+												enabled="true" focusable="true" focused="true" scrollable="true"
+												long-clickable="false" password="false" selected="false"
+												bounds="[0,0][720,1184]" resource-id="" instance="1">
+												<android.view.View index="0" text=""
+													class="android.view.View" package="br.com.original.bank"
+													content-desc="" checkable="false" checked="false"
+													clickable="false" enabled="true" focusable="false" focused="false"
+													scrollable="false" long-clickable="false" password="false"
+													selected="false" bounds="[0,0][720,1184]" resource-id="content"
+													instance="2">
+													<android.view.View index="0" text=""
+														class="android.view.View" package="br.com.original.bank"
+														content-desc="" checkable="false" checked="false"
+														clickable="false" enabled="true" focusable="false"
+														focused="false" scrollable="false" long-clickable="false"
+														password="false" selected="false" bounds="[0,0][720,-60]"
+														resource-id="" instance="3">
+														<android.view.View index="0" text=""
+															class="android.view.View" package="br.com.original.bank"
+															content-desc="" checkable="false" checked="false"
+															clickable="false" enabled="true" focusable="false"
+															focused="false" scrollable="false" long-clickable="false"
+															password="false" selected="false" bounds="[50,0][86,-110]"
+															resource-id="" instance="4">
+															<android.view.View index="0" text=""
+																class="android.view.View" package="br.com.original.bank"
+																content-desc="?" checkable="false" checked="false"
+																clickable="true" enabled="true" focusable="false"
+																focused="false" scrollable="false" long-clickable="false"
+																password="false" selected="false" bounds="[50,0][86,-110]"
+																resource-id="" instance="5" />
+														</android.view.View>
+														<android.view.View index="1" text=""
+															class="android.view.View" package="br.com.original.bank"
+															content-desc="" checkable="false" checked="false"
+															clickable="false" enabled="true" focusable="false"
+															focused="false" scrollable="false" long-clickable="false"
+															password="false" selected="false" bounds="[112,0][670,-150]"
+															resource-id="" instance="6" />
+													</android.view.View>
+													<android.view.View index="1" text=""
+														class="android.view.View" package="br.com.original.bank"
+														content-desc="" checkable="false" checked="false"
+														clickable="false" enabled="true" focusable="false"
+														focused="false" scrollable="false" long-clickable="false"
+														password="false" selected="false" bounds="[580,0][720,10]"
+														resource-id="" instance="7">
+														<android.widget.EditText index="0"
+															text="" class="android.widget.EditText" package="br.com.original.bank"
+															content-desc="" checkable="false" checked="false"
+															clickable="false" enabled="false" focusable="false"
+															focused="false" scrollable="false" long-clickable="false"
+															password="false" selected="false" bounds="[650,0][712,86]"
+															resource-id="" instance="0" />
+														<android.view.View index="1" text=""
+															class="android.view.View" package="br.com.original.bank"
+															content-desc="" checkable="false" checked="false"
+															clickable="false" enabled="true" focusable="false"
+															focused="false" scrollable="false" long-clickable="false"
+															password="false" selected="false" bounds="[618,0][618,-50]"
+															resource-id="" instance="8" />
+													</android.view.View>
+													<android.view.View index="2" text=""
+														class="android.view.View" package="br.com.original.bank"
+														content-desc="" checkable="false" checked="false"
+														clickable="false" enabled="true" focusable="false"
+														focused="false" scrollable="false" long-clickable="false"
+														password="false" selected="false" bounds="[0,0][720,1184]"
+														resource-id="ioniccontent" instance="9">
+														<android.view.View index="0" text=""
+															class="android.view.View" package="br.com.original.bank"
+															content-desc="" checkable="false" checked="false"
+															clickable="false" enabled="true" focusable="false"
+															focused="false" scrollable="false" long-clickable="false"
+															password="false" selected="false" bounds="[0,0][720,1184]"
+															resource-id="" instance="10">
+															<android.view.View index="0" text=""
+																class="android.view.View" package="br.com.original.bank"
+																content-desc="" checkable="false" checked="false"
+																clickable="false" enabled="true" focusable="false"
+																focused="false" scrollable="false" long-clickable="false"
+																password="false" selected="false" bounds="[0,1086][720,1184]"
+																resource-id="" instance="11">
+																<android.view.View index="0" text=""
+																	class="android.view.View" package="br.com.original.bank"
+																	content-desc="" checkable="false" checked="false"
+																	clickable="false" enabled="true" focusable="false"
+																	focused="false" scrollable="false" long-clickable="false"
+																	password="false" selected="false" bounds="[0,1090][0,1184]"
+																	resource-id="" instance="12" />
+																<android.view.View index="1" text=""
+																	class="android.view.View" package="br.com.original.bank"
+																	content-desc="" checkable="false" checked="false"
+																	clickable="false" enabled="true" focusable="false"
+																	focused="false" scrollable="false" long-clickable="false"
+																	password="false" selected="false" bounds="[0,1090][0,1184]"
+																	resource-id="" instance="13" />
+																<android.view.View index="2" text=""
+																	class="android.view.View" package="br.com.original.bank"
+																	content-desc="" checkable="false" checked="false"
+																	clickable="false" enabled="true" focusable="false"
+																	focused="false" scrollable="false" long-clickable="false"
+																	password="false" selected="false" bounds="[0,1090][0,1184]"
+																	resource-id="" instance="14" />
+																<android.view.View index="3" text=""
+																	class="android.view.View" package="br.com.original.bank"
+																	content-desc="? Home" checkable="false" checked="false"
+																	clickable="false" enabled="true" focusable="false"
+																	focused="false" scrollable="false" long-clickable="false"
+																	password="false" selected="false" bounds="[0,1086][240,1180]"
+																	resource-id="" instance="15">
+																	<android.view.View index="0" text=""
+																		class="android.view.View" package="br.com.original.bank"
+																		content-desc="" checkable="false" checked="false"
+																		clickable="false" enabled="true" focusable="false"
+																		focused="false" scrollable="false" long-clickable="false"
+																		password="false" selected="false" bounds="[0,1078][248,1120]"
+																		resource-id="" instance="16">
+																		<android.view.View index="0" text=""
+																			class="android.view.View" package="br.com.original.bank"
+																			content-desc="?" checkable="false" checked="false"
+																			clickable="true" enabled="true" focusable="false"
+																			focused="false" scrollable="false" long-clickable="false"
+																			password="false" selected="false" bounds="[98,1100][142,1144]"
+																			resource-id="" instance="17" />
+																	</android.view.View>
+																	<android.view.View index="1" text=""
+																		class="android.view.View" package="br.com.original.bank"
+																		content-desc="Home" checkable="false" checked="false"
+																		clickable="true" enabled="true" focusable="false"
+																		focused="false" scrollable="false" long-clickable="false"
+																		password="false" selected="false" bounds="[0,1112][240,1184]"
+																		resource-id="" instance="18" />
+																</android.view.View>
+																<android.view.View index="4" text=""
+																	class="android.view.View" package="br.com.original.bank"
+																	content-desc="A Chat" checkable="false" checked="false"
+																	clickable="false" enabled="true" focusable="false"
+																	focused="false" scrollable="false" long-clickable="false"
+																	password="false" selected="false" bounds="[240,1090][480,1184]"
+																	resource-id="" instance="19">
+																	<android.view.View index="0" text=""
+																		class="android.view.View" package="br.com.original.bank"
+																		content-desc="" checkable="false" checked="false"
+																		clickable="false" enabled="true" focusable="false"
+																		focused="false" scrollable="false" long-clickable="false"
+																		password="false" selected="false" bounds="[232,1082][488,1124]"
+																		resource-id="" instance="20">
+																		<android.view.View index="0" text=""
+																			class="android.view.View" package="br.com.original.bank"
+																			content-desc="A" checkable="false" checked="false"
+																			clickable="true" enabled="true" focusable="false"
+																			focused="false" scrollable="false" long-clickable="false"
+																			password="false" selected="false" bounds="[338,1104][382,1148]"
+																			resource-id="" instance="21" />
+																	</android.view.View>
+																	<android.view.View index="1" text=""
+																		class="android.view.View" package="br.com.original.bank"
+																		content-desc="Chat" checkable="false" checked="false"
+																		clickable="true" enabled="true" focusable="false"
+																		focused="false" scrollable="false" long-clickable="false"
+																		password="false" selected="false" bounds="[240,1116][480,1184]"
+																		resource-id="" instance="22" />
+																</android.view.View>
+																<android.view.View index="5" text=""
+																	class="android.view.View" package="br.com.original.bank"
+																	content-desc="? Voz" checkable="false" checked="false"
+																	clickable="false" enabled="true" focusable="false"
+																	focused="false" scrollable="false" long-clickable="false"
+																	password="false" selected="false" bounds="[480,1090][720,1184]"
+																	resource-id="" instance="23">
+																	<android.view.View index="0" text=""
+																		class="android.view.View" package="br.com.original.bank"
+																		content-desc="" checkable="false" checked="false"
+																		clickable="false" enabled="true" focusable="false"
+																		focused="false" scrollable="false" long-clickable="false"
+																		password="false" selected="false" bounds="[472,1082][720,1124]"
+																		resource-id="" instance="24">
+																		<android.view.View index="0" text=""
+																			class="android.view.View" package="br.com.original.bank"
+																			content-desc="?" checkable="false" checked="false"
+																			clickable="true" enabled="true" focusable="false"
+																			focused="false" scrollable="false" long-clickable="false"
+																			password="false" selected="false" bounds="[582,1104][618,1148]"
+																			resource-id="" instance="25" />
+																	</android.view.View>
+																	<android.view.View index="1" text=""
+																		class="android.view.View" package="br.com.original.bank"
+																		content-desc="Voz" checkable="false" checked="false"
+																		clickable="true" enabled="true" focusable="false"
+																		focused="false" scrollable="false" long-clickable="false"
+																		password="false" selected="false" bounds="[480,1116][720,1184]"
+																		resource-id="" instance="26" />
+																</android.view.View>
+															</android.view.View>
+															<android.view.View index="1" text=""
+																class="android.view.View" package="br.com.original.bank"
+																content-desc="" checkable="false" checked="false"
+																clickable="false" enabled="true" focusable="false"
+																focused="false" scrollable="false" long-clickable="false"
+																password="false" selected="false" bounds="[0,0][720,1184]"
+																resource-id="" instance="27">
+																<android.view.View index="0" text=""
+																	class="android.view.View" package="br.com.original.bank"
+																	content-desc="" checkable="false" checked="false"
+																	clickable="false" enabled="true" focusable="false"
+																	focused="false" scrollable="false" long-clickable="false"
+																	password="false" selected="false" bounds="[0,0][720,1184]"
+																	resource-id="" instance="28">
+																	<android.view.View index="0" text=""
+																		class="android.view.View" package="br.com.original.bank"
+																		content-desc="APLICAÇÃO CONFIRMADA" checkable="false"
+																		checked="false" clickable="false" enabled="true"
+																		focusable="false" focused="false" scrollable="false"
+																		long-clickable="false" password="false" selected="false"
+																		bounds="[0,0][720,1184]" resource-id="" instance="29">
+																		<android.view.View index="0" text=""
+																			class="android.view.View" package="br.com.original.bank"
+																			content-desc="" checkable="false" checked="false"
+																			clickable="false" enabled="true" focusable="false"
+																			focused="false" scrollable="false" long-clickable="false"
+																			password="false" selected="false" bounds="[0,86][720,1056]"
+																			resource-id="" instance="30">
+																			<android.view.View index="0" text=""
+																				class="android.view.View" package="br.com.original.bank"
+																				content-desc="" checkable="false" checked="false"
+																				clickable="false" enabled="true" focusable="false"
+																				focused="false" scrollable="false" long-clickable="false"
+																				password="false" selected="false" bounds="[0,72][720,1040]"
+																				resource-id="" instance="31">
+																				<android.view.View index="0" text=""
+																					class="android.view.View" package="br.com.original.bank"
+																					content-desc="" checkable="false" checked="false"
+																					clickable="false" enabled="true" focusable="false"
+																					focused="false" scrollable="false" long-clickable="false"
+																					password="false" selected="false" bounds="[30,132][690,876]"
+																					resource-id="" instance="32">
+																					<android.view.View index="0"
+																						text="" class="android.view.View" package="br.com.original.bank"
+																						content-desc="" checkable="false" checked="false"
+																						clickable="false" enabled="true" focusable="false"
+																						focused="false" scrollable="false" long-clickable="false"
+																						password="false" selected="false" bounds="[60,162][660,260]"
+																						resource-id="" instance="33">
+																						<android.widget.Image index="0"
+																							text="" class="android.widget.Image" package="br.com.original.bank"
+																							content-desc="original_logo" checkable="false"
+																							checked="false" clickable="true" enabled="true"
+																							focusable="false" focused="false" scrollable="false"
+																							long-clickable="false" password="false" selected="false"
+																							bounds="[60,172][266,236]" resource-id=""
+																							instance="0" />
+																					</android.view.View>
+																					<android.view.View index="1"
+																						text="" class="android.view.View" package="br.com.original.bank"
+																						content-desc="COMPROVANTE DE APLICAÇÃO" checkable="false"
+																						checked="false" clickable="true" enabled="true"
+																						focusable="false" focused="false" scrollable="false"
+																						long-clickable="false" password="false" selected="false"
+																						bounds="[60,270][660,306]" resource-id=""
+																						instance="34" />
+																					<android.view.View index="2"
+																						text="" class="android.view.View" package="br.com.original.bank"
+																						content-desc="Produto: BKB EXCHANGE FIC FIM"
+																						checkable="false" checked="false" clickable="true"
+																						enabled="true" focusable="false" focused="false"
+																						scrollable="false" long-clickable="false"
+																						password="false" selected="false" bounds="[50,326][670,366]"
+																						resource-id="" instance="35" />
+																					<android.view.View index="3"
+																						text="" class="android.view.View" package="br.com.original.bank"
+																						content-desc="Código do produto: 732" checkable="false"
+																						checked="false" clickable="true" enabled="true"
+																						focusable="false" focused="false" scrollable="false"
+																						long-clickable="false" password="false" selected="false"
+																						bounds="[50,366][670,406]" resource-id=""
+																						instance="36" />
+																					<android.view.View index="4"
+																						text="" class="android.view.View" package="br.com.original.bank"
+																						content-desc="&#10;" checkable="false" checked="false"
+																						clickable="true" enabled="true" focusable="false"
+																						focused="false" scrollable="false" long-clickable="false"
+																						password="false" selected="false" bounds="[30,396][690,436]"
+																						resource-id="" instance="37" />
+																					<android.view.View index="5"
+																						text="" class="android.view.View" package="br.com.original.bank"
+																						content-desc="Valor da aplicação: R$50.100,00"
+																						checkable="false" checked="false" clickable="true"
+																						enabled="true" focusable="false" focused="false"
+																						scrollable="false" long-clickable="false"
+																						password="false" selected="false" bounds="[50,446][670,486]"
+																						resource-id="" instance="38" />
+																					<android.view.View index="6"
+																						text="" class="android.view.View" package="br.com.original.bank"
+																						content-desc="&#10;" checkable="false" checked="false"
+																						clickable="true" enabled="true" focusable="false"
+																						focused="false" scrollable="false" long-clickable="false"
+																						password="false" selected="false" bounds="[30,476][690,516]"
+																						resource-id="" instance="39" />
+																					<android.view.View index="7"
+																						text="" class="android.view.View" package="br.com.original.bank"
+																						content-desc="Tipo de recorrência: Única"
+																						checkable="false" checked="false" clickable="true"
+																						enabled="true" focusable="false" focused="false"
+																						scrollable="false" long-clickable="false"
+																						password="false" selected="false" bounds="[50,526][670,566]"
+																						resource-id="" instance="40" />
+																					<android.view.View index="8"
+																						text="" class="android.view.View" package="br.com.original.bank"
+																						content-desc="Débito em C/C: 10/10/2016"
+																						checkable="false" checked="false" clickable="true"
+																						enabled="true" focusable="false" focused="false"
+																						scrollable="false" long-clickable="false"
+																						password="false" selected="false" bounds="[50,566][670,606]"
+																						resource-id="" instance="41" />
+																					<android.view.View index="9"
+																						text="" class="android.view.View" package="br.com.original.bank"
+																						content-desc="Conversão em cotas: 10/10/2016"
+																						checkable="false" checked="false" clickable="true"
+																						enabled="true" focusable="false" focused="false"
+																						scrollable="false" long-clickable="false"
+																						password="false" selected="false" bounds="[50,606][670,646]"
+																						resource-id="" instance="42" />
+																					<android.view.View index="10"
+																						text="" class="android.view.View" package="br.com.original.bank"
+																						content-desc="&#10;" checkable="false" checked="false"
+																						clickable="true" enabled="true" focusable="false"
+																						focused="false" scrollable="false" long-clickable="false"
+																						password="false" selected="false" bounds="[30,636][690,676]"
+																						resource-id="" instance="43" />
+																					<android.view.View index="11"
+																						text="" class="android.view.View" package="br.com.original.bank"
+																						content-desc="Titular: VALERIA BOARO" checkable="false"
+																						checked="false" clickable="true" enabled="true"
+																						focusable="false" focused="false" scrollable="false"
+																						long-clickable="false" password="false" selected="false"
+																						bounds="[50,686][670,726]" resource-id=""
+																						instance="44" />
+																					<android.view.View index="12"
+																						text="" class="android.view.View" package="br.com.original.bank"
+																						content-desc="Agência: 1" checkable="false"
+																						checked="false" clickable="true" enabled="true"
+																						focusable="false" focused="false" scrollable="false"
+																						long-clickable="false" password="false" selected="false"
+																						bounds="[50,726][670,766]" resource-id=""
+																						instance="45" />
+																					<android.view.View index="13"
+																						text="" class="android.view.View" package="br.com.original.bank"
+																						content-desc="Conta: 786497" checkable="false"
+																						checked="false" clickable="true" enabled="true"
+																						focusable="false" focused="false" scrollable="false"
+																						long-clickable="false" password="false" selected="false"
+																						bounds="[50,766][670,806]" resource-id=""
+																						instance="46" />
+																					<android.view.View index="14"
+																						text="" class="android.view.View" package="br.com.original.bank"
+																						content-desc="" checkable="false" checked="false"
+																						clickable="false" enabled="true" focusable="false"
+																						focused="false" scrollable="false" long-clickable="false"
+																						password="false" selected="false" bounds="[60,820][660,822]"
+																						resource-id="" instance="47" />
+																				</android.view.View>
+																				<android.view.View index="1" text=""
+																					class="android.view.View" package="br.com.original.bank"
+																					content-desc="" checkable="false" checked="false"
+																					clickable="false" enabled="true" focusable="false"
+																					focused="false" scrollable="false" long-clickable="false"
+																					password="false" selected="false" bounds="[30,916][690,1064]"
+																					resource-id="" instance="48">
+																					<android.view.View index="0"
+																						text="" class="android.view.View" package="br.com.original.bank"
+																						content-desc="?" checkable="false" checked="false"
+																						clickable="false" enabled="true" focusable="false"
+																						focused="false" scrollable="false" long-clickable="false"
+																						password="false" selected="false" bounds="[308,950][412,1054]"
+																						resource-id="" instance="49">
+																						<android.view.View index="0"
+																							text="" class="android.view.View" package="br.com.original.bank"
+																							content-desc="?" checkable="false" checked="false"
+																							clickable="true" enabled="true" focusable="false"
+																							focused="false" scrollable="false"
+																							long-clickable="false" password="false" selected="false"
+																							bounds="[328,968][392,1032]" resource-id=""
+																							instance="50" />
+																					</android.view.View>
+																				</android.view.View>
+																				<android.widget.Button index="2"
+																					text="" class="android.widget.Button" package="br.com.original.bank"
+																					content-desc="VOLTAR " checkable="false" checked="false"
+																					clickable="true" enabled="true" focusable="true"
+																					focused="false" scrollable="false" long-clickable="false"
+																					password="false" selected="false" bounds="[30,1134][690,1184]"
+																					resource-id="" instance="6" />
+																			</android.view.View>
+																			<android.view.View index="1" text=""
+																				class="android.view.View" package="br.com.original.bank"
+																				content-desc="" checkable="false" checked="false"
+																				clickable="false" enabled="true" focusable="false"
+																				focused="false" scrollable="false" long-clickable="false"
+																				password="false" selected="false" bounds="[708,90][714,1052]"
+																				resource-id="" instance="51" />
+																		</android.view.View>
+																	</android.view.View>
+																</android.view.View>
+																<android.view.View index="1" text=""
+																	class="android.view.View" package="br.com.original.bank"
+																	content-desc="" checkable="false" checked="false"
+																	clickable="false" enabled="true" focusable="false"
+																	focused="false" scrollable="false" long-clickable="false"
+																	password="false" selected="false" bounds="[0,1180][720,1184]"
+																	resource-id="" instance="52">
+																	<android.view.View index="0" text=""
+																		class="android.view.View" package="br.com.original.bank"
+																		content-desc="? " checkable="false" checked="false"
+																		clickable="true" enabled="true" focusable="false"
+																		focused="false" scrollable="false" long-clickable="false"
+																		password="false" selected="false" bounds="[20,2378][60,1184]"
+																		resource-id="" instance="53" />
+																	<android.widget.Button index="1"
+																		text="" class="android.widget.Button" package="br.com.original.bank"
+																		content-desc="TESTE " checkable="false" checked="false"
+																		clickable="true" enabled="true" focusable="true"
+																		focused="false" scrollable="false" long-clickable="false"
+																		password="false" selected="false" bounds="[20,1240][700,1184]"
+																		resource-id="" instance="7" />
+																</android.view.View>
+																<android.view.View index="2" text=""
+																	class="android.view.View" package="br.com.original.bank"
+																	content-desc="" checkable="false" checked="false"
+																	clickable="false" enabled="true" focusable="false"
+																	focused="false" scrollable="false" long-clickable="false"
+																	password="false" selected="false" bounds="[0,1376][720,1184]"
+																	resource-id="" instance="54">
+																	<android.view.View index="0" text=""
+																		class="android.view.View" package="br.com.original.bank"
+																		content-desc="" checkable="false" checked="false"
+																		clickable="false" enabled="true" focusable="false"
+																		focused="false" scrollable="false" long-clickable="false"
+																		password="false" selected="false" bounds="[0,1406][720,1184]"
+																		resource-id="" instance="55" />
+																	<android.view.View index="1" text=""
+																		class="android.view.View" package="br.com.original.bank"
+																		content-desc="" checkable="false" checked="false"
+																		clickable="false" enabled="true" focusable="false"
+																		focused="false" scrollable="false" long-clickable="false"
+																		password="false" selected="false" bounds="[0,1524][720,1184]"
+																		resource-id="" instance="56">
+																		<android.view.View index="0" text=""
+																			class="android.view.View" package="br.com.original.bank"
+																			content-desc="" checkable="false" checked="false"
+																			clickable="false" enabled="true" focusable="false"
+																			focused="false" scrollable="false" long-clickable="false"
+																			password="false" selected="false" bounds="[0,1522][720,1184]"
+																			resource-id="" instance="57">
+																			<android.widget.ListView
+																				index="0" text="" class="android.widget.ListView"
+																				package="br.com.original.bank" content-desc=""
+																				checkable="false" checked="false" clickable="false"
+																				enabled="true" focusable="false" focused="false"
+																				scrollable="false" long-clickable="false" password="false"
+																				selected="false" bounds="[0,1522][720,1184]"
+																				resource-id="" instance="1" />
+																		</android.view.View>
+																		<android.view.View index="1" text=""
+																			class="android.view.View" package="br.com.original.bank"
+																			content-desc="" checkable="false" checked="false"
+																			clickable="false" enabled="true" focusable="false"
+																			focused="false" scrollable="false" long-clickable="false"
+																			password="false" selected="false" bounds="[708,1528][714,1184]"
+																			resource-id="" instance="58" />
+																	</android.view.View>
+																</android.view.View>
+															</android.view.View>
+														</android.view.View>
+													</android.view.View>
+													<android.view.View index="3" text=""
+														class="android.view.View" package="br.com.original.bank"
+														content-desc="" checkable="false" checked="false"
+														clickable="false" enabled="true" focusable="false"
+														focused="false" scrollable="false" long-clickable="false"
+														password="false" selected="false" bounds="[0,0][720,88]"
+														resource-id="" instance="59">
+														<android.view.View index="0" text=""
+															class="android.view.View" package="br.com.original.bank"
+															content-desc="" checkable="false" checked="false"
+															clickable="false" enabled="true" focusable="false"
+															focused="false" scrollable="false" long-clickable="false"
+															password="false" selected="false" bounds="[20,10][48,78]"
+															resource-id="" instance="60">
+															<android.view.View index="0" text=""
+																class="android.view.View" package="br.com.original.bank"
+																content-desc="?" checkable="false" checked="false"
+																clickable="true" enabled="true" focusable="false"
+																focused="false" scrollable="false" long-clickable="false"
+																password="false" selected="false" bounds="[20,10][48,74]"
+																resource-id="" instance="61" />
+															<android.view.View index="1" text=""
+																class="android.view.View" package="br.com.original.bank"
+																content-desc="" checkable="false" checked="false"
+																clickable="false" enabled="true" focusable="false"
+																focused="false" scrollable="false" long-clickable="false"
+																password="false" selected="false" bounds="[8,0][60,90]"
+																resource-id="" instance="62" />
+														</android.view.View>
+														<android.view.View index="1" text=""
+															class="android.view.View" package="br.com.original.bank"
+															content-desc="APLICAÇÃO CONFIRMADA" checkable="false"
+															checked="false" clickable="true" enabled="true"
+															focusable="false" focused="false" scrollable="false"
+															long-clickable="false" password="false" selected="false"
+															bounds="[74,0][646,86]" resource-id="" instance="63" />
+														<android.view.View index="2" text=""
+															class="android.view.View" package="br.com.original.bank"
+															content-desc="" checkable="false" checked="false"
+															clickable="false" enabled="true" focusable="false"
+															focused="false" scrollable="false" long-clickable="false"
+															password="false" selected="false" bounds="[710,10][710,78]"
+															resource-id="" instance="64" />
+													</android.view.View>
+												</android.view.View>
+											</android.webkit.WebView>
+										</android.webkit.WebView>
+									</android.widget.RelativeLayout>
+								</android.widget.FrameLayout>
+							</android.widget.RelativeLayout>
+						</android.widget.FrameLayout>
+					</android.widget.LinearLayout>
+				</android.widget.FrameLayout>
+			</android.widget.LinearLayout>
+			<android.view.View index="1" text=""
+				class="android.view.View" package="br.com.original.bank"
+				content-desc="" checkable="false" checked="false" clickable="false"
+				enabled="true" focusable="false" focused="false" scrollable="false"
+				long-clickable="false" password="false" selected="false"
+				bounds="[0,1184][720,1280]" resource-id="android:id/navigationBarBackground"
+				instance="65" />
+		</android.widget.FrameLayout>
+	</hierarchy>
+</root>

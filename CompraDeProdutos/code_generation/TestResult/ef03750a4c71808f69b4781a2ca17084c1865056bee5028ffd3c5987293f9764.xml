@@ -1,0 +1,43 @@
+<acceptance-test-run title="04. Adicionar ao carrinho" name="04. Adicionar ao carrinho" steps="3" successful="3" failures="0" skipped="0" ignored="0" pending="0" result="SUCCESS" duration="11812" timestamp="2016-09-27T14:07:22.255-03:00" session-id="a2ffd6f0-ae0a-4320-8add-02dffda6c5d2">
+  <user-story id="AdicionarAoCarrinhoProdutoAppleiPhone5" name="Adicionar ao carrinho produto applei phone5" path="stories/CompraDeProdutos/AdicionarAoCarrinhoProdutoAppleiPhone5.story"/>
+  <tags>
+    <tag name="Compra de produtos" type="feature"/>
+    <tag name="Adicionar ao carrinho produto applei phone5" type="story"/>
+    <tag name="Compra de produtos/Rot. 01   adicionar ao carrinho produto apple i phone 5" type="story"/>
+  </tags>
+  <test-group name="Given que estou na tela de detalhe do produto" result="SUCCESS">
+    <screenshots>
+      <screenshot image="06b03f7d802deae9e49f2c596d9755d3.png"/>
+      <screenshot image="cad6e19d78d14561140dfa81e9ac0204.png"/>
+    </screenshots>
+    <test-step result="SUCCESS" duration="3721">
+      <screenshots>
+        <screenshot image="06b03f7d802deae9e49f2c596d9755d3.png"/>
+        <screenshot image="cad6e19d78d14561140dfa81e9ac0204.png"/>
+      </screenshots>
+      <description>Verifica se esta na tela de detalhe do produto</description>
+    </test-step>
+  </test-group>
+  <test-group name="When clico em Add to cart" result="SUCCESS">
+    <screenshots>
+      <screenshot image="55cb5f9ec11819e5cce5859b4ac6c3d3.png"/>
+    </screenshots>
+    <test-step result="SUCCESS" duration="3042">
+      <screenshots>
+        <screenshot image="e74aa1a7a16af323a204931a24dca0d7.png"/>
+      </screenshots>
+      <description>Clica em add to cart</description>
+    </test-step>
+  </test-group>
+  <test-group name="Then exibe a mensagem: You just added iPhone 5 to your cart And clico em Continue Shopping" result="SUCCESS">
+    <screenshots>
+      <screenshot image="f2c1896eb2396c2629a7b3a9c0a55765.png"/>
+    </screenshots>
+    <test-step result="SUCCESS" duration="1080">
+      <screenshots>
+        <screenshot image="c68d4383f2b5d2819ae4fa1bb201077b.png"/>
+      </screenshots>
+      <description>Exibe mensagem added to cart</description>
+    </test-step>
+  </test-group>
+</acceptance-test-run>

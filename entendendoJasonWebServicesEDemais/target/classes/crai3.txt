@@ -1,0 +1,504 @@
+Pessoal,
+
+Conforme prometido, vamos ao nosso terceiro e último artigo da série Web Service. Agora vamos partir para o acesso ao banco. Como o pessoal aqui já deve conhecer SQL de longa data, meu foco não será esse, e sim os padrões de projetos fortemente usados em Java e os códigos. Em relação aos códigos, seguirei com o básico, sempre vai existir uma forma melhor e mais eficiente de se fazer, mas aí é com vocês.
+
+Já adianto que não sou um profissional extremamente experiente em padrões de projeto (Design Patterns), mas tentarei passar o que eu tenho de conhecimento para vocês. Logo, se eu falar alguma besteira, por favor, não hesitem em me corrigir. Vamos compartilhar as informações. /ww
+
+Como persistir dados em um banco de dados PostgreSQL, usando Java e os padrões de projetos Factory, DAO e Business!
+
+Neste artigo aprenderemos como acessar um Banco de Dados Postgres com Java, assim teremos onde persistir os dados do nosso Web Service. De quebra aprenderemos alguns padrões de projetos usados no mercado.
+
+Premissas:
+
+* Ter o Postgres, na Version 9.1.2, instalado e configurado (Fiz o download do pacote, que contém o Postgres e o pgAdmin);
+
+* Ter o projeto do artigo Web Service com JSON, ou fazer suas devidas adaptações, já que esse projeto está tendo como base o que foi desenvolvido no primeiro artigo.
+
+Recursos necessários:
+
+* Driver JDBC para o PostgreSQL. Como estou usando o JDK 1.6 (requer o JDBC4) e o PostgresSQL 9.1(requer a versão 9.1-901), tive que baixar o “postgresql-9.1-901.jdbc4.jar”. Caso use uma configuração Java/Postgres diferente da minha, ache o seu driver no site. O processo é o mesmo que foi feito para as bibliotecas do outro projeto, basta colocar esse .jar dentro do diretório “workspace/WebServiceREST/WebContent/WEB-INF/lib”.
+
+Primeiro vamos conhecer melhor o que são esses padrões de projetos chamados: DAO, Business e Factory.
+
+DAO, acrônimo de Data Access Object, é um padrão para persistência de dados que permite separar regras de negócio das regras de acesso a banco de dados. Numa aplicação que utilize a arquitetura MVC, todas as funcionalidades de bancos de dados, tais como obter as conexões, mapear objetos Java para tipos de dados SQL ou executar comandos SQL, devem ser feitas por classes de DAO. (by Wikipedia)
+
+Nenhuma validação ou processamento de dados será feita no DAO, ele apenas apenas recebe/devolve objetos(entidade ou bean) e executa “query” no banco, essa função é da Business, que falaremos a seguir.
+
+Business ou Camada de Serviço, como eu aprendi na faculdade, nada mais é que uma camada responsável por processar os dados que vem do DAO antes de chegar na camada “view”. Por exemplo, se você precisa validar alguns dados antes de enviar ao DAO, é na camada “business” que será feita essa validação. Da mesma forma no outro sentido, se você precisa organizar os dados antes de enviar para a “view”, essa tarefa é dessa camada. Um exemplo prático é dizer que o seu método “login()”, que serve para verificar se o usuário está cadastrado e/ou autenticá-lo, ficará na camada de serviço do objeto usuário, que usará o DAO do usuário como ferramenta para chegar no banco. A “view” pede para a camada Business, se utilizando do método “login()”, validar o usuário, que por sua vez, pedirá para a camada DAO buscar o usuário no banco. No final, a “Business” devolverá para a “view” o usuário validado ou não, para tratar esses dados da maneira que lhe cabe, seja para iniciar a sessão, liberando acesso ou qualquer outra tomada de decisão de sua responsabilidade.
+
+Factory é uma fábrica, que pode ser de qualquer tipo de objeto, ela é bem genérica. No nosso caso, usaremos a Connection Factory, que é uma fábrica especializada em conexões com um Banco de Dados. Ela ficará responsável por prover, ou criar, essa conexão para o nosso DAO. Além disso, ela ficará responsável, também, por fechar a conexão, que ela criou, e outros recursos que utilizaremos no DAO. Faremos ela como uma super classe, ou seja, ela será uma classe abstrata, não sendo possível instanciá-la. Todos os DAO’s herdarão dela, se tornando filhos da fábrica de conexões. Pela natureza da herança, todos os DAO’s saberão criar e fechar as conexões.
+
+Recomendações de desenvolvimento:
+
+O ideal é sempre começar o desenvolvimento pelo UML, mas não vou entrar nesse mérito. Com o UML pronto, eu costumo começar a desenvolver de trás para frente, ou seja, começo desenhando o banco, depois faço o model (entidades ou bean), seguindo pelo DAO, Business e por último a view. No Android é a mesma coisa, a Activity é a última coisa que faço, já que o layout é outra pessoa da minha equipe quem faz, tocamos em paralelo.
+
+O pacote contendo model, DAO e Business pode ser separado da view, já que você pode desenvolver uma aplicação Web ou Desktop usando esse projeto como uma biblioteca. Com isso, quando alguma coisa é mudada em uma classe, ambas as suas interfaces com o usuário (web ou desktop) já estarão contempladas com a modificação e de quebra você não terá problema com operações divergentes em seus diferentes projetos. Sem falar da gigantesca economia de código.
+
+No Android é um pouco diferente, ainda mais quando falamos de consumir Web Service. Para exemplificar pra vocês, no meu projeto, tenho uma biblioteca exatamente igual no meu projeto Android e no meu projeto Web Service, que é o .jar de todo o meu model. Criei um projeto Java comum, coloquei todas as minhas classes model, que são comuns aos dois projetos, lá dentro, já que farei comunicação baseada nesses objetos que os dois lados devem conhecer. Fiz o devido importe, desse .jar gerado, para os dois projetos e pronto. Não preciso mais me preocupar se as classes ficaram diferentes e se vou ter problema de comunicação com o meu WS. Sempre que faço alguma alteração no meu model, torno a importar em meus dois projetos. Isso é bom quando você tem uma equipe de desenvolvimento, que é o meu caso. Agora estou desenvolvendo o app Android e um amigo o WS, mas as vezes trocamos e os dois precisam alterar o model. Então, não me preocupo, quando começo o trabalho, importo o .jar do projeto model para dentro do meu projeto e começo, sem esquentar a minha cabeça.
+
+Chega de “mimimi” e vamos aos códigos!!!
+
+Começando pelo “script” básico de criação do Banco para o nosso exemplo.
+
+
+CREATE DATABASE droidws
+  WITH OWNER = postgres
+    ENCODING = 'UTF8'
+    TABLESPACE = pg_default
+    LC_COLLATE = 'pt_BR.utf8'
+    LC_CTYPE = 'pt_BR.utf8'
+    CONNECTION LIMIT = -1;
+CREATE TABLE cliente
+(
+  id serial NOT NULL,
+  nome text,
+  cpf text NOT NULL,
+  endereco text,
+  CONSTRAINT id PRIMARY KEY (id ),
+  CONSTRAINT cpf UNIQUE (cpf )
+)
+WITH (
+  OIDS=FALSE
+);
+ALTER TABLE cliente
+  OWNER TO postgres;
+ 
+
+
+Agora vamos ao nosso Connection Factory.
+
+
+package br.com.droid.factory;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.Statement;
+
+public abstract class ConnectionFactory {
+    
+    // database URL
+    private static final String DATABASE_URL = "jdbc:postgresql://localhost/droidws";
+    private static final String USERNAME = "postgres";
+    private static final String PASSWORD = "postgres";
+
+    public Connection getConnection() {
+     Connection con = null;
+     try {
+         Class.forName("org.postgresql.Driver");
+         con = DriverManager.getConnection(DATABASE_URL, USERNAME,
+                 PASSWORD);
+     } catch (Exception e) {
+         System.out.println("Erro ao criar conexao.");
+         e.printStackTrace();
+     }
+     return con;
+    }
+
+    public void closeConnection(Connection conn, Statement stmt, ResultSet rs) {
+     try {
+         close(conn, stmt, rs);
+     } catch (Exception e) {
+         System.out.println("Erro ao fechar conexao.");
+         e.printStackTrace();
+     }
+    }
+
+    public void closeConnection(Connection conn, Statement stmt) {
+     try {
+         close(conn, stmt, null);
+     } catch (Exception e) {
+         System.out.println("Erro ao fechar conexao.");
+         e.printStackTrace();
+     }
+    }
+
+    public void closeConnection(Connection conn) {
+     try {
+         close(conn, null, null);
+     } catch (Exception e) {
+         System.out.println("Erro ao fechar conexao.");
+         e.printStackTrace();
+     }
+    }
+
+    private void close(Connection conn, Statement stmt, ResultSet rs) {
+
+     try {
+         if (rs != null) {
+             rs.close();
+         }
+         if (stmt != null) {
+             stmt.close();
+         }
+         if (conn != null) {
+             conn.close();
+         }
+     } catch (Exception e) {
+         System.out.println("Erro ao fechar conexao.");
+         e.printStackTrace();
+     }
+    }
+}
+ 
+
+
+Feito isso, criaremos o nosso DAO. Como falei anteriormente, ele apenas faz as operações básicas.
+
+
+package br.com.droid.dao;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import br.com.droid.factory.ConnectionFactory;
+import br.com.droid.model.Cliente;
+
+public class ClienteDAO extends ConnectionFactory {
+
+    public int verificaCadastrado(String cpf) {
+
+     int id = 0;
+     Connection conn = null;
+     ResultSet resultSet = null;
+     PreparedStatement stmt = null;
+     conn = getConnection();
+     try {
+         stmt = conn
+                 .prepareStatement("SELECT ID FROM CLIENTE WHERE CPF = ?");
+         stmt.setString(1, cpf);
+         resultSet = stmt.executeQuery();
+         if (resultSet.next()) {
+             id = resultSet.getInt("id");
+         }
+     } catch (SQLException e) {
+         e.printStackTrace();
+     } finally {
+         closeConnection(conn, stmt, resultSet);
+     }
+     return id;
+    }
+
+    public int inserir(Cliente cliente) {
+
+     Connection conn = null;
+     conn = getConnection();
+     int sucesso = 0;
+     int prodsCadastrados = verificaCadastrado(cliente.getCpf());
+
+     if (prodsCadastrados == 0) {
+         PreparedStatement stmt = null;
+         try {
+             stmt = conn.prepareStatement("INSERT INTO "
+                     + "CLIENTE (NOME, CPF, ENDERECO) VALUES(?,?,?)");
+
+             stmt.setString(1, cliente.getNome());
+             stmt.setString(2, cliente.getCpf());
+             stmt.setString(3, cliente.getEndereco());
+             sucesso = stmt.executeUpdate();
+
+             if (sucesso > 0) {
+                 System.out.println("CLIENTE INSERIDO!");
+             }
+
+         } catch (SQLException e) {
+             e.printStackTrace();
+             System.out.println("ERRO AO INSERIR CLIENTE!");
+         } finally {
+             closeConnection(conn, stmt);
+         }
+     } else {
+         System.out.println("ERRO: CLIENTE JA CADASTRADO");
+         closeConnection(conn);
+     }
+     return sucesso;
+    }
+
+    public int alterar(Cliente cliente) {
+
+     Connection conn = null;
+     conn = getConnection();
+     PreparedStatement stmt = null;
+     int sucesso = 0;
+     try {
+         stmt = conn
+                 .prepareStatement("UPDATE CLIENTE SET NOME = ?, SET CPF = ?, SET ENDERECO = ? WHERE ID = ?");
+
+         stmt.setString(1, cliente.getNome());
+         stmt.setString(2, cliente.getCpf());
+         stmt.setString(3, cliente.getEndereco());
+         stmt.setInt(4, cliente.getId());
+         sucesso = stmt.executeUpdate();
+         
+         if (sucesso > 0) {
+             System.out.println("CLIENTE ALTERADO!");
+         } else {
+             System.out.println("CLIENTE NÃO EXISTE!");
+         }
+     } catch (SQLException e) {
+         e.printStackTrace();
+         System.out.println("ERRO AO ALTERAR CLIENTE!");
+     } finally {
+         closeConnection(conn, stmt);
+     }
+     return sucesso;
+    }
+
+    public int deletar(int id) {
+
+     Connection conn = null;
+     conn = getConnection();
+     int excluidos = 0;
+     PreparedStatement stmt = null;
+     try {
+         stmt = conn.prepareStatement("DELETE FROM CLIENTE WHERE ID = ?");
+         stmt.setInt(1, id);
+         excluidos = stmt.executeUpdate();
+         
+         if (excluidos > 0) {
+             System.out.println("CLIENTE REMOVIDO!");
+         } else {
+             System.out.println("CLIENTE NÃO EXISTE!");
+         }
+
+     } catch (SQLException e) {
+         e.printStackTrace();
+         System.out.println("ERRO AO DELETAR CLIENTE!");
+     } finally {
+         closeConnection(conn, stmt);
+     }
+     return excluidos;
+    }
+
+    public Cliente buscar(int id) {
+
+     Connection conn = null;
+     ResultSet resultSet = null;
+     PreparedStatement stmt = null;
+     conn = getConnection();
+     Cliente cliente = null;
+     try {
+         stmt = conn.prepareStatement("SELECT * FROM CLIENTE WHERE ID = ?");
+         stmt.setInt(1, id);
+         resultSet = stmt.executeQuery();
+         while (resultSet.next()) {
+             cliente = new Cliente();
+             cliente.setId(resultSet.getInt("id"));
+             cliente.setNome(resultSet.getString("nome"));
+             cliente.setCpf(resultSet.getString("cpf"));
+             cliente.setEndereco(resultSet.getString("endereco"));
+         }
+     } catch (SQLException e) {
+         e.printStackTrace();
+     } finally {
+         closeConnection(conn, stmt, resultSet);
+     }
+     return cliente;
+    }
+
+    public ArrayList<Cliente> buscarTodos() {
+
+     Connection conn = null;
+     ResultSet resultSet = null;
+     PreparedStatement stmt = null;
+     conn = getConnection();
+     ArrayList<Cliente> listaClientes = null;
+
+     try {
+
+         stmt = conn.prepareStatement("SELECT * FROM CLIENTE ORDER BY ID");
+         resultSet = stmt.executeQuery();
+         listaClientes = new ArrayList<Cliente>();
+
+         while (resultSet.next()) {
+             Cliente cliente = new Cliente();
+             cliente.setId(resultSet.getInt("id"));
+             cliente.setNome(resultSet.getString("nome"));
+             cliente.setCpf(resultSet.getString("cpf"));
+             cliente.setEndereco(resultSet.getString("endereco"));
+             listaClientes.add(cliente);
+         }
+
+     } catch (SQLException e) {
+         e.printStackTrace();
+         listaClientes = null;
+     } finally {
+         closeConnection(conn, stmt, resultSet);
+     }
+     return listaClientes;
+    }
+}
+ 
+
+
+Dica: Sempre use o ”PreparedStatement” para as operações com banco, pois ele funciona como uma proteção contra o famoso ”SQL Injection”. 
+
+Fazer SQL assim:
+
+String sql = “select * from cliente where nome = ‘“+nome+”’ and senha = ‘“+senha+”’”
+
+
+É furada!!! Não façam isso!!
+
+E agora a nossa Business. Percebam que é ela quem vai tratar os erros e os processamentos nos objetos. Reparem que eu não criei um método para inserir uma lista de clientes no DAO, mas criei aqui, que vai iterar nessa lista de clientes e inserir um a um usando o método do DAO.
+
+
+package br.com.droid.model;
+
+import java.util.ArrayList;
+import br.com.droid.dao.ClienteDAO;
+
+public class ClienteBusiness {
+
+    public ArrayList<Cliente> buscarTodos() {
+     ClienteDAO clienteDAO = new ClienteDAO();
+     return clienteDAO.buscarTodos();
+    }
+    
+    public String inserir(Cliente cliente) {
+
+     ClienteDAO clienteDAO = new ClienteDAO();
+     if(clienteDAO.inserir(cliente) > 0){
+         return "Cliente inserido no banco com sucesso!";
+     } else {
+         return "Falha ao inserir o cliente no banco!";
+     }
+    }
+    
+    public String deletar(int id) {
+     ClienteDAO clienteDAO = new ClienteDAO();
+     if(clienteDAO.deletar(id) > 0){
+         return "Cliente removido no banco com sucesso!";
+     } else {
+         return "Cliente não existe!";
+     }
+    }
+    
+    public Cliente buscar(int id) {
+     ClienteDAO clienteDAO = new ClienteDAO();
+     return clienteDAO.buscar(id);
+    }
+    
+    public String inserirLista(ArrayList<Cliente> listaClientes) {
+     ClienteDAO clienteDAO = new ClienteDAO();
+     String retorno = "";
+     for (int i = 0; i < listaClientes.size(); i++) {
+         if(clienteDAO.inserir(listaClientes.get(i)) < 1){
+             retorno += "Erro ao inserir o cliente de CPF: "+ listaClientes.get(i).getCpf() +"\n";
+         }
+     }
+     if(retorno.length() == 0){
+         retorno = "Lista de clientes inserida no banco com sucesso!";
+     }
+     return retorno;
+    }
+}
+ 
+
+
+Feito isso, vamos as modificações na nossa camada Resource. O que fizemos agora foi parar de referenciar a antiga classe Banco, que era uma classe auxiliar para entendermos o funcionamento do WS, e passamos a chamar os métodos da nossa camada Business.
+
+
+package br.com.droid.resources;
+
+import java.util.ArrayList;
+import javax.ws.rs.Consumes;
+import javax.ws.rs.GET;
+import javax.ws.rs.POST;
+import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
+import javax.ws.rs.Produces;
+import br.com.droid.exception.NoContentException;
+import br.com.droid.model.Cliente;
+import br.com.droid.model.ClienteBusiness;
+import com.google.gson.Gson;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonParser;
+
+@Path("/cliente")
+public class ClienteResource {
+    
+    @GET
+    @Path("/buscarTodos")
+    @Produces("application/json")
+    public ArrayList<Cliente> selTodos(){
+     return new ClienteBusiness().buscarTodos();
+    }
+
+    @GET
+    @Path("/buscarTodosGSON")
+    @Produces("application/json")
+    public String selTodosGSON(){
+     return new Gson().toJson(new ClienteBusiness().buscarTodos());
+    }
+    
+    @GET
+    @Path("/{id}")
+    @Produces("application/json")
+    public Cliente getCliente(@PathParam("id") int id){
+     Cliente cliente = new ClienteBusiness().buscar(id);
+     
+     if(cliente == null)
+         throw new NoContentException("Cliente não encontrado!");
+     
+     return cliente;
+    }
+    
+    @GET
+    @Path("/delete/{id}")
+    @Produces("application/json")
+    public String deleteCliente(@PathParam("id") int id){
+     return new ClienteBusiness().deletar(id);
+    }
+    
+    @POST
+    @Path("/inserir")
+    @Produces("application/json")
+    @Consumes("application/json")
+    public String inserirCliente(Cliente cliente) {
+     return new ClienteBusiness().inserir(cliente);
+    }
+    
+    @POST
+    @Path("/inserirLista")
+    @Produces("application/json")
+    @Consumes("application/json")
+    public String inserirLista(String listaClientesJson) {
+     
+     Gson gson = new Gson();
+     ArrayList<Cliente> listaClientes = new ArrayList<Cliente>();
+     JsonParser parser = new JsonParser();
+        JsonArray array = parser.parse(listaClientesJson).getAsJsonArray();
+     
+        for (int i = 0; i < array.size(); i++) {
+         listaClientes.add(gson.fromJson(array.get(i), Cliente.class));
+     }
+     
+     return new ClienteBusiness().inserirLista(listaClientes);
+
+    }
+}
+ 
+
+
+Para testar esse projeto, usei o projeto que foi criado no nosso segundo artigo (Web Service RESTful 2 [Consumir+Android]), sem mudar nada.
+
+Com isso fechamos o nosso ciclo que abrange desde o Banco de Dados até o Android, resolvendo o grande problema que é “como colocar e coletar dados em um banco fora do android?”.
+
+Agora é só brincar!! /uu
+
+Abraços!!
+
+PS.: Como fiz esse tutorial hoje e não tive tempo de reler algumas vezes, se tiver algum erro, por favor, me avise para que a correção seja feita.
+PS2.: Como falei anteriormente, aqui vc consegue o básico, sempre vai existir uma forma melhor e mais eficiente de se fazer, mas agora é com vocês corram atrás. /ww
+
+
+Confiram os artigos anteriores:
+
+[Artigo] Web Service RESTful [+Java+JSON+Code]
+[Artigo] Web Service RESTful 2 [+Consumir+Android]
+
+
+Você não tem permissões suficientes para ver os arquivos anexados nesta mensagem.
